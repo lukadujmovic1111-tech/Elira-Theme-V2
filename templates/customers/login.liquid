@@ -1,0 +1,59 @@
+<div class="customer-page">
+  <div class="customer-page__head">
+    <h1 class="h1">{{ 'customer.login_page.title' | t }}</h1>
+  </div>
+
+  {%- form 'customer_login', novalidate: 'novalidate' -%}
+    {%- if form.errors -%}
+      <div class="form-status form-status--error" role="alert">
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+
+    <div class="field">
+      <label class="field__label" for="CustomerEmail">{{ 'customer.login_page.email' | t }}</label>
+      <input class="field__input" type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" required>
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="CustomerPassword">{{ 'customer.login_page.password' | t }}</label>
+      <input class="field__input" type="password" name="customer[password]" id="CustomerPassword" autocomplete="current-password" required>
+    </div>
+
+    <button type="submit" class="btn btn--full">{{ 'customer.login_page.sign_in' | t }}</button>
+
+    <div class="customer-page__links">
+      <a class="link-underline" href="#recover" onclick="document.getElementById('RecoverForm').hidden = false; this.closest('form').hidden = true; return false;">
+        {{ 'customer.login_page.forgot_password' | t }}
+      </a>
+      <a class="link-underline" href="{{ routes.account_register_url }}">{{ 'customer.login_page.create_account' | t }}</a>
+    </div>
+  {%- endform -%}
+
+  <div id="RecoverForm" hidden>
+    <div class="customer-page__head" style="margin-top: 2rem;">
+      <h2 class="h3">{{ 'customer.recover_password.title' | t }}</h2>
+      <p>{{ 'customer.recover_password.subtext' | t }}</p>
+    </div>
+
+    {%- form 'recover_customer_password' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="form-status form-status--success" role="status">{{ 'customer.recover_password.success' | t }}</p>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <div class="form-status form-status--error" role="alert">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+
+      <div class="field">
+        <label class="field__label" for="RecoverEmail">{{ 'customer.login_page.email' | t }}</label>
+        <input class="field__input" type="email" name="email" id="RecoverEmail" autocomplete="email" required>
+      </div>
+
+      <button type="submit" class="btn btn--full">{{ 'customer.recover_password.submit' | t }}</button>
+
+      <div class="customer-page__links">
+        <a class="link-underline" href="{{ routes.account_login_url }}">{{ 'customer.recover_password.cancel' | t }}</a>
+      </div>
+    {%- endform -%}
+  </div>
+</div>

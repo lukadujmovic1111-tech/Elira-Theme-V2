@@ -1,0 +1,62 @@
+<div class="customer-page customer-page--wide">
+  <div class="customer-page__head">
+    <h1 class="h1">{{ 'customer.account.title' | t }}</h1>
+    <p>
+      {{ customer.name }} &middot;
+      <a class="link-underline" href="{{ routes.account_logout_url }}">{{ 'customer.log_out' | t }}</a>
+    </p>
+  </div>
+
+  <div style="display: grid; gap: 3rem;">
+    <div>
+      <h2 class="h4" style="margin-bottom: 1.25rem;">{{ 'customer.orders.title' | t }}</h2>
+
+      {%- paginate customer.orders by 20 -%}
+        {%- if customer.orders.size > 0 -%}
+          <div style="overflow-x: auto;">
+            <table class="order-table">
+              <thead>
+                <tr>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
+                  <th>{{ 'customer.orders.date' | t }}</th>
+                  <th>{{ 'customer.orders.payment_status' | t }}</th>
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th>{{ 'customer.orders.total' | t }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for order in customer.orders -%}
+                  <tr>
+                    <td><a class="link-underline" href="{{ order.customer_url }}">{{ order.name }}</a></td>
+                    <td>{{ order.created_at | date: '%d.%m.%Y' }}</td>
+                    <td>{{ order.financial_status_label }}</td>
+                    <td>{{ order.fulfillment_status_label }}</td>
+                    <td>{{ order.total_price | money }}</td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+          {% render 'pagination', paginate: paginate %}
+        {%- else -%}
+          <p class="text-soft">{{ 'customer.orders.none' | t }}</p>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+
+    <div>
+      <h2 class="h4" style="margin-bottom: 1.25rem;">{{ 'customer.account.details' | t }}</h2>
+      {%- if customer.default_address -%}
+        <div class="address-card" style="max-width: 320px;">
+          {{ customer.default_address | format_address }}
+        </div>
+      {%- endif -%}
+      <p style="margin-top: 1rem;">
+        <a class="link-arrow" href="{{ routes.account_addresses_url }}">
+          {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
+          {% render 'icon', icon: 'arrow-right' %}
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

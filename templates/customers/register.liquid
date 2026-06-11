@@ -1,0 +1,41 @@
+<div class="customer-page">
+  <div class="customer-page__head">
+    <h1 class="h1">{{ 'customer.register.title' | t }}</h1>
+  </div>
+
+  {%- form 'create_customer', novalidate: 'novalidate' -%}
+    {%- if form.errors -%}
+      <div class="form-status form-status--error" role="alert">
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+
+    <div class="form-row">
+      <div class="field">
+        <label class="field__label" for="RegisterFirstName">{{ 'customer.register.first_name' | t }}</label>
+        <input class="field__input" type="text" name="customer[first_name]" id="RegisterFirstName" autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label class="field__label" for="RegisterLastName">{{ 'customer.register.last_name' | t }}</label>
+        <input class="field__input" type="text" name="customer[last_name]" id="RegisterLastName" autocomplete="family-name">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="RegisterEmail">{{ 'customer.register.email' | t }}</label>
+      <input class="field__input" type="email" name="customer[email]" id="RegisterEmail" autocomplete="email" required>
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="RegisterPassword">{{ 'customer.register.password' | t }}</label>
+      <input class="field__input" type="password" name="customer[password]" id="RegisterPassword" autocomplete="new-password" required>
+    </div>
+
+    <button type="submit" class="btn btn--full">{{ 'customer.register.submit' | t }}</button>
+
+    <div class="customer-page__links">
+      <span class="text-soft">{{ 'customer.register.already' | t }}</span>
+      <a class="link-underline" href="{{ routes.account_login_url }}">{{ 'customer.login_page.sign_in' | t }}</a>
+    </div>
+  {%- endform -%}
+</div>

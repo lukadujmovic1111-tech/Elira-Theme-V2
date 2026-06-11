@@ -1,0 +1,40 @@
+{%- comment -%}
+  Preis-Anzeige für Produkte.
+  Verwendung: {% render 'price', product: product %}
+  Optional: use_variant (Objekt variant), class
+{%- endcomment -%}
+{%- liquid
+  if use_variant
+    assign target = use_variant
+    assign price = target.price
+    assign compare_at = target.compare_at_price
+    assign price_varies = false
+  else
+    assign target = product
+    assign price = target.price
+    assign compare_at = target.compare_at_price
+    assign price_varies = target.price_varies
+  endif
+
+  assign on_sale = false
+  if compare_at > price
+    assign on_sale = true
+  endif
+-%}
+<div class="price {{ class }}" data-price-wrap>
+  {%- if on_sale -%}
+    <span class="price__sale">
+      <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+      {{ price | money }}
+    </span>
+    <s class="price__compare">
+      <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+      {{ compare_at | money }}
+    </s>
+  {%- elsif price_varies -%}
+    {%- assign price_formatted = price | money -%}
+    <span>{{ 'products.product.from' | t: price: price_formatted }}</span>
+  {%- else -%}
+    <span>{{ price | money }}</span>
+  {%- endif -%}
+</div>

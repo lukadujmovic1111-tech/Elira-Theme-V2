@@ -1,0 +1,38 @@
+<article class="article-content">
+  <div class="container container--text">
+    <div class="page-hero" style="padding-top: 0;">
+      <p class="article-card__meta">{{ article.published_at | date: '%d.%m.%Y' }}</p>
+      <h1 class="h1" style="margin-top: 0.6rem;">{{ article.title }}</h1>
+    </div>
+
+    {%- if article.image -%}
+      <div class="article-content__hero">
+        {{ article.image | image_url: width: 1600 | image_tag:
+          widths: '750, 1100, 1600',
+          sizes: '(min-width: 990px) 880px, 100vw',
+          loading: 'eager',
+          alt: article.title
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="rte">
+      {{ article.content }}
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <a href="{{ blog.url }}" class="link-arrow">
+        {% render 'icon', icon: 'chevron-left' %}
+        {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+      </a>
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Artikel",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

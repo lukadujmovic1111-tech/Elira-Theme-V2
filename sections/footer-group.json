@@ -1,0 +1,41 @@
+{
+  "type": "footer",
+  "name": "Footer-Gruppe",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "shop": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "main-menu"
+          }
+        },
+        "info": {
+          "type": "menu",
+          "settings": {
+            "heading": "Hilfe & Information",
+            "menu": "footer"
+          }
+        },
+        "contact": {
+          "type": "text",
+          "settings": {
+            "heading": "Kontakt",
+            "text": "<p>support@elirapilates.com<br/>Mo–Fr, 9–17 Uhr</p>"
+          }
+        }
+      },
+      "block_order": ["shop", "info", "contact"],
+      "settings": {
+        "brand_text": "Pilates-Wear & Studio-Essentials, entworfen in Deutschland. Bewegung, die bleibt.",
+        "show_newsletter": true,
+        "newsletter_heading": "10 % auf deine erste Bestellung",
+        "show_payment_icons": true,
+        "show_locale_selector": true
+      }
+    }
+  },
+  "order": ["footer"]
+}

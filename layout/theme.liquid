@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="{{ settings.color_background }}">
+
+  {%- if settings.favicon -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 96, height: 96 }}">
+  {%- endif -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif -%}
+    {%- if current_page != 1 %} &ndash; {{ 'general.pagination.page' | t: number: current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} | {{ shop.name }}{% endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {% render 'meta-tags' %}
+
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+  {%- liquid
+    assign body_font = settings.type_body_font
+    assign body_font_bold = body_font | font_modify: 'weight', 'bolder'
+    assign body_font_italic = body_font | font_modify: 'style', 'italic'
+    assign heading_font = settings.type_header_font
+  -%}
+
+  <style>
+    {{ body_font | font_face: font_display: 'swap' }}
+    {{ body_font_bold | font_face: font_display: 'swap' }}
+    {{ body_font_italic | font_face: font_display: 'swap' }}
+    {{ heading_font | font_face: font_display: 'swap' }}
+
+    :root {
+      --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+      --font-body-weight: {{ body_font.weight | default: 400 }};
+      --font-body-weight-bold: {{ body_font_bold.weight | default: 600 }};
+      --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+      --font-heading-weight: {{ heading_font.weight | default: 500 }};
+
+      --color-bg: {{ settings.color_background }};
+      --color-surface: {{ settings.color_surface }};
+      --color-ink: {{ settings.color_text }};
+      --color-accent: {{ settings.color_accent }};
+      --color-sale: {{ settings.color_sale }};
+      --color-btn: {{ settings.color_button }};
+      --color-btn-text: {{ settings.color_button_text }};
+
+      --page-width: {{ settings.page_width }}px;
+      --radius-btn: {{ settings.button_radius }}px;
+      --radius-card: {{ settings.card_radius }}px;
+      --body-size: {{ settings.body_size }}px;
+      --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+      {%- if settings.card_aspect == 'square' %}
+      --card-aspect: 1 / 1;
+      {%- else %}
+      --card-aspect: 3 / 4;
+      {%- endif %}
+    }
+  </style>
+
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'global.js' | asset_url }}" defer></script>
+
+  {{ content_for_header }}
+</head>
+
+<body class="template-{{ request.page_type | handle }}{% if settings.cart_type == 'drawer' %} cart-type-drawer{% endif %}">
+  <a class="skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  {% sections 'header-group' %}
+
+  <main id="MainContent" class="main-content" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% sections 'footer-group' %}
+
+  {%- if settings.cart_type == 'drawer' -%}
+    {% section 'cart-drawer' %}
+  {%- endif -%}
+
+  <div class="page-overlay" data-overlay hidden></div>
+
+  <script>
+    window.routes = {
+      root: {{ routes.root_url | json }},
+      cart: {{ routes.cart_url | json }},
+      cartAdd: {{ routes.cart_add_url | json }},
+      cartChange: {{ routes.cart_change_url | json }},
+      cartUpdate: {{ routes.cart_update_url | json }},
+      search: {{ routes.search_url | json }},
+      predictiveSearch: {{ routes.predictive_search_url | json }}
+    };
+    window.eliraSettings = {
+      cartType: {{ settings.cart_type | json }},
+      moneyFormat: {{ shop.money_format | json }}
+    };
+    window.eliraStrings = {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+      adding: {{ 'products.product.adding' | t | json }},
+      added: {{ 'products.product.added' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      unavailable: {{ 'products.product.unavailable' | t | json }},
+      cartError: {{ 'cart.error_quantity' | t | json }}
+    };
+  </script>
+</body>
+</html>

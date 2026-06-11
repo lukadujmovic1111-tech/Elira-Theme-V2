@@ -1,0 +1,143 @@
+<div class="section" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+  <div class="container" data-cart-section="{{ section.id }}">
+    <div class="page-hero" style="padding-top: 0;">
+      <h1 class="h1">{{ 'cart.title' | t }}</h1>
+    </div>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-empty">
+        <p class="h3">{{ 'cart.empty' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn">{{ 'cart.empty_cta' | t }}</a>
+      </div>
+    {%- else -%}
+      <div class="cart-page__grid">
+        <div>
+          {%- if settings.show_free_shipping_bar and settings.free_shipping_threshold > 0 -%}
+            {%- liquid
+              assign threshold = settings.free_shipping_threshold | times: 100
+              assign remaining = threshold | minus: cart.total_price
+              assign progress = cart.total_price | times: 100.0 | divided_by: threshold | at_most: 100
+            -%}
+            <div class="free-shipping" style="--progress: {{ progress }}%; margin-bottom: 1.5rem;">
+              {%- if remaining > 0 -%}
+                {%- assign remaining_formatted = remaining | money -%}
+                <p>{{ 'cart.free_shipping_remaining_html' | t: amount: remaining_formatted }}</p>
+              {%- else -%}
+                <p><strong>{{ 'cart.free_shipping_unlocked' | t }}</strong></p>
+              {%- endif -%}
+              <div class="free-shipping__bar"><div class="free-shipping__progress"></div></div>
+            </div>
+          {%- endif -%}
+
+          <div>
+            {%- for item in cart.items -%}
+              <div class="cart-line">
+                <a href="{{ item.url }}" class="cart-line__media">
+                  {%- if item.image -%}
+                    {{ item.image | image_url: width: 240 | image_tag: widths: '120, 240', sizes: '88px', loading: 'lazy', alt: item.title }}
+                  {%- else -%}
+                    {{ 'product-apparel-1' | placeholder_svg_tag }}
+                  {%- endif -%}
+                </a>
+                <div class="cart-line__details">
+                  <a href="{{ item.url }}" class="cart-line__title">{{ item.product.title }}</a>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <p class="cart-line__variant">{{ item.variant.title }}</p>
+                  {%- endunless -%}
+                  {%- for discount in item.line_level_discount_allocations -%}
+                    <p class="cart-line__variant">{{ discount.discount_application.title }}</p>
+                  {%- endfor -%}
+                  <div class="cart-line__price-row">
+                    <div class="price">
+                      {%- if item.original_line_price > item.final_line_price -%}
+                        <span class="price__sale">{{ item.final_line_price | money }}</span>
+                        <s class="price__compare">{{ item.original_line_price | money }}</s>
+                      {%- else -%}
+                        <span>{{ item.final_line_price | money }}</span>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                  <div class="cart-line__controls">
+                    {% render 'quantity-input', value: item.quantity, line: forloop.index, small: true %}
+                    <button type="button" class="cart-line__remove" data-line-remove="{{ forloop.index }}">
+                      {{ 'cart.remove' | t }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if section.settings.show_note -%}
+            <details class="cart-note">
+              <summary>{{ 'cart.note' | t }}</summary>
+              <form action="{{ routes.cart_url }}" method="post">
+                <textarea class="field__input" name="note" placeholder="{{ 'cart.note' | t }}">{{ cart.note }}</textarea>
+                <button type="submit" name="update" class="btn btn--outline" style="margin-top: 0.75rem; min-height: 42px;">{{ 'cart.update' | t }}</button>
+              </form>
+            </details>
+          {%- endif -%}
+        </div>
+
+        <aside class="cart-page__summary">
+          <div class="cart-totals">
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <div class="cart-totals__row" style="color: var(--color-sale);">
+                  <span>{{ discount.title }}</span>
+                  <span>-{{ discount.total_allocated_amount | money }}</span>
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+            <div class="cart-totals__row">
+              <span>{{ 'cart.subtotal' | t }}</span>
+              <strong>{{ cart.total_price | money }}</strong>
+            </div>
+            <p class="cart-page__shipping-note">{{ 'cart.shipping_note' | t }}</p>
+          </div>
+          <form action="{{ routes.cart_url }}" method="post">
+            <button type="submit" name="checkout" class="btn btn--full">{{ 'cart.checkout' | t }}</button>
+          </form>
+          <a href="{{ routes.all_products_collection_url }}" class="link-underline" style="font-size: 0.82rem; text-align: center;">
+            {{ 'cart.continue' | t }}
+          </a>
+        </aside>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Warenkorb-Seite",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_note",
+      "label": "Bestellnotiz erlauben",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Abstand oben",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Abstand unten",
+      "default": 88
+    }
+  ]
+}
+{% endschema %}

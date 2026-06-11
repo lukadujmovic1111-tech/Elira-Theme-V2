@@ -1,0 +1,100 @@
+<div class="section" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+  <div class="container">
+    <div class="page-hero" style="padding-top: 0;">
+      <h1 class="h1">{{ 'general.search.title' | t }}</h1>
+      {%- if search.performed and search.terms != blank -%}
+        <p class="page-hero__sub">
+          {%- if search.results_count == 1 -%}
+            {{ 'general.search.results_with_count.one' | t: count: search.results_count, terms: search.terms }}
+          {%- else -%}
+            {{ 'general.search.results_with_count.other' | t: count: search.results_count, terms: search.terms }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
+      <div class="newsletter-form" style="max-width: none;">
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+          aria-label="{{ 'general.search.placeholder' | t }}"
+        >
+        <input type="hidden" name="options[prefix]" value="last">
+        <button type="submit">
+          {{ 'general.search.submit' | t }}
+          {% render 'icon', icon: 'arrow-right' %}
+        </button>
+      </div>
+    </form>
+
+    {%- if search.performed -%}
+      {%- if search.results_count == 0 -%}
+        <div class="collection-empty">
+          <p class="h3">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline">{{ 'collections.general.view_all' | t }}</a>
+        </div>
+      {%- else -%}
+        {%- paginate search.results by 24 -%}
+          <div class="product-grid product-grid--4">
+            {%- for item in search.results -%}
+              {%- case item.object_type -%}
+                {%- when 'product' -%}
+                  {% render 'product-card', card_product: item %}
+                {%- when 'article' -%}
+                  <article class="article-card">
+                    <a href="{{ item.url }}" class="article-card__media">
+                      {%- if item.image -%}
+                        {{ item.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: item.title }}
+                      {%- else -%}
+                        {{ 'image' | placeholder_svg_tag }}
+                      {%- endif -%}
+                    </a>
+                    <p class="article-card__meta">{{ item.published_at | date: '%d.%m.%Y' }}</p>
+                    <h3 class="product-card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                  </article>
+                {%- when 'page' -%}
+                  <article class="article-card">
+                    <p class="article-card__meta">{{ 'general.search.pages' | t }}</p>
+                    <h3 class="product-card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                  </article>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+          {% render 'pagination', paginate: paginate %}
+        {%- endpaginate -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Suchergebnisse",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Abstand oben",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Abstand unten",
+      "default": 88
+    }
+  ]
+}
+{% endschema %}

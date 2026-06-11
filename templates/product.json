@@ -1,0 +1,85 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "show_vendor": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variants": {
+          "type": "variant_picker",
+          "settings": {
+            "show_swatches": true
+          }
+        },
+        "buy": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_dynamic_checkout": true
+          }
+        },
+        "usps": {
+          "type": "usp",
+          "settings": {
+            "text_1": "Kostenloser Versand ab 75 €",
+            "text_2": "30 Tage Rückgaberecht",
+            "text_3": "Sichere Zahlung & Käuferschutz"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "open": true
+          }
+        },
+        "material": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Material & Pflege",
+            "content": "<p>Weiche, formstabile Stoffe in Studio-Qualität. Bei 30 °C im Schonwaschgang waschen, nicht trocknergeeignet.</p>"
+          }
+        },
+        "shipping": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Versand & Rückgabe",
+            "content": "<p>Lieferung in 2–4 Werktagen, kostenlos ab 75 €. Du hast 30 Tage Zeit, deine Bestellung zurückzusenden.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variants",
+        "buy",
+        "usps",
+        "description",
+        "material",
+        "shipping"
+      ],
+      "settings": {
+        "padding_top": 48,
+        "padding_bottom": 72
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Das könnte dir gefallen",
+        "limit": 4,
+        "scheme": "default",
+        "padding_top": 48,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["main", "related"]
+}

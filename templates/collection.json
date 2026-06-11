@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_banner": true,
+        "enable_filters": true,
+        "enable_sorting": true,
+        "per_page": 24,
+        "columns": 4,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["main"]
+}

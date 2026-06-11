@@ -1,0 +1,145 @@
+{%- comment -%}
+  Produktkarte.
+  Verwendung: {% render 'product-card', card_product: product %}
+  Optional: loading ('lazy'/'eager'), sizes (img sizes-Attribut)
+{%- endcomment -%}
+{%- liquid
+  assign loading = loading | default: 'lazy'
+  assign sizes = sizes | default: '(min-width: 1200px) 25vw, (min-width: 750px) 33vw, 50vw'
+
+  assign media1 = card_product.featured_media
+  assign media2 = card_product.media[1]
+
+  assign on_sale = false
+  if card_product.compare_at_price > card_product.price
+    assign on_sale = true
+  endif
+
+  assign is_new = false
+  if settings.show_new_badge
+    assign now_s = 'now' | date: '%s' | plus: 0
+    assign created_s = card_product.created_at | date: '%s' | plus: 0
+    assign age_s = now_s | minus: created_s
+    assign window_s = settings.new_badge_days | times: 86400
+    if age_s < window_s
+      assign is_new = true
+    endif
+  endif
+
+  assign color_option = blank
+  for option in card_product.options_with_values
+    assign opt_name = option.name | downcase
+    if opt_name == 'farbe' or opt_name == 'color' or opt_name == 'colour'
+      assign color_option = option
+    endif
+  endfor
+-%}
+
+<article class="product-card">
+  <a href="{{ card_product.url }}" class="product-card__media" tabindex="-1" aria-hidden="true">
+    {%- if media1 -%}
+      {{ media1 | image_url: width: 900 | image_tag:
+        widths: '360, 540, 720, 900, 1080',
+        sizes: sizes,
+        loading: loading,
+        class: 'product-card__img product-card__img--primary',
+        alt: card_product.title
+      }}
+      {%- if settings.card_hover_image and media2 -%}
+        {{ media2 | image_url: width: 900 | image_tag:
+          widths: '360, 540, 720, 900',
+          sizes: sizes,
+          loading: 'lazy',
+          class: 'product-card__img product-card__img--secondary',
+          alt: card_product.title
+        }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-apparel-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+    {%- endif -%}
+
+    <div class="product-card__badges">
+      {%- unless card_product.available -%}
+        <span class="badge badge--soldout">{{ 'products.product.badge_sold_out' | t }}</span>
+      {%- else -%}
+        {%- if on_sale and settings.show_sale_badge -%}
+          <span class="badge badge--sale">{{ 'products.product.badge_sale' | t }}</span>
+        {%- endif -%}
+        {%- if is_new -%}
+          <span class="badge badge--new">{{ 'products.product.badge_new' | t }}</span>
+        {%- endif -%}
+      {%- endunless -%}
+    </div>
+  </a>
+
+  {%- if settings.card_quick_add and card_product.available -%}
+    <quick-add class="quick-add">
+      {%- if card_product.variants.size == 1 -%}
+        <form data-single-variant="{{ card_product.first_available_variant.id }}">
+          <button type="submit" class="quick-add__trigger" data-qa-submit>
+            {% render 'icon', icon: 'plus' %}
+            <span data-qa-label>{{ 'products.product.quick_add' | t }}</span>
+          </button>
+        </form>
+      {%- else -%}
+        <button type="button" class="quick-add__trigger" aria-expanded="false">
+          {% render 'icon', icon: 'plus' %}
+          <span>{{ 'products.product.quick_add' | t }}</span>
+        </button>
+        <div class="quick-add__panel" hidden>
+          <form>
+            {%- for option in card_product.options_with_values -%}
+              {%- assign position0 = forloop.index0 -%}
+              <fieldset class="quick-add__option">
+                <legend class="quick-add__legend">{{ option.name }}</legend>
+                <div class="quick-add__values">
+                  {%- for value in option.values -%}
+                    <label class="opt-pill">
+                      <input
+                        type="radio"
+                        name="qa-{{ card_product.id }}-{{ position0 }}"
+                        value="{{ value | escape }}"
+                        data-qa-position="{{ position0 }}"
+                        {% if value == card_product.first_available_variant.options[position0] %}checked{% endif %}
+                      >
+                      <span>{{ value }}</span>
+                    </label>
+                  {%- endfor -%}
+                </div>
+              </fieldset>
+            {%- endfor -%}
+            <button type="submit" class="btn btn--full quick-add__submit" data-qa-submit>
+              <span data-qa-label>{{ 'products.product.add_to_cart' | t }}</span>
+            </button>
+          </form>
+          <script type="application/json">
+            [
+              {%- for variant in card_product.variants -%}
+                {
+                  "id": {{ variant.id }},
+                  "available": {{ variant.available }},
+                  "options": {{ variant.options | json }}
+                }{%- unless forloop.last -%},{%- endunless -%}
+              {%- endfor -%}
+            ]
+          </script>
+        </div>
+      {%- endif -%}
+    </quick-add>
+  {%- endif -%}
+
+  <div class="product-card__info">
+    {%- if settings.card_show_vendor and card_product.vendor != blank -%}
+      <span class="product-card__vendor">{{ card_product.vendor }}</span>
+    {%- endif -%}
+    <h3 class="product-card__title">
+      <a href="{{ card_product.url }}">{{ card_product.title }}</a>
+    </h3>
+    <div class="product-card__meta">
+      {% render 'price', product: card_product %}
+      {%- if settings.card_show_colors and color_option != blank and color_option.values.size > 1 -%}
+        <span class="product-card__colors">{{ 'products.product.colors.other' | t: count: color_option.values.size }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,22 @@
+{%- comment -%}
+  Mengen-Stepper.
+  Verwendung: {% render 'quantity-input', id: 'Quantity', name: 'quantity', value: 1, small: false, line: line_index %}
+{%- endcomment -%}
+<quantity-input class="qty{% if small %} qty--small{% endif %}">
+  <button type="button" data-action="decrease" aria-label="{{ 'cart.decrease' | t }}">
+    {% render 'icon', icon: 'minus' %}
+  </button>
+  <input
+    type="number"
+    {% if id %}id="{{ id }}"{% endif %}
+    {% if name %}name="{{ name }}"{% endif %}
+    value="{{ value | default: 1 }}"
+    min="{{ min | default: 1 }}"
+    inputmode="numeric"
+    aria-label="{{ 'cart.quantity' | t }}"
+    {% if line %}data-line-qty="{{ line }}"{% endif %}
+  >
+  <button type="button" data-action="increase" aria-label="{{ 'cart.increase' | t }}">
+    {% render 'icon', icon: 'plus' %}
+  </button>
+</quantity-input>

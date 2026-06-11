@@ -1,0 +1,295 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Elira Studio",
+    "theme_version": "2.0.0",
+    "theme_author": "Elira Pilates",
+    "theme_documentation_url": "https://github.com/lukadujmovic1111-tech/Elira-Theme-V2",
+    "theme_support_url": "mailto:support@elirapilates.com"
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "Wird kein Logo hochgeladen, erscheint der Markenname als elegante Wortmarke."
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 60,
+        "max": 260,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo-Breite (Desktop)",
+        "default": 130
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Empfohlen: 96 × 96 px"
+      }
+    ]
+  },
+  {
+    "name": "Farben",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Basis"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Hintergrund",
+        "default": "#FAF7F2"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Fläche / Sand",
+        "info": "Hintergrund für Produktbilder, Footer und alternative Sektionen.",
+        "default": "#F1EBE2"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#1F1C1A"
+      },
+      {
+        "type": "header",
+        "content": "Akzente"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Akzent",
+        "info": "Für Badges und feine Highlights.",
+        "default": "#C0998B"
+      },
+      {
+        "type": "color",
+        "id": "color_sale",
+        "label": "Sale",
+        "default": "#8A3B2E"
+      },
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_button",
+        "label": "Button-Hintergrund",
+        "default": "#1F1C1A"
+      },
+      {
+        "type": "color",
+        "id": "color_button_text",
+        "label": "Button-Text",
+        "default": "#FAF7F2"
+      }
+    ]
+  },
+  {
+    "name": "Typografie",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Überschriften",
+        "default": "jost_n5"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "min": 90,
+        "max": 140,
+        "step": 5,
+        "unit": "%",
+        "label": "Größenskala Überschriften",
+        "default": 105
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Fließtext",
+        "default": "jost_n4"
+      },
+      {
+        "type": "range",
+        "id": "body_size",
+        "min": 14,
+        "max": 17,
+        "step": 1,
+        "unit": "px",
+        "label": "Textgröße",
+        "default": 15
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1200,
+        "max": 1680,
+        "step": 20,
+        "unit": "px",
+        "label": "Maximale Seitenbreite",
+        "default": 1480
+      },
+      {
+        "type": "range",
+        "id": "button_radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "Button-Rundung",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "card_radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "Karten-Rundung",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Produktkarten",
+    "settings": [
+      {
+        "type": "select",
+        "id": "card_aspect",
+        "label": "Bildformat",
+        "options": [
+          { "value": "portrait", "label": "Hochformat (3:4)" },
+          { "value": "square", "label": "Quadratisch (1:1)" }
+        ],
+        "default": "portrait"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_hover_image",
+        "label": "Zweites Bild bei Hover zeigen",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_quick_add",
+        "label": "Schnellkauf aktivieren",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_vendor",
+        "label": "Marke anzeigen",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_colors",
+        "label": "Anzahl Farben anzeigen",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Badges",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_sale_badge",
+        "label": "Sale-Badge anzeigen",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_new_badge",
+        "label": "Neu-Badge anzeigen",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "new_badge_days",
+        "min": 10,
+        "max": 90,
+        "step": 5,
+        "unit": "Tg",
+        "label": "„Neu“ gilt für Produkte jünger als",
+        "default": 45
+      }
+    ]
+  },
+  {
+    "name": "Warenkorb",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Warenkorb-Typ",
+        "options": [
+          { "value": "drawer", "label": "Drawer (seitlich)" },
+          { "value": "page", "label": "Seite" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_free_shipping_bar",
+        "label": "Fortschritt zum Gratisversand anzeigen",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Gratisversand ab (in €)",
+        "default": 75
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram",
+        "default": "https://www.instagram.com/elirapilates"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok",
+        "default": "https://www.tiktok.com/@elirapilates"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube"
+      }
+    ]
+  }
+]

@@ -1,0 +1,258 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "large",
+        "alignment": "left",
+        "shade": 30,
+        "badge": "Jetzt erhältlich",
+        "heading": "Die Studio Kollektion",
+        "subheading": "Pilates-Wear, die mit jeder Bewegung mitgeht – entworfen für Studio, Stadt und Sofa.",
+        "cta_label": "Outfits shoppen",
+        "cta_link": "shopify://collections/pilates-outfits",
+        "cta2_label": "Zubehör entdecken",
+        "cta2_link": "shopify://collections/pilates-zubehor"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m1": { "type": "item", "settings": { "text": "Von Frauen. Für Frauen." } },
+        "m2": { "type": "item", "settings": { "text": "Bewegung, die bleibt" } },
+        "m3": { "type": "item", "settings": { "text": "Kostenloser Versand ab 75 €" } },
+        "m4": { "type": "item", "settings": { "text": "Designed in Germany" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4"],
+      "settings": {
+        "scheme": "default",
+        "speed": 30
+      }
+    },
+    "bestseller": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Elira Pilates",
+        "heading": "Unsere Bestseller",
+        "collection": "pilates-outfits",
+        "limit": 8,
+        "columns": 4,
+        "show_view_all": true,
+        "scheme": "default",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "duo": {
+      "type": "editorial-duo",
+      "blocks": {
+        "outfits": {
+          "type": "card",
+          "settings": {
+            "collection": "pilates-outfits",
+            "heading": "Outfits",
+            "text": "Catsuits, Sets & Leggings – weich, formstabil, studiotauglich.",
+            "cta": "Jetzt shoppen"
+          }
+        },
+        "zubehoer": {
+          "type": "card",
+          "settings": {
+            "collection": "pilates-zubehor",
+            "heading": "Zubehör",
+            "text": "Ringe, Matten & Tools für dein Training zu Hause.",
+            "cta": "Jetzt shoppen"
+          }
+        }
+      },
+      "block_order": ["outfits", "zubehoer"],
+      "settings": {
+        "scheme": "default",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "layout": "default",
+        "eyebrow": "Unsere Philosophie",
+        "heading": "Entworfen für dein Studio. Gemacht für deinen Alltag.",
+        "text": "<p>Elira steht für Pilates-Wear und Studio-Essentials, die Funktion und Ästhetik vereinen: weiche, formstabile Stoffe, durchdachte Schnitte und Farben, die zusammenpassen – vom Reformer bis zum Café danach.</p>",
+        "scheme": "sand",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "tools": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Studio Tools",
+        "heading": "Zubehör für deinen Flow",
+        "collection": "pilates-zubehor",
+        "limit": 4,
+        "columns": 4,
+        "show_view_all": true,
+        "scheme": "default",
+        "padding_top": 72,
+        "padding_bottom": 48
+      }
+    },
+    "categories": {
+      "type": "category-grid",
+      "blocks": {
+        "c1": {
+          "type": "category",
+          "settings": {
+            "collection": "pilates-outfits",
+            "label": "Outfits"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "collection": "pilates-zubehor",
+            "label": "Zubehör"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "collection": "frontpage",
+            "label": "Alle Produkte"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3"],
+      "settings": {
+        "heading": "Shoppe nach Kategorie",
+        "scheme": "default",
+        "padding_top": 48,
+        "padding_bottom": 72
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "quote": "Das weichste Set, das ich je getragen habe – sitzt perfekt, auch nach zehn Wäschen.",
+            "author": "Lena M. – Verifizierte Käuferin"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "quote": "Endlich Pilates-Wear, die im Studio UND beim Brunch funktioniert. Bin verliebt.",
+            "author": "Sophie K. – Verifizierte Käuferin"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "quote": "Der Widerstandsring ist mein tägliches Must-have geworden. Qualität spürt man sofort.",
+            "author": "Anna R. – Verifizierte Käuferin"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "eyebrow": "Community",
+        "heading": "Was unsere Kundinnen sagen",
+        "scheme": "sand",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "gallery": {
+      "type": "lifestyle-gallery",
+      "blocks": {
+        "g1": { "type": "image", "settings": {} },
+        "g2": { "type": "image", "settings": {} },
+        "g3": { "type": "image", "settings": {} },
+        "g4": { "type": "image", "settings": {} },
+        "g5": { "type": "image", "settings": {} }
+      },
+      "block_order": ["g1", "g2", "g3", "g4", "g5"],
+      "settings": {
+        "eyebrow": "@elirapilates",
+        "heading": "Elira + Du",
+        "subheading": "Zeig uns deinen Flow – tagge @elirapilates und werde Teil der Community.",
+        "scheme": "default",
+        "padding_top": 72,
+        "padding_bottom": 0
+      }
+    },
+    "usp": {
+      "type": "multicolumn",
+      "blocks": {
+        "u1": {
+          "type": "column",
+          "settings": {
+            "icon": "truck",
+            "title": "Kostenloser Versand",
+            "text": "Ab 75 € Bestellwert – in 2–4 Werktagen bei dir."
+          }
+        },
+        "u2": {
+          "type": "column",
+          "settings": {
+            "icon": "return",
+            "title": "30 Tage Rückgabe",
+            "text": "Nicht verliebt? Kostenlose Rücksendung, ohne Wenn und Aber."
+          }
+        },
+        "u3": {
+          "type": "column",
+          "settings": {
+            "icon": "shield",
+            "title": "Sichere Zahlung",
+            "text": "Apple Pay, PayPal, Klarna, Kreditkarte – SSL-verschlüsselt."
+          }
+        },
+        "u4": {
+          "type": "column",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Studio-Qualität",
+            "text": "Formstabile Stoffe, entwickelt mit Pilates-Trainerinnen."
+          }
+        }
+      },
+      "block_order": ["u1", "u2", "u3", "u4"],
+      "settings": {
+        "scheme": "default",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "10 % auf deine erste Bestellung",
+        "text": "Melde dich an und erhalte Zugang zu neuen Kollektionen, Studio-Tipps und exklusiven Angeboten – direkt in dein Postfach.",
+        "scheme": "ink",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "bestseller",
+    "duo",
+    "story",
+    "tools",
+    "categories",
+    "testimonials",
+    "gallery",
+    "usp",
+    "newsletter"
+  ]
+}

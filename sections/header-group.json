@@ -1,0 +1,40 @@
+{
+  "type": "header",
+  "name": "Header-Gruppe",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg1": {
+          "type": "announcement",
+          "settings": {
+            "text": "Kostenloser Versand ab 75 €"
+          }
+        },
+        "msg2": {
+          "type": "announcement",
+          "settings": {
+            "text": "2–4 Werktage Lieferzeit"
+          }
+        },
+        "msg3": {
+          "type": "announcement",
+          "settings": {
+            "text": "30 Tage Geld-zurück-Garantie"
+          }
+        }
+      },
+      "block_order": ["msg1", "msg2", "msg3"],
+      "settings": {
+        "interval": 5
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": ["announcement", "header"]
+}

@@ -1,0 +1,67 @@
+<div class="section" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+  <div class="container">
+    <div class="page-hero" style="padding-top: 0;">
+      <h1 class="h1">{{ blog.title }}</h1>
+    </div>
+
+    {%- paginate blog.articles by 12 -%}
+      <div class="blog-grid">
+        {%- for article in blog.articles -%}
+          <article class="article-card">
+            <a href="{{ article.url }}" class="article-card__media">
+              {%- if article.image -%}
+                {{ article.image | image_url: width: 900 | image_tag:
+                  widths: '450, 675, 900',
+                  sizes: '(min-width: 990px) 33vw, 100vw',
+                  loading: 'lazy',
+                  alt: article.title
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag }}
+              {%- endif -%}
+            </a>
+            <p class="article-card__meta">{{ article.published_at | date: '%d.%m.%Y' }}</p>
+            <h2 class="h4"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+            {%- if article.excerpt_or_content != blank -%}
+              <p class="article-card__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 140 }}</p>
+            {%- endif -%}
+            <a href="{{ article.url }}" class="link-arrow">
+              {{ 'blogs.article.read_more' | t }}
+              {% render 'icon', icon: 'arrow-right' %}
+            </a>
+          </article>
+        {%- endfor -%}
+      </div>
+      {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Abstand oben",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Abstand unten",
+      "default": 88
+    }
+  ]
+}
+{% endschema %}

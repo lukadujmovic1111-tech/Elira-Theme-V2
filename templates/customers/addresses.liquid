@@ -1,0 +1,56 @@
+<div class="customer-page customer-page--wide">
+  <div class="customer-page__head">
+    <h1 class="h1">{{ 'customer.addresses.title' | t }}</h1>
+    <p><a class="link-underline" href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a></p>
+  </div>
+
+  <div style="margin-bottom: 2rem; text-align: center;">
+    <button type="button" class="btn btn--outline" onclick="document.getElementById('AddAddress').hidden = !document.getElementById('AddAddress').hidden;">
+      {{ 'customer.addresses.add_new' | t }}
+    </button>
+  </div>
+
+  <div id="AddAddress" hidden style="max-width: 560px; margin: 0 auto 3rem;">
+    {%- form 'customer_address', customer.new_address -%}
+      <h2 class="h4" style="margin-bottom: 1.25rem;">{{ 'customer.addresses.add_new' | t }}</h2>
+      {% render 'address-fields', form: form %}
+      <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+        <button type="submit" class="btn">{{ 'customer.addresses.save' | t }}</button>
+      </div>
+    {%- endform -%}
+  </div>
+
+  <div class="address-grid">
+    {%- paginate customer.addresses by 12 -%}
+      {%- for address in customer.addresses -%}
+        <div class="address-card">
+          {%- if address == customer.default_address -%}
+            <span class="badge" style="align-self: flex-start;">{{ 'customer.addresses.default' | t }}</span>
+          {%- endif -%}
+          {{ address | format_address }}
+          <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+            <button type="button" class="link-underline" style="font-size: 0.82rem;" onclick="document.getElementById('EditAddress_{{ address.id }}').hidden = !document.getElementById('EditAddress_{{ address.id }}').hidden;">
+              {{ 'customer.addresses.edit' | t }}
+            </button>
+            <form method="post" action="{{ routes.account_addresses_url }}/{{ address.id }}" onsubmit="return confirm('{{ 'customer.addresses.delete_confirm' | t }}');">
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" class="link-underline" style="font-size: 0.82rem; color: var(--color-sale);">
+                {{ 'customer.addresses.delete' | t }}
+              </button>
+            </form>
+          </div>
+
+          <div id="EditAddress_{{ address.id }}" hidden style="margin-top: 1.25rem;">
+            {%- form 'customer_address', address -%}
+              {% render 'address-fields', form: form %}
+              <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+                <button type="submit" class="btn" style="min-height: 42px; padding-block: 0.5rem;">{{ 'customer.addresses.update' | t }}</button>
+              </div>
+            {%- endform -%}
+          </div>
+        </div>
+      {%- endfor -%}
+      {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%}
+  </div>
+</div>

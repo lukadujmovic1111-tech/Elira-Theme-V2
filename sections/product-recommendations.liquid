@@ -18,6 +18,7 @@
             {% render 'product-card',
               card_product: rec_product,
               placeholder_index: forloop.index0,
+              minimal: true,
               sizes: '(min-width: 990px) 24vw, 50vw' %}
           {%- endfor -%}
         </div>

@@ -103,7 +103,12 @@
       "block_order": [
         "judge_me_reviews_review_widget_VLxT9B"
       ],
-      "settings": {}
+      "settings": {
+        "anchor": "pdp-reviews",
+        "add_padding": true,
+        "full_width": false,
+        "background": "white"
+      }
     }
   },
   "order": [

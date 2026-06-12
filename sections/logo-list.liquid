@@ -1,0 +1,92 @@
+{%- comment -%}
+  Logo-Leiste — „Bekannt aus“ / Presse & Partner.
+  Logos als Bild (empfohlen: SVG/PNG mit Transparenz) oder als Text-Wortmarke.
+{%- endcomment -%}
+
+<section class="section section--compact logo-list{% if section.settings.background == 'bone' %} section--bone{% endif %}">
+  <div class="container">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="eyebrow logo-list__eyebrow" data-reveal>{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <div class="logo-list__row" data-reveal data-reveal-stagger>
+      {%- for block in section.blocks -%}
+        <div class="logo-list__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {%- assign logo_alt = block.settings.image.alt | default: block.settings.title -%}
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="logo-list__link" aria-label="{{ logo_alt | escape }}">
+                {{ block.settings.image | image_url: width: 360 | image_tag: widths: '180, 360', sizes: '180px', loading: 'lazy', class: 'logo-list__img', alt: logo_alt }}
+              </a>
+            {%- else -%}
+              {{ block.settings.image | image_url: width: 360 | image_tag: widths: '180, 360', sizes: '180px', loading: 'lazy', class: 'logo-list__img', alt: logo_alt }}
+            {%- endif -%}
+          {%- elsif block.settings.title != blank -%}
+            <span class="logo-list__wordmark">{{ block.settings.title }}</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Logo-Leiste",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Bekannt aus"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Hintergrund",
+      "options": [
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
+      ],
+      "default": "white"
+    }
+  ],
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo-Bild",
+          "info": "Empfohlen: transparentes PNG/SVG, ca. 360 × 120 px."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name (Fallback ohne Bild)",
+          "default": "VOGUE"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo-Leiste",
+      "blocks": [
+        { "type": "logo", "settings": { "title": "VOGUE" } },
+        { "type": "logo", "settings": { "title": "ELLE" } },
+        { "type": "logo", "settings": { "title": "GRAZIA" } },
+        { "type": "logo", "settings": { "title": "WOMEN’S HEALTH" } },
+        { "type": "logo", "settings": { "title": "FLOW MAGAZIN" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

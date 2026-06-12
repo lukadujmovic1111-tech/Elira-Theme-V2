@@ -373,6 +373,21 @@
     target = e.target.closest('[data-modal-close]');
     if (target) { closeDrawer(target.closest('.modal')); return; }
 
+    /* Bewertungssterne (PDP): sanft zum Review-Bereich scrollen */
+    target = e.target.closest('[data-scroll-to-reviews]');
+    if (target) {
+      var reviewsEl = qs('#pdp-reviews') ||
+        qs('.jdgm-rev-widg') ||
+        qs('.app-section') ||
+        qs('.shopify-section--apps');
+      if (reviewsEl) {
+        e.preventDefault();
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        reviewsEl.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+      return;
+    }
+
     /* Offene Quick-Add-Panels schließen bei Klick außerhalb */
     if (!e.target.closest('.card-quick')) {
       qsa('.card-quick__options').forEach(function (o) { o.hidden = true; });
@@ -577,6 +592,42 @@
         }
       })
       .catch(function () {});
+  });
+
+  /* ------------------------------------------------------------------
+     Video-Section (Click-to-Play, Lite-Embed für YouTube/Vimeo)
+  ------------------------------------------------------------------ */
+  qsa('[data-video]').forEach(function (frame) {
+    /* iOS-Autoplay absichern */
+    var autoVideo = qs('video[autoplay]', frame);
+    if (autoVideo) {
+      autoVideo.muted = true;
+      autoVideo.setAttribute('playsinline', '');
+      var playPromise = autoVideo.play();
+      if (playPromise && playPromise.catch) playPromise.catch(function () {});
+    }
+
+    var playBtn = qs('[data-video-play]', frame);
+    if (!playBtn) return;
+    playBtn.addEventListener('click', function () {
+      var embedUrl = frame.getAttribute('data-video-embed');
+      if (embedUrl) {
+        var iframe = document.createElement('iframe');
+        iframe.src = embedUrl;
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.title = frame.getAttribute('data-video-title') || 'Video';
+        frame.appendChild(iframe);
+      } else {
+        var video = qs('video', frame);
+        if (video) {
+          video.setAttribute('playsinline', '');
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+      }
+      frame.classList.add('is-playing');
+    });
   });
 
   /* ------------------------------------------------------------------

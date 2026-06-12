@@ -55,6 +55,9 @@
       "previous": "Previous",
       "next": "Next"
     },
+    "video": {
+      "play": "Play video"
+    },
     "breadcrumb": {
       "label": "Breadcrumbs",
       "home": "Home"
@@ -92,7 +95,11 @@
       "taxes_note_html": "incl. VAT, plus shipping",
       "size_guide": "Size guide",
       "low_stock": "Only a few left — be quick!",
-      "secure_checkout": "Secure SSL checkout"
+      "secure_checkout": "Secure SSL checkout",
+      "reviews_count": {
+        "one": "{{ count }} review",
+        "other": "{{ count }} reviews"
+      }
     }
   },
   "cart": {

@@ -78,17 +78,22 @@
 
               {%- when 'title' -%}
                 <div class="pdp__head" {{ block.shopify_attributes }}>
-                  <h1 class="pdp__title">{{ product.title }}</h1>
                   {%- if product.type != blank -%}
                     <p class="pdp__type">{{ product.type }}</p>
                   {%- endif -%}
+                  <h1 class="pdp__title">{{ product.title }}</h1>
                   {%- if product.metafields.reviews.rating.value != blank -%}
-                    <a href="#pdp-reviews" class="pdp__rating">
+                    {%- assign review_count = product.metafields.reviews.rating_count.value | default: 0 -%}
+                    <a href="#pdp-reviews" class="pdp__rating" data-scroll-to-reviews>
                       <span class="stars" aria-hidden="true">
                         {%- assign rating_rounded = product.metafields.reviews.rating.value.rating | round -%}
-                        {%- for i in (1..rating_rounded) -%}{% render 'icon', name: 'star', size: 14 %}{%- endfor -%}
+                        {%- for i in (1..rating_rounded) -%}{% render 'icon', name: 'star', size: 13 %}{%- endfor -%}
                       </span>
-                      <span>{{ product.metafields.reviews.rating.value.rating }} ({{ product.metafields.reviews.rating_count.value | default: 0 }})</span>
+                      <span class="pdp__rating-text">
+                        {{ product.metafields.reviews.rating.value.rating }}
+                        <span class="pdp__rating-divider" aria-hidden="true">&middot;</span>
+                        {{ 'products.product.reviews_count' | t: count: review_count }}
+                      </span>
                     </a>
                   {%- endif -%}
                 </div>

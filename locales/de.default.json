@@ -55,6 +55,9 @@
       "previous": "Zurück",
       "next": "Weiter"
     },
+    "video": {
+      "play": "Video abspielen"
+    },
     "breadcrumb": {
       "label": "Brotkrumen-Navigation",
       "home": "Home"
@@ -92,7 +95,11 @@
       "taxes_note_html": "inkl. MwSt., zzgl. Versandkosten",
       "size_guide": "Größentabelle",
       "low_stock": "Nur noch wenige verfügbar — schnell sein!",
-      "secure_checkout": "Sicherer Checkout mit SSL"
+      "secure_checkout": "Sicherer Checkout mit SSL",
+      "reviews_count": {
+        "one": "{{ count }} Bewertung",
+        "other": "{{ count }} Bewertungen"
+      }
     }
   },
   "cart": {

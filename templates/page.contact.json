@@ -1,48 +1,21 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "contact-form",
       "settings": {
-        "heading": "Schreib uns",
-        "subheading": "Wir antworten in der Regel innerhalb von 24 Stunden – Montag bis Freitag.",
-        "padding_top": 48,
-        "padding_bottom": 88
-      }
-    },
-    "faq": {
-      "type": "collapsible-content",
-      "blocks": {
-        "f1": {
-          "type": "item",
-          "settings": {
-            "question": "Wie lange dauert der Versand?",
-            "answer": "<p>Deine Bestellung ist in der Regel innerhalb von 2–4 Werktagen bei dir. Ab 75 € liefern wir versandkostenfrei.</p>"
-          }
-        },
-        "f2": {
-          "type": "item",
-          "settings": {
-            "question": "Wie fällt die Größe aus?",
-            "answer": "<p>Unsere Outfits fallen normal aus und sind figurbetont geschnitten. Zwischen zwei Größen? Wähle die größere für einen entspannteren Sitz.</p>"
-          }
-        },
-        "f3": {
-          "type": "item",
-          "settings": {
-            "question": "Kann ich meine Bestellung zurückgeben?",
-            "answer": "<p>Ja – du hast 30 Tage Zeit, deine unbenutzten Artikel zurückzusenden. Die Rückerstattung erfolgt auf dein ursprüngliches Zahlungsmittel.</p>"
-          }
-        }
-      },
-      "block_order": ["f1", "f2", "f3"],
-      "settings": {
-        "eyebrow": "FAQ",
-        "heading": "Häufige Fragen",
-        "scheme": "sand",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "heading": "Wir sind für dich da",
+        "text": "Fragen zu Größe, Bestellung oder Rückgabe? Wir antworten in der Regel innerhalb von 24 Stunden."
       }
     }
   },
-  "order": ["main", "faq"]
+  "order": ["main"]
 }

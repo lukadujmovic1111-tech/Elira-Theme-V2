@@ -1,101 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "height": "large",
-        "alignment": "left",
-        "shade": 30,
-        "badge": "Jetzt erhältlich",
-        "heading": "Die Studio Kollektion",
-        "subheading": "Pilates-Wear, die mit jeder Bewegung mitgeht – entworfen für Studio, Stadt und Sofa.",
-        "cta_label": "Outfits shoppen",
-        "cta_link": "shopify://collections/pilates-outfits",
-        "cta2_label": "Zubehör entdecken",
-        "cta2_link": "shopify://collections/pilates-zubehor"
+        "height": "full",
+        "text_position": "left",
+        "overlay_opacity": 25,
+        "eyebrow": "Neu: Die Studio Collection",
+        "heading": "Bewegung, die sich\nwie du anfühlt.",
+        "subheading": "Buttery-soft Activewear für Yoga, Pilates und alles dazwischen.",
+        "button_label": "Neuheiten shoppen",
+        "button_label_2": "Bestseller entdecken"
       }
     },
     "marquee": {
       "type": "marquee",
       "blocks": {
-        "m1": { "type": "item", "settings": { "text": "Von Frauen. Für Frauen." } },
-        "m2": { "type": "item", "settings": { "text": "Bewegung, die bleibt" } },
-        "m3": { "type": "item", "settings": { "text": "Kostenloser Versand ab 75 €" } },
-        "m4": { "type": "item", "settings": { "text": "Designed in Germany" } }
-      },
-      "block_order": ["m1", "m2", "m3", "m4"],
-      "settings": {
-        "scheme": "default",
-        "speed": 30
-      }
-    },
-    "bestseller": {
-      "type": "featured-collection",
-      "settings": {
-        "eyebrow": "Elira Pilates",
-        "heading": "Unsere Bestseller",
-        "collection": "pilates-outfits",
-        "limit": 8,
-        "columns": 4,
-        "show_view_all": true,
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 72
-      }
-    },
-    "duo": {
-      "type": "editorial-duo",
-      "blocks": {
-        "outfits": {
-          "type": "card",
+        "m1": {
+          "type": "item",
           "settings": {
-            "collection": "pilates-outfits",
-            "heading": "Outfits",
-            "text": "Catsuits, Sets & Leggings – weich, formstabil, studiotauglich.",
-            "cta": "Jetzt shoppen"
+            "text": "Buttery-Soft"
           }
         },
-        "zubehoer": {
-          "type": "card",
+        "m2": {
+          "type": "item",
           "settings": {
-            "collection": "pilates-zubehor",
-            "heading": "Zubehör",
-            "text": "Ringe, Matten & Tools für dein Training zu Hause.",
-            "cta": "Jetzt shoppen"
+            "text": "Squat-Proof"
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "text": "Atmungsaktiv"
+          }
+        },
+        "m4": {
+          "type": "item",
+          "settings": {
+            "text": "Second-Skin Feel"
+          }
+        },
+        "m5": {
+          "type": "item",
+          "settings": {
+            "text": "Entworfen für jede Bewegung"
           }
         }
       },
-      "block_order": ["outfits", "zubehoer"],
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5"
+      ],
       "settings": {
-        "scheme": "default",
-        "padding_top": 24,
-        "padding_bottom": 24
+        "speed": 30
       }
     },
-    "story": {
-      "type": "image-with-text",
-      "settings": {
-        "layout": "default",
-        "eyebrow": "Unsere Philosophie",
-        "heading": "Entworfen für dein Studio. Gemacht für deinen Alltag.",
-        "text": "<p>Elira steht für Pilates-Wear und Studio-Essentials, die Funktion und Ästhetik vereinen: weiche, formstabile Stoffe, durchdachte Schnitte und Farben, die zusammenpassen – vom Reformer bis zum Café danach.</p>",
-        "scheme": "sand",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "tools": {
+    "bestsellers": {
       "type": "featured-collection",
       "settings": {
-        "eyebrow": "Studio Tools",
-        "heading": "Zubehör für deinen Flow",
-        "collection": "pilates-zubehor",
-        "limit": 4,
-        "columns": 4,
+        "eyebrow": "Von der Community geliebt",
+        "heading": "Unsere Bestseller",
+        "products_to_show": 8,
         "show_view_all": true,
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 48
+        "background": "white"
       }
     },
     "categories": {
@@ -104,155 +83,266 @@
         "c1": {
           "type": "category",
           "settings": {
-            "collection": "pilates-outfits",
-            "label": "Outfits"
+            "title": "Leggings"
           }
         },
         "c2": {
           "type": "category",
           "settings": {
-            "collection": "pilates-zubehor",
-            "label": "Zubehör"
+            "title": "Yoga"
           }
         },
         "c3": {
           "type": "category",
           "settings": {
-            "collection": "frontpage",
-            "label": "Alle Produkte"
+            "title": "Pilates"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "title": "Sets"
+          }
+        },
+        "c5": {
+          "type": "category",
+          "settings": {
+            "title": "Sport-BHs"
+          }
+        },
+        "c6": {
+          "type": "category",
+          "settings": {
+            "title": "Kleider"
           }
         }
       },
-      "block_order": ["c1", "c2", "c3"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
       "settings": {
-        "heading": "Shoppe nach Kategorie",
-        "scheme": "default",
-        "padding_top": 48,
-        "padding_bottom": 72
+        "eyebrow": "Finde deinen Flow",
+        "heading": "Shop nach Kategorie"
       }
     },
-    "testimonials": {
+    "split": {
+      "type": "split-banner",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "text": "Vier-Wege-Stretch mit perfektem Rückstellvermögen"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "text": "High-Rise-Bund, der nicht rutscht und nicht einschneidet"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "text": "Feuchtigkeitsableitend & schnelltrocknend"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "image_position": "left",
+        "background": "white",
+        "eyebrow": "Studio Essentials",
+        "heading": "Vom ersten Sonnengruß bis zum letzten Atemzug",
+        "text": "<p>Unsere Studio Collection begleitet dich durch jede Praxis: Vier-Wege-Stretch, der jede Asana mitmacht, und Schnitte, die deine Silhouette betonen statt einengen.</p>",
+        "button_label": "Studio Collection shoppen"
+      }
+    },
+    "usps": {
+      "type": "value-props",
+      "blocks": {
+        "u1": {
+          "type": "prop",
+          "settings": {
+            "icon": "feather",
+            "heading": "Buttery-Soft Stoffe",
+            "text": "Unser EliraSoft™-Material fühlt sich an wie eine zweite Haut — atmungsaktiv, formstabil und unglaublich weich."
+          }
+        },
+        "u2": {
+          "type": "prop",
+          "settings": {
+            "icon": "shield",
+            "heading": "100 % blickdicht",
+            "text": "Squat-proof getestet. Jede Leggings besteht unseren Blickdichtheits-Test in jeder Bewegung."
+          }
+        },
+        "u3": {
+          "type": "prop",
+          "settings": {
+            "icon": "returns",
+            "heading": "30 Tage Probetragen",
+            "text": "Teste dein Outfit beim Training. Nicht überzeugt? Kostenlose Rücksendung — ohne Fragen."
+          }
+        },
+        "u4": {
+          "type": "prop",
+          "settings": {
+            "icon": "truck",
+            "heading": "Schneller, freier Versand",
+            "text": "Kostenloser Versand ab 100 €. Bestellungen verlassen unser Lager innerhalb von 24 Stunden."
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
+      "settings": {
+        "eyebrow": "Das Elira-Versprechen",
+        "heading": "Entwickelt für Bewegung. Gemacht fürs Leben."
+      }
+    },
+    "editorial": {
+      "type": "editorial-banner",
+      "settings": {
+        "height": "large",
+        "overlay_opacity": 35,
+        "eyebrow": "Vom Studio auf die Straße",
+        "heading": "Athleisure ist kein Trend.",
+        "heading_accent": "Es ist eine Haltung.",
+        "text": "Vom Mat-Flow zum Coffee-Run — Pieces, die mit deinem Tag mithalten.",
+        "button_label": "Den Look entdecken"
+      }
+    },
+    "new-arrivals": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Frisch eingetroffen",
+        "heading": "Neuheiten",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "background": "white"
+      }
+    },
+    "reviews": {
       "type": "testimonials",
       "blocks": {
         "t1": {
           "type": "testimonial",
           "settings": {
             "stars": 5,
-            "quote": "Das weichste Set, das ich je getragen habe – sitzt perfekt, auch nach zehn Wäschen.",
-            "author": "Lena M. – Verifizierte Käuferin"
+            "quote": "Die mit Abstand beste Leggings, die ich je hatte. Blickdicht, weich und sie sitzt auch nach dem zehnten Waschen wie am ersten Tag.",
+            "author": "Lena M.",
+            "detail": "Verifizierter Kauf · Flow Leggings"
           }
         },
         "t2": {
           "type": "testimonial",
           "settings": {
             "stars": 5,
-            "quote": "Endlich Pilates-Wear, die im Studio UND beim Brunch funktioniert. Bin verliebt.",
-            "author": "Sophie K. – Verifizierte Käuferin"
+            "quote": "Ich unterrichte täglich Pilates und lebe praktisch in Elira. Die Qualität ist auf einem Niveau, das ich sonst nur von deutlich teureren Marken kenne.",
+            "author": "Sarah K.",
+            "detail": "Verifizierter Kauf · Studio Set"
           }
         },
         "t3": {
           "type": "testimonial",
           "settings": {
             "stars": 5,
-            "quote": "Der Widerstandsring ist mein tägliches Must-have geworden. Qualität spürt man sofort.",
-            "author": "Anna R. – Verifizierte Käuferin"
+            "quote": "Endlich ein Sport-BH, der Halt gibt, ohne einzuengen. Das Set ist mein neues Lieblingsoutfit — im Studio und im Café danach.",
+            "author": "Mia T.",
+            "detail": "Verifizierter Kauf · Breeze Sport-BH"
           }
         }
       },
-      "block_order": ["t1", "t2", "t3"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {
-        "eyebrow": "Community",
-        "heading": "Was unsere Kundinnen sagen",
-        "scheme": "sand",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "eyebrow": "Echte Stimmen",
+        "heading": "Was unsere Community sagt",
+        "rating_summary": "4,9 / 5 aus über 2.300 Bewertungen",
+        "background": "white"
       }
     },
-    "gallery": {
-      "type": "lifestyle-gallery",
+    "community": {
+      "type": "community-gallery",
       "blocks": {
-        "g1": { "type": "image", "settings": {} },
-        "g2": { "type": "image", "settings": {} },
-        "g3": { "type": "image", "settings": {} },
-        "g4": { "type": "image", "settings": {} },
-        "g5": { "type": "image", "settings": {} }
-      },
-      "block_order": ["g1", "g2", "g3", "g4", "g5"],
-      "settings": {
-        "eyebrow": "@elirapilates",
-        "heading": "Elira + Du",
-        "subheading": "Zeig uns deinen Flow – tagge @elirapilates und werde Teil der Community.",
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 0
-      }
-    },
-    "usp": {
-      "type": "multicolumn",
-      "blocks": {
-        "u1": {
-          "type": "column",
-          "settings": {
-            "icon": "truck",
-            "title": "Kostenloser Versand",
-            "text": "Ab 75 € Bestellwert – in 2–4 Werktagen bei dir."
-          }
+        "i1": {
+          "type": "image",
+          "settings": {}
         },
-        "u2": {
-          "type": "column",
-          "settings": {
-            "icon": "return",
-            "title": "30 Tage Rückgabe",
-            "text": "Nicht verliebt? Kostenlose Rücksendung, ohne Wenn und Aber."
-          }
+        "i2": {
+          "type": "image",
+          "settings": {}
         },
-        "u3": {
-          "type": "column",
-          "settings": {
-            "icon": "shield",
-            "title": "Sichere Zahlung",
-            "text": "Apple Pay, PayPal, Klarna, Kreditkarte – SSL-verschlüsselt."
-          }
+        "i3": {
+          "type": "image",
+          "settings": {}
         },
-        "u4": {
-          "type": "column",
-          "settings": {
-            "icon": "sparkle",
-            "title": "Studio-Qualität",
-            "text": "Formstabile Stoffe, entwickelt mit Pilates-Trainerinnen."
-          }
+        "i4": {
+          "type": "image",
+          "settings": {}
+        },
+        "i5": {
+          "type": "image",
+          "settings": {}
+        },
+        "i6": {
+          "type": "image",
+          "settings": {}
         }
       },
-      "block_order": ["u1", "u2", "u3", "u4"],
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5",
+        "i6"
+      ],
       "settings": {
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "eyebrow": "#EliraMoves",
+        "heading": "Getragen von unserer Community",
+        "text": "Zeig uns deinen Flow und werde Teil der Elira-Community.",
+        "handle": "@elira folgen"
       }
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "eyebrow": "Newsletter",
+        "background": "bone",
+        "eyebrow": "Werde Teil der Community",
         "heading": "10 % auf deine erste Bestellung",
-        "text": "Melde dich an und erhalte Zugang zu neuen Kollektionen, Studio-Tipps und exklusiven Angeboten – direkt in dein Postfach.",
-        "scheme": "ink",
-        "padding_top": 88,
-        "padding_bottom": 88
+        "text": "Früher Zugang zu Drops, exklusive Member-Angebote und Flows für deine Praxis — direkt in dein Postfach.",
+        "note": "Abmeldung jederzeit möglich. Kein Spam — versprochen."
       }
     }
   },
   "order": [
     "hero",
     "marquee",
-    "bestseller",
-    "duo",
-    "story",
-    "tools",
+    "bestsellers",
     "categories",
-    "testimonials",
-    "gallery",
-    "usp",
+    "split",
+    "usps",
+    "editorial",
+    "new-arrivals",
+    "reviews",
+    "community",
     "newsletter"
   ]
 }

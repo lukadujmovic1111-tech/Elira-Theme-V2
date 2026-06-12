@@ -1,0 +1,124 @@
+<section class="section community-gallery">
+  <div class="container container--wide">
+    <div class="section-head section-head--center" data-reveal>
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="section-sub">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="community-gallery__grid" data-reveal data-reveal-stagger>
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign pidx = forloop.index0 | modulo: 4 | plus: 1
+        assign tile_url = block.settings.link
+        if tile_url == blank and settings.social_instagram != blank
+          assign tile_url = settings.social_instagram
+        endif
+      -%}
+      <a href="{{ tile_url | default: '#' }}" class="community-tile" {{ block.shopify_attributes }}{% if block.settings.link == blank %} target="_blank" rel="noopener"{% endif %}>
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image
+            | image_url: width: 800
+            | image_tag:
+              widths: '300, 500, 800',
+              sizes: '(min-width: 990px) 17vw, 33vw',
+              loading: 'lazy' }}
+        {%- else -%}
+          {{ 'collection-apparel-' | append: pidx | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+        <span class="community-tile__overlay">
+          {% render 'icon', name: 'instagram', size: 22 %}
+          {%- if block.settings.caption != blank -%}
+            <span class="community-tile__caption">{{ block.settings.caption }}</span>
+          {%- endif -%}
+        </span>
+      </a>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.settings.handle != blank -%}
+    <div class="community-gallery__cta" data-reveal>
+      <a href="{{ settings.social_instagram | default: '#' }}" class="btn btn--secondary" target="_blank" rel="noopener">
+        {% render 'icon', name: 'instagram', size: 16 %}
+        {{ section.settings.handle }}
+      </a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Community / Instagram",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "#EliraMoves"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Getragen von unserer Community"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Zeig uns deinen Flow und werde Teil der Elira-Community."
+    },
+    {
+      "type": "text",
+      "id": "handle",
+      "label": "Button-Text",
+      "default": "@elira folgen"
+    }
+  ],
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Bild",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Bild",
+          "info": "Empfohlen: quadratisch, 800 × 800 px"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional, sonst Instagram-Profil)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community / Instagram",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

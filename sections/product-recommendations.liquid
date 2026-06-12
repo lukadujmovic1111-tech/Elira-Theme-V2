@@ -1,0 +1,80 @@
+<section class="section product-recommendations{% if section.settings.background == 'bone' %} section--bone{% endif %}"
+  data-recommendations
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}&intent={{ section.settings.intent }}">
+  {%- if recommendations.performed? == false or recommendations.products_count > 0 -%}
+    <div class="container container--wide">
+      <div class="section-head" data-reveal>
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          <h2 class="section-title">{{ section.settings.heading }}</h2>
+        </div>
+      </div>
+
+      {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+        <div class="product-grid product-grid--4" data-reveal data-reveal-stagger>
+          {%- for rec_product in recommendations.products -%}
+            {% render 'product-card',
+              card_product: rec_product,
+              placeholder_index: forloop.index0,
+              sizes: '(min-width: 990px) 24vw, 50vw' %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Produkt-Empfehlungen",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Empfehlungen werden automatisch auf Basis des aktuellen Produkts geladen."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Style it with"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Mach den Look komplett"
+    },
+    {
+      "type": "select",
+      "id": "intent",
+      "label": "Empfehlungstyp",
+      "options": [
+        { "value": "related", "label": "Ähnliche Produkte" },
+        { "value": "complementary", "label": "Ergänzende Produkte" }
+      ],
+      "default": "related"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Anzahl Produkte",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Hintergrund",
+      "options": [
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
+      ],
+      "default": "bone"
+    }
+  ]
+}
+{% endschema %}

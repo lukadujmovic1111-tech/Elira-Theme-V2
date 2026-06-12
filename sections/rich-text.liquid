@@ -1,43 +1,35 @@
-<div class="section scheme-{{ section.settings.scheme }}" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
-  <div class="container container--text" style="text-align: {{ section.settings.alignment }};">
-    {%- if section.settings.eyebrow != blank -%}
-      <span class="eyebrow" style="margin-bottom: 0.8rem;">{{ section.settings.eyebrow }}</span>
-    {%- endif -%}
-    {%- if section.settings.heading != blank -%}
-      <h2 class="h2" style="margin-bottom: 1.25rem;">{{ section.settings.heading }}</h2>
-    {%- endif -%}
-    {%- if section.settings.text != blank -%}
-      <div class="rte text-soft">{{ section.settings.text }}</div>
-    {%- endif -%}
-    {%- if section.settings.cta_label != blank -%}
-      <div style="margin-top: 1.75rem;">
-        <a href="{{ section.settings.cta_link }}" class="btn btn--outline">{{ section.settings.cta_label }}</a>
-      </div>
-    {%- endif -%}
+<section class="section rich-text-section{% if section.settings.background == 'bone' %} section--bone{% endif %}">
+  <div class="container container--narrow">
+    <div class="rich-text-section__inner text-{{ section.settings.alignment }}" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="section-title section-title--lg">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="btn btn--secondary">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
-  "name": "Rich Text",
-  "tag": "section",
+  "name": "Text",
   "settings": [
     {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Überschrift",
-      "default": "Bewegung, die bleibt"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Elira Pilates entwirft Essentials für Frauen, die Pilates leben – im Studio, zu Hause und überall dazwischen.</p>"
+      "type": "select",
+      "id": "background",
+      "label": "Hintergrund",
+      "options": [
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
+      ],
+      "default": "white"
     },
     {
       "type": "select",
@@ -51,49 +43,36 @@
     },
     {
       "type": "text",
-      "id": "cta_label",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Unsere Philosophie"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Weniger, aber besser"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Elira steht für durchdachte Essentials statt schneller Trends: wenige, perfekt geschnittene Pieces, die du jahrelang trägst — im Studio, im Alltag, überall dazwischen.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
       "label": "Button-Text"
     },
     {
       "type": "url",
-      "id": "cta_link",
+      "id": "button_link",
       "label": "Button-Link"
-    },
-    {
-      "type": "select",
-      "id": "scheme",
-      "label": "Farbschema",
-      "options": [
-        { "value": "default", "label": "Hell" },
-        { "value": "sand", "label": "Sand" },
-        { "value": "ink", "label": "Dunkel" }
-      ],
-      "default": "default"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Abstand oben",
-      "default": 72
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Abstand unten",
-      "default": 72
     }
   ],
   "presets": [
     {
-      "name": "Rich Text"
+      "name": "Text"
     }
   ]
 }

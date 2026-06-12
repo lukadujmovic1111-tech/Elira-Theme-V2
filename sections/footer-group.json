@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "Footer-Gruppe",
@@ -5,35 +14,28 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "shop": {
+        "menu-shop": {
           "type": "menu",
           "settings": {
             "heading": "Shop",
             "menu": "main-menu"
           }
         },
-        "info": {
+        "menu-help": {
           "type": "menu",
           "settings": {
-            "heading": "Hilfe & Information",
+            "heading": "Hilfe",
             "menu": "footer"
-          }
-        },
-        "contact": {
-          "type": "text",
-          "settings": {
-            "heading": "Kontakt",
-            "text": "<p>support@elirapilates.com<br/>Mo–Fr, 9–17 Uhr</p>"
           }
         }
       },
-      "block_order": ["shop", "info", "contact"],
+      "block_order": ["menu-shop", "menu-help"],
       "settings": {
-        "brand_text": "Pilates-Wear & Studio-Essentials, entworfen in Deutschland. Bewegung, die bleibt.",
+        "tagline": "Bewegung, die sich wie du anfühlt.",
         "show_newsletter": true,
-        "newsletter_heading": "10 % auf deine erste Bestellung",
-        "show_payment_icons": true,
-        "show_locale_selector": true
+        "newsletter_heading": "Bleib in Bewegung",
+        "newsletter_text": "10 % auf deine erste Bestellung — plus früher Zugang zu neuen Drops.",
+        "show_payment_icons": true
       }
     }
   },

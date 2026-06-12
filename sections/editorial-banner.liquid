@@ -1,0 +1,110 @@
+<section class="editorial-banner editorial-banner--{{ section.settings.height }}">
+  <div class="editorial-banner__media">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image
+        | image_url: width: 2400
+        | image_tag:
+          widths: '750, 1100, 1500, 1900, 2400',
+          sizes: '100vw',
+          loading: 'lazy',
+          class: 'editorial-banner__img' }}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'editorial-banner__img placeholder-svg' }}
+    {%- endif -%}
+    <div class="editorial-banner__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
+  </div>
+
+  <div class="editorial-banner__content container">
+    <div data-reveal>
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow eyebrow--light">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="editorial-banner__heading">
+        {{ section.settings.heading }}
+        {%- if section.settings.heading_accent != blank -%}
+          <em class="accent-serif">{{ section.settings.heading_accent }}</em>
+        {%- endif -%}
+      </h2>
+      {%- if section.settings.text != blank -%}
+        <p class="editorial-banner__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn--ghost-light">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial-Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Bild",
+      "info": "Empfohlen: 2400 × 1200 px, stimmungsvolles Lifestyle-Motiv."
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Höhe",
+      "options": [
+        { "value": "medium", "label": "Mittel" },
+        { "value": "large", "label": "Groß" }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay-Stärke",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "default": 35
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Vom Studio auf die Straße"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Athleisure ist kein Trend."
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Akzentzeile (kursive Serife)",
+      "default": "Es ist eine Haltung."
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Vom Mat-Flow zum Coffee-Run — Pieces, die mit deinem Tag mithalten."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button-Text",
+      "default": "Den Look entdecken"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button-Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial-Banner"
+    }
+  ]
+}
+{% endschema %}

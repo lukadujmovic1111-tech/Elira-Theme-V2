@@ -1,119 +1,95 @@
-<footer class="footer" style="--footer-cols: {{ section.blocks.size | at_least: 1 }};">
-  <div class="container">
-    <div class="footer__top">
-      <div class="footer__brand">
-        {%- if settings.logo -%}
-          {{ settings.logo | image_url: width: 320 | image_tag: widths: '160, 240, 320', sizes: '160px', loading: 'lazy', alt: shop.name, style: 'width: 160px;' }}
-        {%- else -%}
-          <span class="header__wordmark">{{ shop.name | split: ' ' | first }}</span>
-        {%- endif -%}
+<footer class="site-footer">
+  <div class="container container--wide">
 
-        {%- if section.settings.brand_text != blank -%}
-          <p class="footer__brand-text">{{ section.settings.brand_text }}</p>
+    <div class="site-footer__top">
+      <div class="footer-brand">
+        <p class="footer-brand__logo">{{ shop.name }}</p>
+        {%- if section.settings.tagline != blank -%}
+          <p class="footer-brand__tagline">{{ section.settings.tagline }}</p>
         {%- endif -%}
-
-        {%- if section.settings.show_newsletter -%}
-          <div class="footer__newsletter">
-            {%- if section.settings.newsletter_heading != blank -%}
-              <p class="footer__heading">{{ section.settings.newsletter_heading }}</p>
-            {%- endif -%}
-            {%- form 'customer', id: 'FooterNewsletter' -%}
-              <input type="hidden" name="contact[tags]" value="newsletter">
-              {%- if form.posted_successfully? -%}
-                <p class="form-status form-status--success" role="status">{{ 'general.newsletter.success' | t }}</p>
-              {%- elsif form.errors -%}
-                <p class="form-status form-status--error" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
-              {%- endif -%}
-              <div class="newsletter-form">
-                <input
-                  type="email"
-                  name="contact[email]"
-                  value="{{ form.email }}"
-                  placeholder="{{ 'general.newsletter.label' | t }}"
-                  aria-label="{{ 'general.newsletter.label' | t }}"
-                  autocomplete="email"
-                  required
-                >
-                <button type="submit">
-                  {{ 'general.newsletter.button' | t }}
-                  {% render 'icon', icon: 'arrow-right' %}
-                </button>
-              </div>
-            {%- endform -%}
-          </div>
-        {%- endif -%}
-
-        <div class="social-row">
+        <div class="social-links">
           {%- if settings.social_instagram != blank -%}
-            <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{% render 'icon', icon: 'instagram' %}</a>
+            <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{% render 'icon', name: 'instagram', size: 19 %}</a>
           {%- endif -%}
           {%- if settings.social_tiktok != blank -%}
-            <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok">{% render 'icon', icon: 'tiktok' %}</a>
+            <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok">{% render 'icon', name: 'tiktok', size: 19 %}</a>
           {%- endif -%}
           {%- if settings.social_pinterest != blank -%}
-            <a href="{{ settings.social_pinterest }}" target="_blank" rel="noopener" aria-label="Pinterest">{% render 'icon', icon: 'pinterest' %}</a>
-          {%- endif -%}
-          {%- if settings.social_facebook != blank -%}
-            <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'icon', icon: 'facebook' %}</a>
+            <a href="{{ settings.social_pinterest }}" target="_blank" rel="noopener" aria-label="Pinterest">{% render 'icon', name: 'pinterest', size: 19 %}</a>
           {%- endif -%}
           {%- if settings.social_youtube != blank -%}
-            <a href="{{ settings.social_youtube }}" target="_blank" rel="noopener" aria-label="YouTube">{% render 'icon', icon: 'youtube' %}</a>
+            <a href="{{ settings.social_youtube }}" target="_blank" rel="noopener" aria-label="YouTube">{% render 'icon', name: 'youtube', size: 19 %}</a>
+          {%- endif -%}
+          {%- if settings.social_facebook != blank -%}
+            <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'icon', name: 'facebook', size: 19 %}</a>
           {%- endif -%}
         </div>
       </div>
 
-      {%- for block in section.blocks -%}
-        <div class="footer__col" {{ block.shopify_attributes }}>
-          {%- case block.type -%}
-            {%- when 'menu' -%}
-              {%- if block.settings.heading != blank -%}
-                <p class="footer__heading">{{ block.settings.heading }}</p>
-              {%- endif -%}
-              <ul class="footer__menu">
+      <div class="footer-menus">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'menu' and block.settings.menu != blank -%}
+            <nav class="footer-col" {{ block.shopify_attributes }} aria-label="{{ block.settings.heading | escape }}">
+              <h3 class="footer-col__heading">{{ block.settings.heading }}</h3>
+              <ul class="footer-col__list">
                 {%- for link in block.settings.menu.links -%}
                   <li><a href="{{ link.url }}">{{ link.title }}</a></li>
                 {%- endfor -%}
               </ul>
-            {%- when 'text' -%}
-              {%- if block.settings.heading != blank -%}
-                <p class="footer__heading">{{ block.settings.heading }}</p>
+            </nav>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.show_newsletter -%}
+        <div class="footer-newsletter">
+          <h3 class="footer-col__heading">{{ section.settings.newsletter_heading }}</h3>
+          <p class="footer-newsletter__text">{{ section.settings.newsletter_text }}</p>
+          {%- form 'customer', class: 'newsletter-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            {%- if form.posted_successfully? -%}
+              <p class="form-success">{% render 'icon', name: 'check', size: 16 %} {{ 'general.newsletter.success' | t }}</p>
+            {%- else -%}
+              <div class="newsletter-form__row">
+                <input
+                  type="email"
+                  name="contact[email]"
+                  class="newsletter-form__input"
+                  placeholder="{{ 'general.newsletter.placeholder' | t }}"
+                  required
+                  autocomplete="email"
+                  aria-label="{{ 'general.newsletter.placeholder' | t }}">
+                <button type="submit" class="newsletter-form__submit" aria-label="{{ 'general.newsletter.submit' | t }}">
+                  {% render 'icon', name: 'arrow-right', size: 18 %}
+                </button>
+              </div>
+              {%- if form.errors -%}
+                <p class="form-error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
               {%- endif -%}
-              <div class="footer__menu rte">{{ block.settings.text }}</div>
-          {%- endcase -%}
-        </div>
-      {%- endfor -%}
-    </div>
-
-    <div class="footer__bottom">
-      <p class="footer__copyright">
-        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Alle Rechte vorbehalten.
-      </p>
-
-      {%- if section.settings.show_locale_selector and localization.available_countries.size > 1 -%}
-        <div class="footer__localization">
-          {%- form 'localization' -%}
-            <input type="hidden" name="country_code" data-localization-input value="{{ localization.country.iso_code }}">
-            <div class="select-wrap">
-              <select data-localization-select aria-label="{{ 'general.localization.country_label' | t }}">
-                {%- for country in localization.available_countries -%}
-                  <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
-                    {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
-                  </option>
-                {%- endfor -%}
-              </select>
-              {% render 'icon', icon: 'chevron-down' %}
-            </div>
+            {%- endif -%}
           {%- endform -%}
         </div>
       {%- endif -%}
+    </div>
 
-      {%- if section.settings.show_payment_icons -%}
-        <div class="payment-icons" aria-label="Zahlungsarten">
+    <div class="site-footer__bottom">
+      <p class="footer-copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'general.footer.rights' | t }}</p>
+
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="payment-icons" aria-label="{{ 'general.footer.payment_methods' | t }}">
           {%- for type in shop.enabled_payment_types -%}
-            {{ type | payment_type_svg_tag }}
+            <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
           {%- endfor -%}
-        </div>
+        </ul>
       {%- endif -%}
+
+      <ul class="footer-legal">
+        {%- for policy in shop.policies -%}
+          {%- if policy != blank -%}
+            <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
     </div>
   </div>
 </footer>
@@ -121,13 +97,13 @@
 {% schema %}
 {
   "name": "Footer",
-  "tag": "div",
+  "class": "section-footer",
   "settings": [
     {
-      "type": "textarea",
-      "id": "brand_text",
-      "label": "Marken-Text",
-      "default": "Pilates-Wear & Studio-Essentials, entworfen in Deutschland. Bewegung, die bleibt."
+      "type": "text",
+      "id": "tagline",
+      "label": "Marken-Tagline",
+      "default": "Bewegung, die sich wie du anfühlt."
     },
     {
       "type": "header",
@@ -142,8 +118,14 @@
     {
       "type": "text",
       "id": "newsletter_heading",
-      "label": "Newsletter-Überschrift",
-      "default": "10 % auf deine erste Bestellung"
+      "label": "Überschrift",
+      "default": "Bleib in Bewegung"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Text",
+      "default": "10 % auf deine erste Bestellung — plus früher Zugang zu neuen Drops."
     },
     {
       "type": "header",
@@ -153,12 +135,6 @@
       "type": "checkbox",
       "id": "show_payment_icons",
       "label": "Zahlungsarten anzeigen",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_locale_selector",
-      "label": "Länderauswahl anzeigen",
       "default": true
     }
   ],
@@ -176,29 +152,11 @@
         {
           "type": "link_list",
           "id": "menu",
-          "label": "Menü",
-          "default": "footer"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text-Spalte",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Überschrift",
-          "default": "Kontakt"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>support@elirapilates.com</p>"
+          "label": "Menü"
         }
       ]
     }
-  ]
+  ],
+  "max_blocks": 4
 }
 {% endschema %}

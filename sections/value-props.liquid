@@ -1,0 +1,122 @@
+<section class="section section--bone value-props">
+  <div class="container container--wide">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-head section-head--center" data-reveal>
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          <h2 class="section-title">{{ section.settings.heading }}</h2>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="value-props__grid value-props__grid--{{ section.blocks.size | at_most: 4 }}" data-reveal data-reveal-stagger>
+      {%- for block in section.blocks -%}
+        <div class="value-prop" {{ block.shopify_attributes }}>
+          <span class="value-prop__icon">
+            {% render 'icon', name: block.settings.icon, size: 26, stroke_width: 1.2 %}
+          </span>
+          <h3 class="value-prop__title">{{ block.settings.heading }}</h3>
+          <p class="value-prop__text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "USP / Markenwerte",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Das Elira-Versprechen"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Entwickelt für Bewegung. Gemacht fürs Leben."
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "prop",
+      "name": "USP",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "feather", "label": "Feder (weich)" },
+            { "value": "shield", "label": "Schild (blickdicht)" },
+            { "value": "truck", "label": "Versand" },
+            { "value": "returns", "label": "Rückgabe" },
+            { "value": "leaf", "label": "Blatt (nachhaltig)" },
+            { "value": "sparkle", "label": "Funkeln (Qualität)" },
+            { "value": "ruler", "label": "Maßband (Passform)" },
+            { "value": "lock", "label": "Schloss (sicher)" }
+          ],
+          "default": "feather"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Überschrift",
+          "default": "Buttery-Soft Stoffe"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Unser EliraSoft™-Material fühlt sich an wie eine zweite Haut — atmungsaktiv, formstabil und unglaublich weich."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP / Markenwerte",
+      "blocks": [
+        {
+          "type": "prop",
+          "settings": {
+            "icon": "feather",
+            "heading": "Buttery-Soft Stoffe",
+            "text": "Unser EliraSoft™-Material fühlt sich an wie eine zweite Haut — atmungsaktiv, formstabil und unglaublich weich."
+          }
+        },
+        {
+          "type": "prop",
+          "settings": {
+            "icon": "shield",
+            "heading": "100 % blickdicht",
+            "text": "Squat-proof getestet. Jede Leggings besteht unseren Blickdichtheits-Test in jeder Bewegung."
+          }
+        },
+        {
+          "type": "prop",
+          "settings": {
+            "icon": "returns",
+            "heading": "30 Tage Probetragen",
+            "text": "Teste dein Outfit beim Training. Nicht überzeugt? Kostenlose Rücksendung — ohne Fragen."
+          }
+        },
+        {
+          "type": "prop",
+          "settings": {
+            "icon": "truck",
+            "heading": "Schneller, freier Versand",
+            "text": "Kostenloser Versand ab 100 €. Bestellungen verlassen unser Lager innerhalb von 24 Stunden."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

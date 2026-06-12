@@ -1,85 +1,70 @@
-<div class="customer-page customer-page--wide">
-  <div class="customer-page__head">
-    <h1 class="h1">{{ 'customer.order.title' | t: name: order.name }}</h1>
-    <p>{{ order.created_at | date: '%d.%m.%Y' }}</p>
-  </div>
-
-  <div style="display: grid; gap: 3rem;">
-    <div style="overflow-x: auto;">
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th>{{ 'customer.order.product' | t }}</th>
-            <th>{{ 'customer.order.price' | t }}</th>
-            <th>{{ 'customer.order.quantity' | t }}</th>
-            <th>{{ 'customer.order.total' | t }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {%- for line_item in order.line_items -%}
-            <tr>
-              <td>
-                {%- if line_item.url -%}
-                  <a class="link-underline" href="{{ line_item.url }}">{{ line_item.title }}</a>
-                {%- else -%}
-                  {{ line_item.title }}
-                {%- endif -%}
-              </td>
-              <td>{{ line_item.final_price | money }}</td>
-              <td>{{ line_item.quantity }}</td>
-              <td>{{ line_item.final_line_price | money }}</td>
-            </tr>
-          {%- endfor -%}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3">{{ 'customer.order.subtotal' | t }}</td>
-            <td>{{ order.line_items_subtotal_price | money }}</td>
-          </tr>
-          {%- for discount_application in order.cart_level_discount_applications -%}
-            <tr>
-              <td colspan="3">{{ discount_application.title }}</td>
-              <td>-{{ discount_application.total_allocated_amount | money }}</td>
-            </tr>
-          {%- endfor -%}
-          {%- for shipping_method in order.shipping_methods -%}
-            <tr>
-              <td colspan="3">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
-              <td>{{ shipping_method.price | money }}</td>
-            </tr>
-          {%- endfor -%}
-          {%- for tax_line in order.tax_lines -%}
-            <tr>
-              <td colspan="3">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
-              <td>{{ tax_line.price | money }}</td>
-            </tr>
-          {%- endfor -%}
-          <tr>
-            <td colspan="3"><strong>{{ 'customer.order.total' | t }}</strong></td>
-            <td><strong>{{ order.total_price | money }}</strong></td>
-          </tr>
-        </tfoot>
-      </table>
+<section class="section account-page">
+  <div class="container">
+    <div class="account-head">
+      <div>
+        <h1 class="page-title">{{ 'customer.order.title' | t: name: order.name }}</h1>
+        <p class="section-sub">{{ order.created_at | date: '%d.%m.%Y' }}</p>
+      </div>
+      <a href="{{ routes.account_url }}" class="link-underline">{{ 'customer.order.back' | t }}</a>
     </div>
 
-    <div class="address-grid">
-      <div class="address-card">
-        <p class="footer__heading">{{ 'customer.order.billing_address' | t }}</p>
-        <p>{{ order.financial_status_label }}</p>
-        {{ order.billing_address | format_address }}
+    <div class="account-grid">
+      <div class="account-main">
+        <div class="orders-table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>{{ 'customer.order.product' | t }}</th>
+                <th>{{ 'cart.general.quantity' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for line_item in order.line_items -%}
+                <tr>
+                  <td>
+                    {{ line_item.title }}
+                    {%- if line_item.variant.title != 'Default Title' -%}
+                      <br><small>{{ line_item.variant.title }}</small>
+                    {%- endif -%}
+                  </td>
+                  <td>{{ line_item.quantity }}</td>
+                  <td>{{ line_item.final_line_price | money }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">{{ 'cart.general.subtotal' | t }}</td>
+                <td>{{ order.line_items_subtotal_price | money }}</td>
+              </tr>
+              {%- for shipping_method in order.shipping_methods -%}
+                <tr>
+                  <td colspan="2">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
+                  <td>{{ shipping_method.price | money }}</td>
+                </tr>
+              {%- endfor -%}
+              {%- for tax_line in order.tax_lines -%}
+                <tr>
+                  <td colspan="2">{{ tax_line.title }} ({{ tax_line.rate | times: 100 }} %)</td>
+                  <td>{{ tax_line.price | money }}</td>
+                </tr>
+              {%- endfor -%}
+              <tr class="orders-table__total">
+                <td colspan="2">{{ 'customer.orders.total' | t }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
-      <div class="address-card">
-        <p class="footer__heading">{{ 'customer.order.shipping_address' | t }}</p>
-        <p>{{ order.fulfillment_status_label }}</p>
-        {{ order.shipping_address | format_address }}
-      </div>
-    </div>
 
-    <p>
-      <a class="link-arrow" href="{{ routes.account_url }}">
-        {% render 'icon', icon: 'chevron-left' %}
-        {{ 'customer.account.return' | t }}
-      </a>
-    </p>
+      <aside class="account-aside">
+        <h2 class="cart-summary__title">{{ 'customer.order.billing_address' | t }}</h2>
+        <p class="account-aside__address">{{ order.billing_address | format_address }}</p>
+        <h2 class="cart-summary__title">{{ 'customer.order.shipping_address' | t }}</h2>
+        <p class="account-aside__address">{{ order.shipping_address | format_address }}</p>
+      </aside>
+    </div>
   </div>
-</div>
+</section>

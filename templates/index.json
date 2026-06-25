@@ -235,6 +235,7 @@
     "editorial": {
       "type": "editorial-banner",
       "settings": {
+        "image": "shopify://shop_images/editorial_activewear_campaign_photography_athletic_female_model_natural_glowing_skin_minimal_makeup_se2cb7fkpkojq7aa5b84.png",
         "height": "large",
         "overlay_opacity": 35,
         "eyebrow": "Vom Studio auf die Straße",

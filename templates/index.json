@@ -350,6 +350,142 @@
             "caption": "",
             "link": ""
           }
+        },
+        "image_rmEkzf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/A5283eefdaf4a4821b27b9b9e7a97be8eC_jpg_220x220q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_eqMnPU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260623_141436_4667574e-d82d-45ac-b4da-db0a201b3bae.jpg",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_Tz3gW8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_163_A0f605a7d36254cca881d445e17247015Z_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_MVxy3W": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260623_143708_53611b19-0796-415f-866f-b3d858bb0d54.jpg",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_kFqPTL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_128_A5dcc723e1602480ab43b1a8b9fefcd97n_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_fQCriM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_163_A9da054ad6e444ab88c9dbfe5f890a866O_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_Tq8qgp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_184_Ab8c1d5ccc43f4e30b2c78a1da3f48567m_jpg_960x960q75_jpg_b3cde36e-2c6d-4177-a5a7-6b80ad874ab2.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_LPzagp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_155_A546cb5d654064374a0e45506515be3a47_jpeg_960x960q75_jpeg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_d3L8xJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_160_Ab82a2fb2967d4052819c402ae0c76414p_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_93AVC9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_217_A18af3c23ce0f4961bf82535cb3a8ef21K_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_g6X6a4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_164_Acfd057aff7524f0782d1775495a1497d6_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_Nab7HB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_160_A7911958848e44f6a93dea747f8a74f09l_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_xTLcaa": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_116_Ac6ad3b38237b41a28afcfc4a9164882bL_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_7EDnEx": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260623_145159_949e2961-08e1-443a-af10-02d5e1efe370.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_qnEWjt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_128_A4d5704dad2a34fe888035a445b2fe035h_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_yfQjbK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_230_Aaa92940df64946b8bf06be9050321c76n_jpeg_960x960q75_jpeg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_6jTkKY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/same_pic_just_different_ratio_7vnwohrq0lp0novjwaby.png",
+            "caption": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -358,12 +494,32 @@
         "i3",
         "i4",
         "i5",
-        "i6"
+        "i6",
+        "image_rmEkzf",
+        "image_eqMnPU",
+        "image_Tz3gW8",
+        "image_MVxy3W",
+        "image_kFqPTL",
+        "image_fQCriM",
+        "image_Tq8qgp",
+        "image_LPzagp",
+        "image_d3L8xJ",
+        "image_93AVC9",
+        "image_g6X6a4",
+        "image_Nab7HB",
+        "image_xTLcaa",
+        "image_7EDnEx",
+        "image_qnEWjt",
+        "image_yfQjbK",
+        "image_6jTkKY"
       ],
       "settings": {
         "eyebrow": "#EliraMoves",
         "heading": "Getragen von unserer Community",
         "text": "Zeig uns deinen Flow und werde Teil der Elira-Community.",
+        "direction": "ltr",
+        "speed": 40,
+        "pause_on_hover": true,
         "handle": "@elira folgen"
       }
     },

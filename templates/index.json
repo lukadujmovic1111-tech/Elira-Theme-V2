@@ -12,6 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "image": "shopify://shop_images/hero_banner.png",
         "height": "full",
         "text_position": "left",
         "overlay_opacity": 25,
@@ -19,7 +20,9 @@
         "heading": "Bewegung, die sich\nwie du anfühlt.",
         "subheading": "Buttery-soft Activewear für Yoga, Pilates und alles dazwischen.",
         "button_label": "Neuheiten shoppen",
-        "button_label_2": "Bestseller entdecken"
+        "button_link": "",
+        "button_label_2": "Bestseller entdecken",
+        "button_link_2": ""
       }
     },
     "marquee": {
@@ -72,6 +75,7 @@
       "settings": {
         "eyebrow": "Von der Community geliebt",
         "heading": "Unsere Bestseller",
+        "collection": "",
         "products_to_show": 8,
         "show_view_all": true,
         "background": "white"
@@ -83,36 +87,42 @@
         "c1": {
           "type": "category",
           "settings": {
+            "collection": "",
             "title": "Leggings"
           }
         },
         "c2": {
           "type": "category",
           "settings": {
+            "collection": "",
             "title": "Yoga"
           }
         },
         "c3": {
           "type": "category",
           "settings": {
+            "collection": "",
             "title": "Pilates"
           }
         },
         "c4": {
           "type": "category",
           "settings": {
+            "collection": "",
             "title": "Sets"
           }
         },
         "c5": {
           "type": "category",
           "settings": {
+            "collection": "",
             "title": "Sport-BHs"
           }
         },
         "c6": {
           "type": "category",
           "settings": {
+            "collection": "",
             "title": "Kleider"
           }
         }
@@ -163,7 +173,8 @@
         "eyebrow": "Studio Essentials",
         "heading": "Vom ersten Sonnengruß bis zum letzten Atemzug",
         "text": "<p>Unsere Studio Collection begleitet dich durch jede Praxis: Vier-Wege-Stretch, der jede Asana mitmacht, und Schnitte, die deine Silhouette betonen statt einengen.</p>",
-        "button_label": "Studio Collection shoppen"
+        "button_label": "Studio Collection shoppen",
+        "button_link": ""
       }
     },
     "usps": {
@@ -222,7 +233,8 @@
         "heading": "Athleisure ist kein Trend.",
         "heading_accent": "Es ist eine Haltung.",
         "text": "Vom Mat-Flow zum Coffee-Run — Pieces, die mit deinem Tag mithalten.",
-        "button_label": "Den Look entdecken"
+        "button_label": "Den Look entdecken",
+        "button_link": ""
       }
     },
     "new-arrivals": {
@@ -230,6 +242,7 @@
       "settings": {
         "eyebrow": "Frisch eingetroffen",
         "heading": "Neuheiten",
+        "collection": "",
         "products_to_show": 8,
         "show_view_all": true,
         "background": "white"
@@ -283,27 +296,45 @@
       "blocks": {
         "i1": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
         },
         "i2": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
         },
         "i3": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
         },
         "i4": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
         },
         "i5": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
         },
         "i6": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "caption": "",
+            "link": ""
+          }
         }
       },
       "block_order": [

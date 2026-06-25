@@ -306,6 +306,7 @@
         "i1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/imgi_128_Aa35dc517d2c14635889fa10e0a8f57cd5_jpeg_960x960q75_jpeg.avif",
             "caption": "",
             "link": ""
           }
@@ -313,6 +314,7 @@
         "i2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/imgi_128_A4e30b105db7843f790ce4e6dfe2abde5l_jpg_960x960q75_jpg.avif",
             "caption": "",
             "link": ""
           }
@@ -320,6 +322,7 @@
         "i3": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/same_pic_just_different_ratio_4g0l04muyzdx3evpctnj.png",
             "caption": "",
             "link": ""
           }
@@ -327,6 +330,7 @@
         "i4": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/imgi_155_Ae5b5ecda686f4a6284ce880a3b424748k_jpg_960x960q75_jpg.avif",
             "caption": "",
             "link": ""
           }
@@ -334,6 +338,7 @@
         "i5": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/imgi_116_A5fbec3ae6a334725b2db75b29598badfu_jpg_960x960q75_jpg.avif",
             "caption": "",
             "link": ""
           }
@@ -341,6 +346,7 @@
         "i6": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/imgi_83_A0baa7974004045348e58cc01f07f0ac5k_jpeg_960x960q75_jpeg.avif",
             "caption": "",
             "link": ""
           }

@@ -29,15 +29,20 @@
           }
         }
       },
-      "block_order": ["menu-shop", "menu-help"],
+      "block_order": [
+        "menu-shop",
+        "menu-help"
+      ],
       "settings": {
         "tagline": "Bewegung, die sich wie du anfühlt.",
         "show_newsletter": true,
         "newsletter_heading": "Bleib in Bewegung",
-        "newsletter_text": "10 % auf deine erste Bestellung — plus früher Zugang zu neuen Drops.",
+        "newsletter_text": "Melde dich für unseren Newsletter an und sichere dir einmalige Angebote.",
         "show_payment_icons": true
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }

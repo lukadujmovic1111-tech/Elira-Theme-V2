@@ -528,7 +528,7 @@
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "background": "bone",
+        "background": "white",
         "eyebrow": "Werde Teil der Community",
         "heading": "10 % auf deine erste Bestellung",
         "text": "Melde dich für unseren Newsletter an und sichere dir exklusive Angebote.",

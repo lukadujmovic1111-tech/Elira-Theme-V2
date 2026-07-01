@@ -38,6 +38,7 @@
         },
         "fit-note": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "Das Model ist 1,75 m groß und trägt Größe S."
           }

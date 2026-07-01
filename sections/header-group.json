@@ -17,23 +17,31 @@
         "msg-1": {
           "type": "message",
           "settings": {
-            "text": "Kostenloser Versand ab 100 € — kostenlose Rücksendung"
+            "text": "Kostenloser DHL Versand",
+            "link": ""
           }
         },
         "msg-2": {
           "type": "message",
+          "disabled": true,
           "settings": {
-            "text": "Neu: Die Studio Collection ist da"
+            "text": "Neu: Die Studio Collection ist da",
+            "link": ""
           }
         },
         "msg-3": {
           "type": "message",
           "settings": {
-            "text": "30 Tage Probetragen auf alle Leggings"
+            "text": "30 Tage Rückgaberecht",
+            "link": ""
           }
         }
       },
-      "block_order": ["msg-1", "msg-2", "msg-3"],
+      "block_order": [
+        "msg-1",
+        "msg-2",
+        "msg-3"
+      ],
       "settings": {}
     },
     "header": {
@@ -44,5 +52,8 @@
       }
     }
   },
-  "order": ["announcement", "header"]
+  "order": [
+    "announcement",
+    "header"
+  ]
 }

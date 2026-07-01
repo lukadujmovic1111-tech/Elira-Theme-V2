@@ -51,6 +51,7 @@
         },
         "material": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "title": "Material & Pflege",
             "content": "<p>73 % recyceltes Polyamid, 27 % Elasthan. Bei 30 °C mit ähnlichen Farben waschen, nicht trocknergeeignet.</p>"

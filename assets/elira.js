@@ -488,9 +488,13 @@
       if (!galleryTrack || !mediaId) return;
       var item = qs('[data-media-id="' + mediaId + '"]', galleryTrack);
       if (!item) return;
+      /* Variantenbild an Position 1 der Galerie (Dawn-Verhalten "Prepend & Scroll") */
+      if (galleryTrack.firstElementChild !== item) {
+        galleryTrack.prepend(item);
+      }
       var isMobileCarousel = getComputedStyle(galleryTrack).display === 'flex';
       if (isMobileCarousel) {
-        galleryTrack.scrollTo({ left: item.offsetLeft, behavior: 'smooth' });
+        galleryTrack.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
         item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }

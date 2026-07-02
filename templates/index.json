@@ -208,7 +208,7 @@
         "u3": {
           "type": "prop",
           "settings": {
-            "icon": "returns",
+            "icon": "calendar-check",
             "heading": "30 Tage Probetragen",
             "text": "Teste dein Outfit beim Training. Nicht überzeugt? Kostenlose Rücksendung — ohne Fragen."
           }
@@ -216,7 +216,7 @@
         "u4": {
           "type": "prop",
           "settings": {
-            "icon": "truck",
+            "icon": "package",
             "heading": "Schneller, freier Versand",
             "text": "Kostenloser Versand ab 100 €. Bestellungen verlassen unser Lager innerhalb von 24 Stunden."
           }
@@ -521,8 +521,7 @@
         "text": "Zeig uns deinen Flow und werde Teil der Elira-Community.",
         "direction": "ltr",
         "speed": 40,
-        "pause_on_hover": true,
-        "handle": ""
+        "pause_on_hover": true
       }
     },
     "newsletter": {
@@ -530,8 +529,8 @@
       "settings": {
         "background": "white",
         "eyebrow": "Werde Teil der Community",
-        "heading": "Erhalte exklusive Angebote",
-        "text": "Melde dich für unseren Newsletter an und sichere dir einmalige Angebote.",
+        "heading": "Früher Zugang zu neuen Drops",
+        "text": "Melde dich an und erfahre als Erste von neuen Drops, Styling-Ideen und Flows für deine Praxis.",
         "note": "Abmeldung jederzeit möglich. Kein Spam — versprochen."
       }
     }

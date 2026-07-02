@@ -23,7 +23,8 @@
         "button_label": "Neuheiten shoppen",
         "button_link": "",
         "button_label_2": "Bestseller entdecken",
-        "button_link_2": ""
+        "button_link_2": "",
+        "mobile_width": "full"
       }
     },
     "marquee": {
@@ -79,7 +80,8 @@
         "collection": "pilates-outfits",
         "products_to_show": 8,
         "show_view_all": true,
-        "background": "white"
+        "background": "white",
+        "mobile_width": "full"
       }
     },
     "categories": {
@@ -145,7 +147,8 @@
       "disabled": true,
       "settings": {
         "eyebrow": "Finde deinen Flow",
-        "heading": "Shop nach Kategorie"
+        "heading": "Shop nach Kategorie",
+        "mobile_width": "full"
       }
     },
     "split": {
@@ -183,7 +186,8 @@
         "heading": "Vom ersten Sonnengruß bis zum letzten Atemzug",
         "text": "<p>Unsere Studio Collection begleitet dich durch jede Praxis: Vier-Wege-Stretch, der jede Asana mitmacht, und Schnitte, die deine Silhouette betonen statt einengen.</p>",
         "button_label": "Studio Collection shoppen",
-        "button_link": ""
+        "button_link": "",
+        "mobile_width": "full"
       }
     },
     "usps": {
@@ -244,7 +248,8 @@
         "heading_accent": "Es ist eine Haltung.",
         "text": "Vom Mat-Flow zum Coffee-Run — Pieces, die mit deinem Tag mithalten.",
         "button_label": "Den Look entdecken",
-        "button_link": ""
+        "button_link": "",
+        "mobile_width": "full"
       }
     },
     "new-arrivals": {
@@ -256,7 +261,8 @@
         "collection": "pilates-outfits",
         "products_to_show": 8,
         "show_view_all": true,
-        "background": "white"
+        "background": "white",
+        "mobile_width": "full"
       }
     },
     "reviews": {
@@ -521,7 +527,8 @@
         "text": "Zeig uns deinen Flow und werde Teil der Elira-Community.",
         "direction": "ltr",
         "speed": 40,
-        "pause_on_hover": true
+        "pause_on_hover": true,
+        "mobile_width": "full"
       }
     },
     "newsletter": {
@@ -529,7 +536,7 @@
       "settings": {
         "background": "white",
         "eyebrow": "Werde Teil der Community",
-        "heading": "Früher Zugang zu neuen Drops",
+        "heading": "Zugang zu exklusiven Angeboten",
         "text": "Melde dich an und erfahre als Erste von neuen Drops, Styling-Ideen und Flows für deine Praxis.",
         "note": "Abmeldung jederzeit möglich. Kein Spam — versprochen."
       }

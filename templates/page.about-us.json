@@ -36,7 +36,8 @@
         "heading": "Bewegung, die sich wie du anfühlt",
         "text": "<p>Wir glauben, dass sich jeder Körper frei bewegen können sollte — ohne Zwicken, Verrutschen oder Kompromisse. Deshalb entwickeln wir Activewear, die mitmacht statt einzuengen: durchdacht geschnitten, buttery-soft und für jede Praxis gemacht. Vom ersten Sonnengruß bis zum Coffee-Run danach.</p>",
         "button_label": "",
-        "button_link": ""
+        "button_link": "",
+        "mobile_width": "full"
       }
     },
     "row2": {
@@ -44,12 +45,13 @@
       "settings": {
         "image": "shopify://shop_images/editorial_activewear_campaign_photography_athletic_female_model_natural_glowing_skin_minimal_makeup_7fb5xagf4ke1al7idj6c.jpg",
         "image_position": "right",
-        "background": "bone",
+        "background": "white",
         "eyebrow": "Stoff & Qualität",
         "heading": "Qualität, der du vertrauen kannst",
         "text": "<p>Unser EliraSoft™-Material ist atmungsaktiv, formstabil und squat-proof getestet — blickdicht in jeder Bewegung. Wir fertigen in kleinen Auflagen bei zertifizierten Partnerbetrieben in Europa, mit recycelten Funktionsfasern statt Massenware. Hinter jedem Teil stehen wir mit 30 Tagen Probetragen.</p>",
         "button_label": "",
-        "button_link": ""
+        "button_link": "",
+        "mobile_width": "full"
       }
     },
     "row3": {
@@ -62,7 +64,8 @@
         "heading": "Wir begleiten deinen Flow",
         "text": "<p>Ob du gerade erst anfängst oder deine Praxis vertiefst: Bei Elira findest du Essentials, die dich auf deinem Weg begleiten — und eine Community, die dich feiert. Teile deinen Flow unter #EliraMoves und werde Teil davon.</p>",
         "button_label": "Neuheiten entdecken",
-        "button_link": ""
+        "button_link": "",
+        "mobile_width": "full"
       }
     }
   },

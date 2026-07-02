@@ -2078,7 +2078,7 @@ body.drawer-locked { overflow: hidden; }
 .collection-hero {
   position: relative;
   padding-block: clamp(2rem, 5vw, 4rem);
-  background: var(--c-bone);
+  background: var(--c-paper);
   overflow: hidden;
 }
 .collection-hero--image {

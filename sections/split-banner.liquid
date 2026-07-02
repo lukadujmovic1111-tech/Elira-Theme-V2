@@ -1,7 +1,7 @@
 <section class="section split-banner{% if section.settings.background == 'bone' %} section--bone{% endif %}">
   <div class="container container--wide">
     <div class="split-banner__grid{% if section.settings.image_position == 'right' %} is-flipped{% endif %}">
-      <div class="split-banner__media" data-reveal>
+      <div class="split-banner__media{% if section.settings.mobile_width == 'full' or section.settings.mobile_width == blank %} mobile-bleed{% endif %}" data-reveal>
         {%- if section.settings.image != blank -%}
           {{ section.settings.image
             | image_url: width: 1400
@@ -100,6 +100,16 @@
       "type": "url",
       "id": "button_link",
       "label": "Button-Link"
+    },
+    {
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
     }
   ],
   "max_blocks": 4,

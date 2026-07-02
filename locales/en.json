@@ -95,6 +95,10 @@
       "taxes_note_html": "incl. VAT, plus shipping",
       "size_guide": "Size guide",
       "low_stock": "Only a few left — be quick!",
+      "gallery_zoom": "Zoom image",
+      "gallery_lightbox": "Image gallery",
+      "previous_image": "Previous image",
+      "next_image": "Next image",
       "secure_checkout": "Secure SSL checkout",
       "reviews_count": {
         "one": "{{ count }} review",

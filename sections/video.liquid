@@ -31,7 +31,7 @@
     {%- endif -%}
 
     <div
-      class="video-frame{% if section.settings.tall %} video-frame--tall{% endif %}"
+      class="video-frame{% if section.settings.tall %} video-frame--tall{% endif %}{% if section.settings.mobile_width == 'full' or section.settings.mobile_width == blank %} mobile-bleed{% endif %}"
       data-video
       {% if embed_url != blank %}data-video-embed="{{ embed_url }}"{% endif %}
       data-video-title="{{ video_title | escape }}"
@@ -133,6 +133,16 @@
         { "value": "bone", "label": "Bone (Soft)" }
       ],
       "default": "white"
+    },
+    {
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
     }
   ],
   "presets": [

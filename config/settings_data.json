@@ -23,8 +23,6 @@
     "card_show_swatches": true,
     "card_show_quick_add": true,
     "cart_drawer_enabled": true,
-    "social_instagram": "https://instagram.com",
-    "social_tiktok": "https://tiktok.com",
     "sections": {
       "cart-drawer": {
         "type": "cart-drawer",

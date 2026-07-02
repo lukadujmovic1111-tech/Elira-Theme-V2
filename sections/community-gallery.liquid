@@ -1,4 +1,4 @@
-<section class="section community-gallery">
+<section class="section community-gallery{% if section.settings.mobile_width == 'inset' %} community-gallery--mobile-inset{% endif %}">
   <div class="container container--wide">
     <div class="section-head section-head--center" data-reveal>
       <div>
@@ -30,11 +30,12 @@
           {%- liquid
             assign pidx = forloop.index0 | modulo: 4 | plus: 1
             assign tile_url = block.settings.link
-            if tile_url == blank and settings.social_instagram != blank
-              assign tile_url = settings.social_instagram
-            endif
           -%}
-          <a href="{{ tile_url | default: '#' }}" class="community-tile" {{ block.shopify_attributes }}{% if block.settings.link == blank %} target="_blank" rel="noopener"{% endif %}>
+          {%- if tile_url != blank -%}
+            <a href="{{ tile_url }}" class="community-tile" {{ block.shopify_attributes }}>
+          {%- else -%}
+            <div class="community-tile" {{ block.shopify_attributes }}>
+          {%- endif -%}
             {%- if block.settings.image != blank -%}
               {{ block.settings.image
                 | image_url: width: 800
@@ -45,26 +46,21 @@
             {%- else -%}
               {{ 'collection-apparel-' | append: pidx | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
-            <span class="community-tile__overlay">
-              {% render 'icon', name: 'instagram', size: 22 %}
-              {%- if block.settings.caption != blank -%}
+            {%- if block.settings.caption != blank -%}
+              <span class="community-tile__overlay">
                 <span class="community-tile__caption">{{ block.settings.caption }}</span>
-              {%- endif -%}
-            </span>
-          </a>
+              </span>
+            {%- endif -%}
+          {%- if tile_url != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
         {%- endfor -%}
       </div>
     </div>
   </div>
 
-  {%- if section.settings.handle != blank -%}
-    <div class="community-gallery__cta" data-reveal>
-      <a href="{{ settings.social_instagram | default: '#' }}" class="btn btn--secondary" target="_blank" rel="noopener">
-        {% render 'icon', name: 'instagram', size: 16 %}
-        {{ section.settings.handle }}
-      </a>
-    </div>
-  {%- endif -%}
 </section>
 
 {% stylesheet %}
@@ -141,7 +137,7 @@
 
 {% schema %}
 {
-  "name": "Community / Instagram",
+  "name": "Community",
   "settings": [
     {
       "type": "text",
@@ -193,14 +189,14 @@
       "default": true
     },
     {
-      "type": "header",
-      "content": "Button"
-    },
-    {
-      "type": "text",
-      "id": "handle",
-      "label": "Button-Text",
-      "default": "@elira folgen"
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
     }
   ],
   "max_blocks": 24,
@@ -223,14 +219,14 @@
         {
           "type": "url",
           "id": "link",
-          "label": "Link (optional, sonst Instagram-Profil)"
+          "label": "Link (optional)"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Community / Instagram",
+      "name": "Community",
       "blocks": [
         { "type": "image" },
         { "type": "image" },

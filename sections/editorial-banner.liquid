@@ -1,4 +1,4 @@
-<section class="editorial-banner editorial-banner--{{ section.settings.height }}">
+<section class="editorial-banner editorial-banner--{{ section.settings.height }}{% if section.settings.mobile_width == 'inset' %} editorial-banner--mobile-inset{% endif %}">
   <div class="editorial-banner__media">
     {%- if section.settings.image != blank -%}
       {{ section.settings.image
@@ -99,6 +99,16 @@
       "type": "url",
       "id": "button_link",
       "label": "Button-Link"
+    },
+    {
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
     }
   ],
   "presets": [

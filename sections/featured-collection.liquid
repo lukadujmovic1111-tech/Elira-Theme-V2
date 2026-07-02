@@ -1,4 +1,4 @@
-<section class="section featured-collection{% if section.settings.background == 'bone' %} section--bone{% endif %}">
+<section class="section featured-collection{% if section.settings.background == 'bone' %} section--bone{% endif %}{% if section.settings.mobile_width == 'inset' %} featured-collection--mobile-inset{% endif %}">
   <div class="container container--wide">
     <div class="section-head" data-reveal>
       <div>
@@ -94,6 +94,16 @@
         { "value": "bone", "label": "Bone (Soft)" }
       ],
       "default": "white"
+    },
+    {
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
     }
   ],
   "presets": [

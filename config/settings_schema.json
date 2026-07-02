@@ -133,18 +133,6 @@
     "settings": [
       {
         "type": "text",
-        "id": "social_instagram",
-        "label": "Instagram URL",
-        "default": "https://instagram.com"
-      },
-      {
-        "type": "text",
-        "id": "social_tiktok",
-        "label": "TikTok URL",
-        "default": "https://tiktok.com"
-      },
-      {
-        "type": "text",
         "id": "social_pinterest",
         "label": "Pinterest URL"
       },

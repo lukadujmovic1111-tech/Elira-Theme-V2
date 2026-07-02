@@ -95,6 +95,10 @@
       "taxes_note_html": "inkl. MwSt., zzgl. Versandkosten",
       "size_guide": "Größentabelle",
       "low_stock": "Nur noch wenige verfügbar — schnell sein!",
+      "gallery_zoom": "Bild vergrößern",
+      "gallery_lightbox": "Bildergalerie",
+      "previous_image": "Vorheriges Bild",
+      "next_image": "Nächstes Bild",
       "secure_checkout": "Sicherer Checkout mit SSL",
       "reviews_count": {
         "one": "{{ count }} Bewertung",

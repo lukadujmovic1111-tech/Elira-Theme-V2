@@ -30,22 +30,31 @@
                 <div class="product-gallery__item" data-media-id="{{ media.id }}" data-gallery-index="{{ forloop.index0 }}">
                   {%- case media.media_type -%}
                     {%- when 'image' -%}
-                      {%- if forloop.first -%}
-                        {{ media
-                          | image_url: width: 1400
-                          | image_tag:
-                            widths: '480, 720, 960, 1200, 1400',
-                            sizes: '(min-width: 990px) 38vw, 100vw',
-                            loading: 'eager',
-                            fetchpriority: 'high' }}
-                      {%- else -%}
-                        {{ media
-                          | image_url: width: 1400
-                          | image_tag:
-                            widths: '480, 720, 960, 1200, 1400',
-                            sizes: '(min-width: 990px) 38vw, 100vw',
-                            loading: 'lazy' }}
-                      {%- endif -%}
+                      <button type="button"
+                        class="product-gallery__zoom"
+                        data-lightbox-open
+                        data-lightbox-src="{{ media | image_url: width: 2048 }}"
+                        data-lightbox-srcset="{{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1600 }} 1600w, {{ media | image_url: width: 2048 }} 2048w"
+                        data-lightbox-alt="{{ media.alt | default: product.title | escape }}"
+                        aria-haspopup="dialog"
+                        aria-label="{{ 'products.product.gallery_zoom' | t }}">
+                        {%- if forloop.first -%}
+                          {{ media
+                            | image_url: width: 1400
+                            | image_tag:
+                              widths: '480, 720, 960, 1200, 1400',
+                              sizes: '(min-width: 990px) 38vw, 100vw',
+                              loading: 'eager',
+                              fetchpriority: 'high' }}
+                        {%- else -%}
+                          {{ media
+                            | image_url: width: 1400
+                            | image_tag:
+                              widths: '480, 720, 960, 1200, 1400',
+                              sizes: '(min-width: 990px) 38vw, 100vw',
+                              loading: 'lazy' }}
+                        {%- endif -%}
+                      </button>
                     {%- else -%}
                       {{ media | media_tag: image_size: '1400x' }}
                   {%- endcase -%}
@@ -65,6 +74,27 @@
             </div>
           {%- endif -%}
         </div>
+
+        {%- if product.media.size > 0 -%}
+          <div class="modal lightbox" data-lightbox aria-hidden="true">
+            <div class="drawer-overlay" data-lightbox-close></div>
+            <div class="lightbox__panel" role="dialog" aria-modal="true" aria-label="{{ 'products.product.gallery_lightbox' | t }}">
+              <button type="button" class="lightbox__close" data-lightbox-close aria-label="{{ 'general.accessibility.close' | t }}">
+                {% render 'icon', name: 'close', size: 22 %}
+              </button>
+              <button type="button" class="lightbox__nav lightbox__nav--prev" data-lightbox-prev aria-label="{{ 'products.product.previous_image' | t }}">
+                {% render 'icon', name: 'chevron-left', size: 24 %}
+              </button>
+              <div class="lightbox__stage" data-lightbox-stage>
+                <img class="lightbox__img" data-lightbox-img alt="">
+              </div>
+              <button type="button" class="lightbox__nav lightbox__nav--next" data-lightbox-next aria-label="{{ 'products.product.next_image' | t }}">
+                {% render 'icon', name: 'chevron-right', size: 24 %}
+              </button>
+              <p class="lightbox__counter" data-lightbox-counter aria-hidden="true"></p>
+            </div>
+          </div>
+        {%- endif -%}
       </div>
 
       {%- comment -%} ——— Buy-Box ——— {%- endcomment -%}
@@ -142,9 +172,39 @@
                               {% if option.selected_value == value %}checked{% endif %}
                               class="option-input visually-hidden">
                             {%- if is_color -%}
-                              {%- capture swatch_bg %}{% render 'color-swatch', value: value %}{% endcapture -%}
+                              {%- liquid
+                                comment
+                                  Swatch-Quelle in dieser Reihenfolge:
+                                  1. Natives Shopify-Swatch (Taxonomie-Metafeld), falls gepflegt
+                                  2. Variantenbild der Farbe (Mini-Vorschau)
+                                  3. Farbtabelle (color-swatch-Snippet)
+                                endcomment
+                                assign swatch_image = blank
+                                assign swatch_color = blank
+                                if value.swatch.image
+                                  assign swatch_image = value.swatch.image
+                                elsif value.swatch.color
+                                  assign swatch_color = value.swatch.color
+                                else
+                                  assign opt_idx = forloop.parentloop.index0
+                                  assign vname = value.name | default: value
+                                  for v in product.variants
+                                    if v.options[opt_idx] == vname and v.featured_image
+                                      assign swatch_image = v.featured_image
+                                      break
+                                    endif
+                                  endfor
+                                endif
+                              -%}
                               <label for="opt-{{ input_id }}" class="option-swatch" title="{{ value | escape }}">
-                                <span class="swatch" style="background: {{ swatch_bg | strip }};"></span>
+                                {%- if swatch_image != blank -%}
+                                  <span class="swatch swatch--image" style="background-image: url('{{ swatch_image | image_url: width: 56, height: 56, crop: 'center' }}');"></span>
+                                {%- elsif swatch_color != blank -%}
+                                  <span class="swatch" style="background: rgb({{ swatch_color.rgb }});"></span>
+                                {%- else -%}
+                                  {%- capture swatch_bg %}{% render 'color-swatch', value: value %}{% endcapture -%}
+                                  <span class="swatch" style="background: {{ swatch_bg | strip }};"></span>
+                                {%- endif -%}
                               </label>
                             {%- else -%}
                               <label for="opt-{{ input_id }}" class="option-pill">{{ value }}</label>

@@ -118,9 +118,35 @@
     <div class="card-info">
       {%- if settings.card_show_swatches and color_option != blank and is_minimal == false -%}
         <div class="card-swatches" aria-label="{{ color_option.name }}">
+          {%- liquid
+            assign color_opt_idx = color_option.position | minus: 1
+          -%}
           {%- for value in color_option.values limit: 4 -%}
-            {%- capture swatch_bg %}{% render 'color-swatch', value: value %}{% endcapture -%}
-            <span class="swatch swatch--xs" title="{{ value | escape }}" style="background: {{ swatch_bg | strip }};"></span>
+            {%- liquid
+              assign swatch_image = blank
+              assign swatch_color = blank
+              if value.swatch.image
+                assign swatch_image = value.swatch.image
+              elsif value.swatch.color
+                assign swatch_color = value.swatch.color
+              else
+                assign vname = value.name | default: value
+                for v in card_product.variants
+                  if v.options[color_opt_idx] == vname and v.featured_image
+                    assign swatch_image = v.featured_image
+                    break
+                  endif
+                endfor
+              endif
+            -%}
+            {%- if swatch_image != blank -%}
+              <span class="swatch swatch--xs swatch--image" title="{{ value | escape }}" style="background-image: url('{{ swatch_image | image_url: width: 32, height: 32, crop: 'center' }}');"></span>
+            {%- elsif swatch_color != blank -%}
+              <span class="swatch swatch--xs" title="{{ value | escape }}" style="background: rgb({{ swatch_color.rgb }});"></span>
+            {%- else -%}
+              {%- capture swatch_bg %}{% render 'color-swatch', value: value %}{% endcapture -%}
+              <span class="swatch swatch--xs" title="{{ value | escape }}" style="background: {{ swatch_bg | strip }};"></span>
+            {%- endif -%}
           {%- endfor -%}
           {%- if color_option.values.size > 4 -%}
             <span class="card-swatches__more">+{{ color_option.values.size | minus: 4 }}</span>

@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="category-grid__grid category-grid__grid--{{ section.blocks.size | at_most: 6 }}" data-reveal data-reveal-stagger>
+    <div class="category-grid__grid category-grid__grid--{{ section.blocks.size | at_most: 6 }}{% if section.settings.mobile_width == 'full' or section.settings.mobile_width == blank %} mobile-bleed{% endif %}" data-reveal data-reveal-stagger>
       {%- for block in section.blocks -%}
         {%- liquid
           assign tile_collection = block.settings.collection
@@ -64,6 +64,16 @@
       "id": "heading",
       "label": "Überschrift",
       "default": "Shop nach Kategorie"
+    },
+    {
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
     }
   ],
   "max_blocks": 6,

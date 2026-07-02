@@ -208,7 +208,7 @@
         "u3": {
           "type": "prop",
           "settings": {
-            "icon": "returns",
+            "icon": "calendar-check",
             "heading": "30 Tage Probetragen",
             "text": "Teste dein Outfit beim Training. Nicht überzeugt? Kostenlose Rücksendung — ohne Fragen."
           }
@@ -216,7 +216,7 @@
         "u4": {
           "type": "prop",
           "settings": {
-            "icon": "truck",
+            "icon": "package",
             "heading": "Schneller, freier Versand",
             "text": "Kostenloser Versand ab 100 €. Bestellungen verlassen unser Lager innerhalb von 24 Stunden."
           }

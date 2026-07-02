@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header-Gruppe",
@@ -5,36 +14,46 @@
     "announcement": {
       "type": "announcement-bar",
       "blocks": {
-        "msg1": {
-          "type": "announcement",
+        "msg-1": {
+          "type": "message",
           "settings": {
-            "text": "Kostenloser Versand ab 75 €"
+            "text": "Kostenloser DHL Versand",
+            "link": ""
           }
         },
-        "msg2": {
-          "type": "announcement",
+        "msg-2": {
+          "type": "message",
+          "disabled": true,
           "settings": {
-            "text": "2–4 Werktage Lieferzeit"
+            "text": "Neu: Die Studio Collection ist da",
+            "link": ""
           }
         },
-        "msg3": {
-          "type": "announcement",
+        "msg-3": {
+          "type": "message",
           "settings": {
-            "text": "30 Tage Geld-zurück-Garantie"
+            "text": "30 Tage Rückgaberecht",
+            "link": ""
           }
         }
       },
-      "block_order": ["msg1", "msg2", "msg3"],
-      "settings": {
-        "interval": 5
-      }
+      "block_order": [
+        "msg-1",
+        "msg-2",
+        "msg-3"
+      ],
+      "settings": {}
     },
     "header": {
       "type": "header",
       "settings": {
-        "menu": "main-menu"
+        "menu": "main-menu",
+        "popular_searches": "Leggings, Sport-BH, Yoga Set, Pilates, Kleid"
       }
     }
   },
-  "order": ["announcement", "header"]
+  "order": [
+    "announcement",
+    "header"
+  ]
 }

@@ -1,101 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "height": "large",
-        "alignment": "left",
-        "shade": 30,
-        "badge": "Jetzt erhältlich",
-        "heading": "Die Studio Kollektion",
-        "subheading": "Pilates-Wear, die mit jeder Bewegung mitgeht – entworfen für Studio, Stadt und Sofa.",
-        "cta_label": "Outfits shoppen",
-        "cta_link": "shopify://collections/pilates-outfits",
-        "cta2_label": "Zubehör entdecken",
-        "cta2_link": "shopify://collections/pilates-zubehor"
+        "image": "shopify://shop_images/much_better_quality_yv1a39r5xz9bobzfhzhp.png",
+        "image_mobile": "shopify://shop_images/much_better_quality_2xsw4senui4dvb1fq05r.png",
+        "height": "full",
+        "text_position": "left",
+        "overlay_opacity": 25,
+        "eyebrow": "",
+        "heading": "Bewegung, die sich\nwie du anfühlt.",
+        "subheading": "Buttery-soft Activewear für Yoga, Pilates und alles dazwischen.",
+        "button_label": "Neuheiten shoppen",
+        "button_link": "",
+        "button_label_2": "Bestseller entdecken",
+        "button_link_2": ""
       }
     },
     "marquee": {
       "type": "marquee",
       "blocks": {
-        "m1": { "type": "item", "settings": { "text": "Von Frauen. Für Frauen." } },
-        "m2": { "type": "item", "settings": { "text": "Bewegung, die bleibt" } },
-        "m3": { "type": "item", "settings": { "text": "Kostenloser Versand ab 75 €" } },
-        "m4": { "type": "item", "settings": { "text": "Designed in Germany" } }
-      },
-      "block_order": ["m1", "m2", "m3", "m4"],
-      "settings": {
-        "scheme": "default",
-        "speed": 30
-      }
-    },
-    "bestseller": {
-      "type": "featured-collection",
-      "settings": {
-        "eyebrow": "Elira Pilates",
-        "heading": "Unsere Bestseller",
-        "collection": "pilates-outfits",
-        "limit": 8,
-        "columns": 4,
-        "show_view_all": true,
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 72
-      }
-    },
-    "duo": {
-      "type": "editorial-duo",
-      "blocks": {
-        "outfits": {
-          "type": "card",
+        "m1": {
+          "type": "item",
           "settings": {
-            "collection": "pilates-outfits",
-            "heading": "Outfits",
-            "text": "Catsuits, Sets & Leggings – weich, formstabil, studiotauglich.",
-            "cta": "Jetzt shoppen"
+            "text": "Buttery-Soft"
           }
         },
-        "zubehoer": {
-          "type": "card",
+        "m2": {
+          "type": "item",
           "settings": {
-            "collection": "pilates-zubehor",
-            "heading": "Zubehör",
-            "text": "Ringe, Matten & Tools für dein Training zu Hause.",
-            "cta": "Jetzt shoppen"
+            "text": "Squat-Proof"
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "text": "Atmungsaktiv"
+          }
+        },
+        "m4": {
+          "type": "item",
+          "settings": {
+            "text": "Second-Skin Feel"
+          }
+        },
+        "m5": {
+          "type": "item",
+          "settings": {
+            "text": "Entworfen für jede Bewegung"
           }
         }
       },
-      "block_order": ["outfits", "zubehoer"],
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5"
+      ],
       "settings": {
-        "scheme": "default",
-        "padding_top": 24,
-        "padding_bottom": 24
+        "speed": 30
       }
     },
-    "story": {
-      "type": "image-with-text",
-      "settings": {
-        "layout": "default",
-        "eyebrow": "Unsere Philosophie",
-        "heading": "Entworfen für dein Studio. Gemacht für deinen Alltag.",
-        "text": "<p>Elira steht für Pilates-Wear und Studio-Essentials, die Funktion und Ästhetik vereinen: weiche, formstabile Stoffe, durchdachte Schnitte und Farben, die zusammenpassen – vom Reformer bis zum Café danach.</p>",
-        "scheme": "sand",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "tools": {
+    "bestsellers": {
       "type": "featured-collection",
       "settings": {
-        "eyebrow": "Studio Tools",
-        "heading": "Zubehör für deinen Flow",
-        "collection": "pilates-zubehor",
-        "limit": 4,
-        "columns": 4,
+        "eyebrow": "Von der Community geliebt",
+        "heading": "Unsere Bestseller",
+        "collection": "pilates-outfits",
+        "products_to_show": 8,
         "show_view_all": true,
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 48
+        "background": "white"
       }
     },
     "categories": {
@@ -104,155 +88,464 @@
         "c1": {
           "type": "category",
           "settings": {
-            "collection": "pilates-outfits",
-            "label": "Outfits"
+            "collection": "",
+            "title": "Leggings",
+            "image": "shopify://shop_images/low-angle_shot_of_a_tall_woman_with_deep_skin_tone_walking_through_a_green_city_park_at_golden_hour_l4iczwtlmuyqjefbraq9.png"
           }
         },
         "c2": {
           "type": "category",
           "settings": {
-            "collection": "pilates-zubehor",
-            "label": "Zubehör"
+            "collection": "",
+            "title": "Yoga",
+            "image": "shopify://shop_images/top-down_overhead_view_of_a_woman_in_a_calm_seated_yoga_pose_on_an_oat-colored_mat_light_wood_floor_urlktymrmphzwumvi324.png"
           }
         },
         "c3": {
           "type": "category",
           "settings": {
-            "collection": "frontpage",
-            "label": "Alle Produkte"
+            "collection": "",
+            "title": "Pilates",
+            "image": "shopify://shop_images/side_profile_of_a_petite_woman_mid-exercise_on_a_light-wood_pilates_reformer_in_a_bright_concrete_s_f7nmpsmwj316o8x1s77h.png"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": "Sets",
+            "image": "shopify://shop_images/a_woman_with_short_curly_hair_at_home_in_soft_morning_light_standing_relaxed_by_a_linen-curtain_win_jnzwg75eu9sax7hvo2vi.png"
+          }
+        },
+        "c5": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": "Sport-BHs",
+            "image": "shopify://shop_images/athletic_woman_with_a_strong_build_mid-stretch_arms_raised_in_a_charcoal_sports_bra_against_a_raw_c_nqxuzbemd9f4415xlf25.png"
+          }
+        },
+        "c6": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": "Kleider",
+            "image": "shopify://shop_images/a_woman_in_her_40s_walking_past_a_sunlit_caf_terrace_in_a_relaxed_clay-colored_activewear_dress_gol_tqu69ig4l0ulaio4ei5d.png"
           }
         }
       },
-      "block_order": ["c1", "c2", "c3"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
+      "disabled": true,
       "settings": {
-        "heading": "Shoppe nach Kategorie",
-        "scheme": "default",
-        "padding_top": 48,
-        "padding_bottom": 72
+        "eyebrow": "Finde deinen Flow",
+        "heading": "Shop nach Kategorie"
       }
     },
-    "testimonials": {
+    "split": {
+      "type": "split-banner",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "text": "Vier-Wege-Stretch mit perfektem Rückstellvermögen"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "text": "High-Rise-Bund, der nicht rutscht und nicht einschneidet"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "text": "Feuchtigkeitsableitend & schnelltrocknend"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hero_banner.png",
+        "image_position": "left",
+        "background": "white",
+        "eyebrow": "Studio Essentials",
+        "heading": "Vom ersten Sonnengruß bis zum letzten Atemzug",
+        "text": "<p>Unsere Studio Collection begleitet dich durch jede Praxis: Vier-Wege-Stretch, der jede Asana mitmacht, und Schnitte, die deine Silhouette betonen statt einengen.</p>",
+        "button_label": "Studio Collection shoppen",
+        "button_link": ""
+      }
+    },
+    "usps": {
+      "type": "value-props",
+      "blocks": {
+        "u1": {
+          "type": "prop",
+          "settings": {
+            "icon": "feather",
+            "heading": "Buttery-Soft Stoffe",
+            "text": "Unser EliraSoft™-Material fühlt sich an wie eine zweite Haut — atmungsaktiv, formstabil und unglaublich weich."
+          }
+        },
+        "u2": {
+          "type": "prop",
+          "settings": {
+            "icon": "shield",
+            "heading": "100 % blickdicht",
+            "text": "Squat-proof getestet. Jede Leggings besteht unseren Blickdichtheits-Test in jeder Bewegung."
+          }
+        },
+        "u3": {
+          "type": "prop",
+          "settings": {
+            "icon": "returns",
+            "heading": "30 Tage Probetragen",
+            "text": "Teste dein Outfit beim Training. Nicht überzeugt? Kostenlose Rücksendung — ohne Fragen."
+          }
+        },
+        "u4": {
+          "type": "prop",
+          "settings": {
+            "icon": "truck",
+            "heading": "Schneller, freier Versand",
+            "text": "Kostenloser Versand ab 100 €. Bestellungen verlassen unser Lager innerhalb von 24 Stunden."
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
+      "settings": {
+        "eyebrow": "Das Elira-Versprechen",
+        "heading": "Entwickelt für Bewegung. Gemacht fürs Leben."
+      }
+    },
+    "editorial": {
+      "type": "editorial-banner",
+      "settings": {
+        "image": "shopify://shop_images/editorial_activewear_campaign_photography_athletic_female_model_natural_glowing_skin_minimal_makeup_se2cb7fkpkojq7aa5b84.png",
+        "height": "large",
+        "overlay_opacity": 35,
+        "eyebrow": "Vom Studio auf die Straße",
+        "heading": "Athleisure ist kein Trend.",
+        "heading_accent": "Es ist eine Haltung.",
+        "text": "Vom Mat-Flow zum Coffee-Run — Pieces, die mit deinem Tag mithalten.",
+        "button_label": "Den Look entdecken",
+        "button_link": ""
+      }
+    },
+    "new-arrivals": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Frisch eingetroffen",
+        "heading": "Neuheiten",
+        "collection": "pilates-outfits",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "background": "white"
+      }
+    },
+    "reviews": {
       "type": "testimonials",
       "blocks": {
         "t1": {
           "type": "testimonial",
           "settings": {
             "stars": 5,
-            "quote": "Das weichste Set, das ich je getragen habe – sitzt perfekt, auch nach zehn Wäschen.",
-            "author": "Lena M. – Verifizierte Käuferin"
+            "quote": "Die mit Abstand beste Leggings, die ich je hatte. Blickdicht, weich und sie sitzt auch nach dem zehnten Waschen wie am ersten Tag.",
+            "author": "Lena M.",
+            "detail": "Verifizierter Kauf · Flow Leggings"
           }
         },
         "t2": {
           "type": "testimonial",
           "settings": {
             "stars": 5,
-            "quote": "Endlich Pilates-Wear, die im Studio UND beim Brunch funktioniert. Bin verliebt.",
-            "author": "Sophie K. – Verifizierte Käuferin"
+            "quote": "Ich unterrichte täglich Pilates und lebe praktisch in Elira. Die Qualität ist auf einem Niveau, das ich sonst nur von deutlich teureren Marken kenne.",
+            "author": "Sarah K.",
+            "detail": "Verifizierter Kauf · Studio Set"
           }
         },
         "t3": {
           "type": "testimonial",
           "settings": {
             "stars": 5,
-            "quote": "Der Widerstandsring ist mein tägliches Must-have geworden. Qualität spürt man sofort.",
-            "author": "Anna R. – Verifizierte Käuferin"
+            "quote": "Endlich ein Sport-BH, der Halt gibt, ohne einzuengen. Das Set ist mein neues Lieblingsoutfit — im Studio und im Café danach.",
+            "author": "Mia T.",
+            "detail": "Verifizierter Kauf · Breeze Sport-BH"
           }
         }
       },
-      "block_order": ["t1", "t2", "t3"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {
-        "eyebrow": "Community",
-        "heading": "Was unsere Kundinnen sagen",
-        "scheme": "sand",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "eyebrow": "Echte Stimmen",
+        "heading": "Was unsere Community sagt",
+        "rating_summary": "4,9 / 5 aus über 2.300 Bewertungen",
+        "background": "white"
       }
     },
-    "gallery": {
-      "type": "lifestyle-gallery",
+    "community": {
+      "type": "community-gallery",
       "blocks": {
-        "g1": { "type": "image", "settings": {} },
-        "g2": { "type": "image", "settings": {} },
-        "g3": { "type": "image", "settings": {} },
-        "g4": { "type": "image", "settings": {} },
-        "g5": { "type": "image", "settings": {} }
-      },
-      "block_order": ["g1", "g2", "g3", "g4", "g5"],
-      "settings": {
-        "eyebrow": "@elirapilates",
-        "heading": "Elira + Du",
-        "subheading": "Zeig uns deinen Flow – tagge @elirapilates und werde Teil der Community.",
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 0
-      }
-    },
-    "usp": {
-      "type": "multicolumn",
-      "blocks": {
-        "u1": {
-          "type": "column",
+        "i1": {
+          "type": "image",
           "settings": {
-            "icon": "truck",
-            "title": "Kostenloser Versand",
-            "text": "Ab 75 € Bestellwert – in 2–4 Werktagen bei dir."
+            "image": "shopify://shop_images/imgi_128_Aa35dc517d2c14635889fa10e0a8f57cd5_jpeg_960x960q75_jpeg.avif",
+            "caption": "",
+            "link": ""
           }
         },
-        "u2": {
-          "type": "column",
+        "i2": {
+          "type": "image",
           "settings": {
-            "icon": "return",
-            "title": "30 Tage Rückgabe",
-            "text": "Nicht verliebt? Kostenlose Rücksendung, ohne Wenn und Aber."
+            "image": "shopify://shop_images/imgi_128_A4e30b105db7843f790ce4e6dfe2abde5l_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
           }
         },
-        "u3": {
-          "type": "column",
+        "i3": {
+          "type": "image",
           "settings": {
-            "icon": "shield",
-            "title": "Sichere Zahlung",
-            "text": "Apple Pay, PayPal, Klarna, Kreditkarte – SSL-verschlüsselt."
+            "image": "shopify://shop_images/same_pic_just_different_ratio_4g0l04muyzdx3evpctnj.png",
+            "caption": "",
+            "link": ""
           }
         },
-        "u4": {
-          "type": "column",
+        "i4": {
+          "type": "image",
           "settings": {
-            "icon": "sparkle",
-            "title": "Studio-Qualität",
-            "text": "Formstabile Stoffe, entwickelt mit Pilates-Trainerinnen."
+            "image": "shopify://shop_images/imgi_155_Ae5b5ecda686f4a6284ce880a3b424748k_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "i5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_116_A5fbec3ae6a334725b2db75b29598badfu_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "i6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_83_A0baa7974004045348e58cc01f07f0ac5k_jpeg_960x960q75_jpeg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_rmEkzf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/A5283eefdaf4a4821b27b9b9e7a97be8eC_jpg_220x220q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_eqMnPU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260623_141436_4667574e-d82d-45ac-b4da-db0a201b3bae.jpg",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_Tz3gW8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_163_A0f605a7d36254cca881d445e17247015Z_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_MVxy3W": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260623_143708_53611b19-0796-415f-866f-b3d858bb0d54.jpg",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_kFqPTL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_128_A5dcc723e1602480ab43b1a8b9fefcd97n_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_fQCriM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_163_A9da054ad6e444ab88c9dbfe5f890a866O_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_Tq8qgp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_184_Ab8c1d5ccc43f4e30b2c78a1da3f48567m_jpg_960x960q75_jpg_b3cde36e-2c6d-4177-a5a7-6b80ad874ab2.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_LPzagp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_155_A546cb5d654064374a0e45506515be3a47_jpeg_960x960q75_jpeg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_d3L8xJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_160_Ab82a2fb2967d4052819c402ae0c76414p_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_93AVC9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_217_A18af3c23ce0f4961bf82535cb3a8ef21K_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_g6X6a4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_164_Acfd057aff7524f0782d1775495a1497d6_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_Nab7HB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_160_A7911958848e44f6a93dea747f8a74f09l_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_xTLcaa": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_116_Ac6ad3b38237b41a28afcfc4a9164882bL_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_7EDnEx": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260623_145159_949e2961-08e1-443a-af10-02d5e1efe370.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_qnEWjt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_128_A4d5704dad2a34fe888035a445b2fe035h_jpg_960x960q75_jpg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_yfQjbK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imgi_230_Aaa92940df64946b8bf06be9050321c76n_jpeg_960x960q75_jpeg.avif",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_6jTkKY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/same_pic_just_different_ratio_7vnwohrq0lp0novjwaby.png",
+            "caption": "",
+            "link": ""
           }
         }
       },
-      "block_order": ["u1", "u2", "u3", "u4"],
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5",
+        "i6",
+        "image_rmEkzf",
+        "image_eqMnPU",
+        "image_Tz3gW8",
+        "image_MVxy3W",
+        "image_kFqPTL",
+        "image_fQCriM",
+        "image_Tq8qgp",
+        "image_LPzagp",
+        "image_d3L8xJ",
+        "image_93AVC9",
+        "image_g6X6a4",
+        "image_Nab7HB",
+        "image_xTLcaa",
+        "image_7EDnEx",
+        "image_qnEWjt",
+        "image_yfQjbK",
+        "image_6jTkKY"
+      ],
       "settings": {
-        "scheme": "default",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "eyebrow": "#EliraMoves",
+        "heading": "Getragen von unserer Community",
+        "text": "Zeig uns deinen Flow und werde Teil der Elira-Community.",
+        "direction": "ltr",
+        "speed": 40,
+        "pause_on_hover": true
       }
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "eyebrow": "Newsletter",
-        "heading": "10 % auf deine erste Bestellung",
-        "text": "Melde dich an und erhalte Zugang zu neuen Kollektionen, Studio-Tipps und exklusiven Angeboten – direkt in dein Postfach.",
-        "scheme": "ink",
-        "padding_top": 88,
-        "padding_bottom": 88
+        "background": "white",
+        "eyebrow": "Werde Teil der Community",
+        "heading": "Früher Zugang zu neuen Drops",
+        "text": "Melde dich an und erfahre als Erste von neuen Drops, Styling-Ideen und Flows für deine Praxis.",
+        "note": "Abmeldung jederzeit möglich. Kein Spam — versprochen."
       }
     }
   },
   "order": [
     "hero",
     "marquee",
-    "bestseller",
-    "duo",
-    "story",
-    "tools",
+    "bestsellers",
     "categories",
-    "testimonials",
-    "gallery",
-    "usp",
+    "split",
+    "usps",
+    "editorial",
+    "new-arrivals",
+    "reviews",
+    "community",
     "newsletter"
   ]
 }

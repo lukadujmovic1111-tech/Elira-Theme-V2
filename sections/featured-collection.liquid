@@ -1,69 +1,63 @@
-{%- liquid
-  assign collection = section.settings.collection
-  assign limit = section.settings.limit
--%}
-
-<div class="section scheme-{{ section.settings.scheme }}" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
-  <div class="container">
-    <div class="section-head{% if section.settings.center_heading %} section-head--center{% endif %}">
+<section class="section featured-collection{% if section.settings.background == 'bone' %} section--bone{% endif %}{% if section.settings.mobile_width == 'inset' %} featured-collection--mobile-inset{% endif %}">
+  <div class="container container--wide">
+    <div class="section-head" data-reveal>
       <div>
         {%- if section.settings.eyebrow != blank -%}
-          <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+          <p class="eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
-        {%- if section.settings.heading != blank -%}
-          <h2 class="h2">{{ section.settings.heading }}</h2>
-        {%- endif -%}
-        {%- if section.settings.subheading != blank -%}
-          <p class="section-head__sub">{{ section.settings.subheading }}</p>
-        {%- endif -%}
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
       </div>
-      {%- if section.settings.show_view_all and collection != blank -%}
-        <a href="{{ collection.url }}" class="link-arrow">
-          {{ 'collections.general.view_all' | t }}
-          {% render 'icon', icon: 'arrow-right' %}
-        </a>
-      {%- endif -%}
+      <div class="section-head__actions">
+        {%- if section.settings.show_view_all and section.settings.collection != blank -%}
+          <a href="{{ section.settings.collection.url }}" class="link-underline">{{ 'general.navigation.view_all' | t }}</a>
+        {%- endif -%}
+        <div class="scroller-nav">
+          <button type="button" class="scroller-nav__btn" data-scroll-prev aria-label="{{ 'general.slider.previous' | t }}" disabled>
+            {% render 'icon', name: 'chevron-left', size: 18 %}
+          </button>
+          <button type="button" class="scroller-nav__btn" data-scroll-next aria-label="{{ 'general.slider.next' | t }}">
+            {% render 'icon', name: 'chevron-right', size: 18 %}
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="product-grid{% if section.settings.columns == 4 %} product-grid--4{% endif %}">
-      {%- if collection != blank and collection.products.size > 0 -%}
-        {%- for product in collection.products limit: limit -%}
-          {%- liquid
-            assign load = 'lazy'
-            if section.index <= 2 and forloop.index <= 4
-              assign load = 'eager'
-            endif
-          -%}
-          {% render 'product-card', card_product: product, loading: load %}
+    <div class="product-scroller" data-scroller data-reveal data-reveal-stagger>
+      {%- if section.settings.collection != blank -%}
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          <div class="product-scroller__slide">
+            {% render 'product-card',
+              card_product: product,
+              placeholder_index: forloop.index0,
+              sizes: '(min-width: 990px) 24vw, 72vw' %}
+          </div>
+        {%- else -%}
+          {%- for i in (1..4) -%}
+            <div class="product-scroller__slide">
+              {% render 'product-card', card_product: blank, placeholder_index: forloop.index0 %}
+            </div>
+          {%- endfor -%}
         {%- endfor -%}
       {%- else -%}
-        {%- for i in (1..limit) -%}
-          <article class="product-card">
-            <div class="product-card__media">
-              {%- assign ph = 'product-apparel-' | append: forloop.rindex -%}
-              {{ ph | placeholder_svg_tag: 'product-card__placeholder' }}
-            </div>
-            <div class="product-card__info">
-              <h3 class="product-card__title">{{ 'onboarding.product_title' | t }}</h3>
-              <div class="price"><span>{{ 4990 | money }}</span></div>
-            </div>
-          </article>
+        {%- for i in (1..4) -%}
+          <div class="product-scroller__slide">
+            {% render 'product-card', card_product: blank, placeholder_index: forloop.index0 %}
+          </div>
         {%- endfor -%}
       {%- endif -%}
     </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
-  "name": "Featured Collection",
-  "tag": "section",
+  "name": "Produkt-Slider",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow (kleine Zeile)",
-      "default": "Elira Pilates"
+      "label": "Eyebrow",
+      "default": "Von der Community geliebt"
     },
     {
       "type": "text",
@@ -72,79 +66,49 @@
       "default": "Unsere Bestseller"
     },
     {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Untertitel"
-    },
-    {
-      "type": "checkbox",
-      "id": "center_heading",
-      "label": "Überschrift zentrieren",
-      "default": false
-    },
-    {
       "type": "collection",
       "id": "collection",
       "label": "Kollektion"
     },
     {
       "type": "range",
-      "id": "limit",
-      "min": 2,
+      "id": "products_to_show",
+      "label": "Anzahl Produkte",
+      "min": 4,
       "max": 12,
       "step": 1,
-      "label": "Anzahl Produkte",
       "default": 8
-    },
-    {
-      "type": "range",
-      "id": "columns",
-      "min": 3,
-      "max": 4,
-      "step": 1,
-      "label": "Spalten (Desktop)",
-      "default": 4
     },
     {
       "type": "checkbox",
       "id": "show_view_all",
-      "label": "„Alle ansehen“-Link zeigen",
+      "label": "\"Alle ansehen\" anzeigen",
       "default": true
     },
     {
       "type": "select",
-      "id": "scheme",
-      "label": "Farbschema",
+      "id": "background",
+      "label": "Hintergrund",
       "options": [
-        { "value": "default", "label": "Hell" },
-        { "value": "sand", "label": "Sand" }
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
       ],
-      "default": "default"
+      "default": "white"
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Abstand oben",
-      "default": 72
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Abstand unten",
-      "default": 72
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
     }
   ],
   "presets": [
     {
-      "name": "Featured Collection"
+      "name": "Produkt-Slider"
     }
   ]
 }

@@ -1,0 +1,66 @@
+{%- comment -%}
+  Container für App-Blöcke (z. B. Judge.me Reviews).
+  Sorgt für saubere Seitenabstände auf allen Geräten und bietet eine
+  optionale Anker-ID (z. B. "pdp-reviews" als Sprungziel der Sterne).
+{%- endcomment -%}
+{%- liquid
+  assign anchor = section.settings.anchor | strip | handleize
+-%}
+
+<div
+  class="app-section{% if section.settings.background == 'bone' %} section--bone{% endif %}{% if section.settings.add_padding %} app-section--padded{% endif %}"
+  {%- if anchor != blank %} id="{{ anchor }}"{% endif %}>
+  <div class="{% if section.settings.full_width %}app-section__bleed{% else %}container container--wide{% endif %}">
+    {%- for block in section.blocks -%}
+      <div class="app-section__block" {{ block.shopify_attributes }}>
+        {% render block %}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Apps",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Bindet App-Blöcke (z. B. Judge.me Bewertungen) mit sauberen Abständen ins Theme-Layout ein."
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anker-ID (optional)",
+      "info": "Sprungziel für Links, z. B. „pdp-reviews“ — die Bewertungssterne auf der Produktseite scrollen automatisch hierher."
+    },
+    {
+      "type": "checkbox",
+      "id": "add_padding",
+      "label": "Vertikale Abstände hinzufügen",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Volle Breite (ohne Container)",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Hintergrund",
+      "options": [
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
+      ],
+      "default": "white"
+    }
+  ],
+  "blocks": [
+    { "type": "@app" }
+  ],
+  "presets": [
+    { "name": "Apps" }
+  ]
+}
+{% endschema %}

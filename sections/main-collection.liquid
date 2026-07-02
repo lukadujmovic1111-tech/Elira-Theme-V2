@@ -1,45 +1,46 @@
-{%- liquid
-  assign sort_by = collection.sort_by | default: collection.default_sort_by
-  assign per_page = section.settings.per_page
--%}
+<section class="collection-page">
 
-{%- if section.settings.show_banner -%}
-  <div class="collection-banner">
-    <div class="container">
-      <span class="eyebrow">{{ 'collections.list.title' | t }}</span>
-      <h1 class="h1" style="margin-top: 0.5rem;">{{ collection.title }}</h1>
-      {%- if collection.description != blank -%}
-        <div class="collection-banner__desc rte">{{ collection.description }}</div>
+  <div class="collection-hero{% if collection.image and section.settings.show_image %} collection-hero--image{% endif %}">
+    {%- if collection.image and section.settings.show_image -%}
+      <div class="collection-hero__media">
+        {{ collection.image
+          | image_url: width: 2400
+          | image_tag: widths: '750, 1100, 1500, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high' }}
+        <div class="collection-hero__overlay"></div>
+      </div>
+    {%- endif -%}
+    <div class="container container--wide collection-hero__content">
+      <h1 class="collection-hero__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank and section.settings.show_description -%}
+        <div class="collection-hero__description rte">{{ collection.description }}</div>
       {%- endif -%}
     </div>
   </div>
-{%- endif -%}
 
-<div class="section" style="--pt: 0px; --pb: {{ section.settings.padding_bottom }}px;">
-  <div class="container">
-    {%- paginate collection.products by per_page -%}
+  {%- paginate collection.products by section.settings.products_per_page -%}
+    <div class="container container--wide">
 
       <div class="collection-toolbar">
-        <p class="collection-toolbar__count">
-          {{ 'collections.general.product_count.other' | t: count: collection.products_count }}
-        </p>
+        <p class="collection-toolbar__count">{{ 'collections.general.product_count' | t: count: collection.products_count }}</p>
 
         <div class="collection-toolbar__actions">
-          {%- if section.settings.enable_filters and collection.filters.size > 0 -%}
-            <button type="button" class="collection-toolbar__filter-btn" data-drawer-trigger="FilterDrawer">
-              {% render 'icon', icon: 'filter' %}
+          {%- if section.settings.enable_filtering and collection.filters.size > 0 -%}
+            <button type="button" class="collection-toolbar__btn" data-filter-open aria-expanded="false">
+              {% render 'icon', name: 'filter', size: 17 %}
               {{ 'collections.filters.title' | t }}
             </button>
           {%- endif -%}
 
           {%- if section.settings.enable_sorting -%}
-            <div class="select-wrap">
-              <select data-sort-select aria-label="{{ 'collections.sorting.title' | t }}">
+            <div class="collection-toolbar__sort">
+              <label for="SortBy" class="visually-hidden">{{ 'collections.sorting.title' | t }}</label>
+              <select id="SortBy" class="collection-toolbar__select" data-sort-by>
+                {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
                 {%- for option in collection.sort_options -%}
-                  <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+                  <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>
                 {%- endfor -%}
               </select>
-              {% render 'icon', icon: 'chevron-down' %}
+              {% render 'icon', name: 'chevron-down', size: 14 %}
             </div>
           {%- endif -%}
         </div>
@@ -48,158 +49,170 @@
       {%- liquid
         assign has_active_filters = false
         for filter in collection.filters
-          if filter.active_values.size > 0 or filter.min_value.value or filter.max_value.value
+          if filter.active_values.size > 0 or filter.min_value.value != blank or filter.max_value.value != blank
             assign has_active_filters = true
           endif
         endfor
       -%}
-
       {%- if has_active_filters -%}
         <div class="active-filters">
           {%- for filter in collection.filters -%}
             {%- for active_value in filter.active_values -%}
-              <a class="active-filters__chip" href="{{ active_value.url_to_remove }}">
-                {{ filter.label }}: {{ active_value.label }}
-                {% render 'icon', icon: 'close' %}
+              <a class="active-filters__pill" href="{{ active_value.url_to_remove }}">
+                {{ active_value.label }}
+                {% render 'icon', name: 'close', size: 12 %}
               </a>
             {%- endfor -%}
             {%- if filter.type == 'price_range' -%}
-              {%- if filter.min_value.value or filter.max_value.value -%}
-                <a class="active-filters__chip" href="{{ filter.url_to_remove }}">
-                  {{ filter.label }}
-                  {% render 'icon', icon: 'close' %}
+              {%- if filter.min_value.value != blank or filter.max_value.value != blank -%}
+                <a class="active-filters__pill" href="{{ filter.url_to_remove }}">
+                  {{ filter.min_value.value | default: 0 | money }} &ndash; {{ filter.max_value.value | default: filter.range_max | money }}
+                  {% render 'icon', name: 'close', size: 12 %}
                 </a>
               {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
-          <a class="active-filters__clear" href="{{ collection.url }}?sort_by={{ sort_by }}">
-            {{ 'collections.general.clear_all' | t }}
-          </a>
+          <a class="active-filters__clear link-underline" href="{{ collection.url }}">{{ 'collections.filters.clear_all' | t }}</a>
         </div>
       {%- endif -%}
 
       {%- if collection.products.size > 0 -%}
-        <div class="product-grid{% if section.settings.columns == 4 %} product-grid--4{% endif %}">
+        <div class="product-grid product-grid--collection" data-reveal data-reveal-stagger>
           {%- for product in collection.products -%}
-            {%- liquid
-              assign load = 'lazy'
-              if forloop.index <= 4
-                assign load = 'eager'
-              endif
-            -%}
-            {% render 'product-card', card_product: product, loading: load %}
+            {% render 'product-card',
+              card_product: product,
+              placeholder_index: forloop.index0,
+              sizes: '(min-width: 990px) 24vw, 50vw' %}
           {%- endfor -%}
         </div>
-
         {% render 'pagination', paginate: paginate %}
       {%- else -%}
         <div class="collection-empty">
-          <p class="h3">{{ 'collections.general.empty' | t }}</p>
-          {%- if has_active_filters -%}
-            <p class="text-soft">{{ 'collections.general.empty_filtered' | t }}</p>
-            <a href="{{ collection.url }}" class="btn btn--outline">{{ 'collections.general.clear_all' | t }}</a>
-          {%- else -%}
-            <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline">{{ 'collections.general.view_all' | t }}</a>
-          {%- endif -%}
+          <p class="collection-empty__title">{{ 'collections.general.no_matches' | t }}</p>
+          <a href="{{ collection.url }}" class="btn btn--secondary">{{ 'collections.filters.clear_all' | t }}</a>
         </div>
       {%- endif -%}
+    </div>
 
-      {%- comment -%} Filter-Drawer {%- endcomment -%}
-      {%- if section.settings.enable_filters and collection.filters.size > 0 -%}
-        <aside id="FilterDrawer" class="drawer drawer--left" aria-hidden="true" role="dialog" aria-label="{{ 'collections.filters.title' | t }}">
-          <facet-form style="display: contents;">
-            <form action="{{ collection.url }}" method="get" style="display: contents;">
-              <input type="hidden" name="sort_by" value="{{ sort_by }}">
-              <div class="drawer__head">
-                <p class="drawer__title h5">{{ 'collections.filters.filter_and_sort' | t }}</p>
-                <button type="button" class="drawer__close" data-drawer-close aria-label="{{ 'general.accessibility.close' | t }}">
-                  {% render 'icon', icon: 'close' %}
-                </button>
-              </div>
-              <div class="drawer__body">
-                {%- for filter in collection.filters -%}
-                  <details class="facet-group" {% if filter.active_values.size > 0 or forloop.first %}open{% endif %}>
-                    <summary class="facet-group__summary">
-                      {{ filter.label }}
-                      {% render 'icon', icon: 'chevron-down' %}
-                    </summary>
-                    <div class="facet-group__content">
-                      {%- case filter.type -%}
-                        {%- when 'boolean', 'list' -%}
+    {%- comment -%} ——— Filter-Drawer ——— {%- endcomment -%}
+    {%- if section.settings.enable_filtering and collection.filters.size > 0 -%}
+      <div class="filter-drawer-wrap" data-filter-drawer aria-hidden="true">
+        <div class="drawer-overlay" data-filter-close></div>
+        <aside class="filter-drawer" role="dialog" aria-modal="true" tabindex="-1" aria-label="{{ 'collections.filters.title' | t }}">
+          <div class="filter-drawer__head">
+            <h2 class="filter-drawer__title">{{ 'collections.filters.title' | t }}</h2>
+            <button type="button" class="header-action" data-filter-close aria-label="{{ 'general.accessibility.close' | t }}">
+              {% render 'icon', name: 'close', size: 22 %}
+            </button>
+          </div>
+
+          <form class="filter-drawer__form" data-filter-form>
+            {%- if collection.sort_by != blank -%}
+              <input type="hidden" name="sort_by" value="{{ collection.sort_by }}">
+            {%- endif -%}
+
+            <div class="filter-drawer__body">
+              {%- for filter in collection.filters -%}
+                <details class="filter-group" {% if filter.active_values.size > 0 or forloop.first %}open{% endif %}>
+                  <summary class="filter-group__head">
+                    {{ filter.label }}
+                    {%- if filter.active_values.size > 0 -%}
+                      <span class="filter-group__count">{{ filter.active_values.size }}</span>
+                    {%- endif -%}
+                    <span class="accordion__icon">{% render 'icon', name: 'chevron-down', size: 15 %}</span>
+                  </summary>
+                  <div class="filter-group__body">
+                    {%- case filter.type -%}
+                      {%- when 'boolean', 'list' -%}
+                        <ul class="filter-group__list">
                           {%- for value in filter.values -%}
-                            <label class="facet-check{% if value.count == 0 and value.active == false %} facet-check--disabled{% endif %}">
-                              <input
-                                type="checkbox"
-                                name="{{ value.param_name }}"
-                                value="{{ value.value }}"
-                                {% if value.active %}checked{% endif %}
-                                {% if value.count == 0 and value.active == false %}disabled{% endif %}
-                              >
-                              <span>{{ value.label }}</span>
-                              <span class="facet-check__count">({{ value.count }})</span>
-                            </label>
+                            <li>
+                              <label class="filter-check{% if value.count == 0 and value.active == false %} is-disabled{% endif %}">
+                                <input
+                                  type="checkbox"
+                                  name="{{ value.param_name }}"
+                                  value="{{ value.value }}"
+                                  {% if value.active %}checked{% endif %}
+                                  {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                                <span class="filter-check__box">{% render 'icon', name: 'check', size: 12 %}</span>
+                                <span class="filter-check__label">{{ value.label }}</span>
+                                <span class="filter-check__count">({{ value.count }})</span>
+                              </label>
+                            </li>
                           {%- endfor -%}
-                        {%- when 'price_range' -%}
-                          {%- assign max_price = filter.range_max | divided_by: 100.0 | ceil -%}
-                          <div class="facet-price">
-                            <div class="field">
-                              <label class="field__label" for="FilterMin">{{ 'collections.filters.from' | t }}</label>
-                              <input
-                                class="field__input"
-                                id="FilterMin"
-                                type="number"
-                                name="{{ filter.min_value.param_name }}"
-                                min="0"
-                                max="{{ max_price }}"
-                                placeholder="0"
-                                {% if filter.min_value.value %}value="{{ filter.min_value.value | divided_by: 100 }}"{% endif %}
-                              >
-                            </div>
-                            <div class="field">
-                              <label class="field__label" for="FilterMax">{{ 'collections.filters.to' | t }}</label>
-                              <input
-                                class="field__input"
-                                id="FilterMax"
-                                type="number"
-                                name="{{ filter.max_value.param_name }}"
-                                min="0"
-                                max="{{ max_price }}"
-                                placeholder="{{ max_price }}"
-                                {% if filter.max_value.value %}value="{{ filter.max_value.value | divided_by: 100 }}"{% endif %}
-                              >
-                            </div>
+                        </ul>
+                      {%- when 'price_range' -%}
+                        {%- assign price_max = filter.range_max | divided_by: 100.0 | ceil -%}
+                        <div class="filter-price">
+                          <div class="filter-price__field">
+                            <span>{{ cart.currency.symbol }}</span>
+                            <input
+                              type="number"
+                              name="{{ filter.min_value.param_name }}"
+                              placeholder="0"
+                              min="0"
+                              step="1"
+                              max="{{ price_max }}"
+                              {% if filter.min_value.value %}value="{{ filter.min_value.value | divided_by: 100.0 | floor }}"{% endif %}>
                           </div>
-                      {%- endcase -%}
-                    </div>
-                  </details>
-                {%- endfor -%}
-              </div>
-              <div class="drawer__footer">
-                <button type="submit" class="btn btn--full">{{ 'collections.filters.apply' | t }}</button>
-              </div>
-            </form>
-          </facet-form>
-        </aside>
-      {%- endif -%}
+                          <span class="filter-price__divider">&ndash;</span>
+                          <div class="filter-price__field">
+                            <span>{{ cart.currency.symbol }}</span>
+                            <input
+                              type="number"
+                              name="{{ filter.max_value.param_name }}"
+                              placeholder="{{ price_max }}"
+                              min="0"
+                              step="1"
+                              max="{{ price_max }}"
+                              {% if filter.max_value.value %}value="{{ filter.max_value.value | divided_by: 100.0 | ceil }}"{% endif %}>
+                          </div>
+                        </div>
+                    {%- endcase -%}
+                  </div>
+                </details>
+              {%- endfor -%}
+            </div>
 
-    {%- endpaginate -%}
-  </div>
-</div>
+            <div class="filter-drawer__foot">
+              <a href="{{ collection.url }}" class="btn btn--secondary">{{ 'collections.filters.clear_all' | t }}</a>
+              <button type="submit" class="btn btn--primary">{{ 'collections.filters.apply' | t }}</button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</section>
 
 {% schema %}
 {
   "name": "Kollektionsseite",
-  "tag": "section",
   "settings": [
     {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Produkte pro Seite",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
       "type": "checkbox",
-      "id": "show_banner",
-      "label": "Banner mit Titel anzeigen",
+      "id": "show_image",
+      "label": "Kollektionsbild als Banner zeigen",
       "default": true
     },
     {
       "type": "checkbox",
-      "id": "enable_filters",
+      "id": "show_description",
+      "label": "Beschreibung anzeigen",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
       "label": "Filter aktivieren",
       "default": true
     },
@@ -208,34 +221,6 @@
       "id": "enable_sorting",
       "label": "Sortierung aktivieren",
       "default": true
-    },
-    {
-      "type": "range",
-      "id": "per_page",
-      "min": 8,
-      "max": 36,
-      "step": 4,
-      "label": "Produkte pro Seite",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "columns",
-      "min": 3,
-      "max": 4,
-      "step": 1,
-      "label": "Spalten (Desktop)",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Abstand unten",
-      "default": 88
     }
   ]
 }

@@ -1,14 +1,22 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-collection",
       "settings": {
-        "show_banner": true,
-        "enable_filters": true,
-        "enable_sorting": true,
-        "per_page": 24,
-        "columns": 4,
-        "padding_bottom": 88
+        "products_per_page": 24,
+        "show_image": true,
+        "show_description": true,
+        "enable_filtering": true,
+        "enable_sorting": true
       }
     }
   },

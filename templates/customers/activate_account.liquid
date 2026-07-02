@@ -1,29 +1,26 @@
-<div class="customer-page">
-  <div class="customer-page__head">
-    <h1 class="h1">{{ 'customer.activate_account.title' | t }}</h1>
-    <p>{{ 'customer.activate_account.subtext' | t }}</p>
+<section class="section account-page account-page--narrow">
+  <div class="container container--narrow">
+    <div class="auth-card">
+      <h1 class="section-title">{{ 'customer.activate_account.title' | t }}</h1>
+      <p class="section-sub">{{ 'customer.activate_account.text' | t }}</p>
+
+      {%- form 'activate_customer_password', class: 'auth-form' -%}
+        {%- if form.errors -%}
+          <p class="form-error">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+        <div class="form-field">
+          <label for="ActivatePassword">{{ 'customer.reset_password.password' | t }}</label>
+          <input type="password" id="ActivatePassword" name="customer[password]" autocomplete="new-password" required>
+        </div>
+        <div class="form-field">
+          <label for="ActivatePasswordConfirm">{{ 'customer.reset_password.password_confirm' | t }}</label>
+          <input type="password" id="ActivatePasswordConfirm" name="customer[password_confirmation]" autocomplete="new-password" required>
+        </div>
+        <div class="error-page__actions">
+          <button type="submit" class="btn btn--primary">{{ 'customer.activate_account.submit' | t }}</button>
+          <button type="submit" name="decline" class="btn btn--secondary">{{ 'customer.activate_account.decline' | t }}</button>
+        </div>
+      {%- endform -%}
+    </div>
   </div>
-
-  {%- form 'activate_customer_password' -%}
-    {%- if form.errors -%}
-      <div class="form-status form-status--error" role="alert">
-        {{ form.errors | default_errors }}
-      </div>
-    {%- endif -%}
-
-    <div class="field">
-      <label class="field__label" for="ActivatePassword">{{ 'customer.activate_account.password' | t }}</label>
-      <input class="field__input" type="password" name="customer[password]" id="ActivatePassword" autocomplete="new-password" required>
-    </div>
-
-    <div class="field">
-      <label class="field__label" for="ActivatePasswordConfirm">{{ 'customer.activate_account.password_confirm' | t }}</label>
-      <input class="field__input" type="password" name="customer[password_confirmation]" id="ActivatePasswordConfirm" autocomplete="new-password" required>
-    </div>
-
-    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-      <button type="submit" class="btn btn--full">{{ 'customer.activate_account.submit' | t }}</button>
-      <button type="submit" class="btn btn--outline btn--full" name="decline">{{ 'customer.activate_account.cancel' | t }}</button>
-    </div>
-  {%- endform -%}
-</div>
+</section>

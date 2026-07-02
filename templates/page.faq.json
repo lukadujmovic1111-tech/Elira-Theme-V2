@@ -1,0 +1,110 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Wie lange dauert der Versand?",
+            "answer": "<p>Die Bearbeitung dauert in der Regel 1 bis 2 Werktage. Die Lieferzeit beträgt meist ca. 3 bis 7 Werktage.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Ist der Versand kostenlos?",
+            "answer": "<p>Ja, der Versand innerhalb Deutschlands ist kostenlos.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Wie kann ich meine Bestellung verfolgen?",
+            "answer": "<p>Sobald Ihre Bestellung versendet wurde, erhalten Sie eine E-Mail mit einem Tracking-Link.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Wie lautet Ihre Rückgaberichtlinie?",
+            "answer": "<p>Sie können Artikel innerhalb von 30 Tagen ab Zustellung zurückgeben. Die Artikel müssen ungetragen, unbenutzt, vollständig und im Originalzustand mit Etiketten sein. Die Rücksendekosten trägt der Kunde.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Welche Zahlungsmethoden bieten Sie an?",
+            "answer": "<p>Visa, Mastercard, Maestro, SEPA, American Express, Apple Pay und PayPal.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Ist die Zahlung auf Ihrer Website sicher?",
+            "answer": "<p>Ja. Ihre Zahlung wird über sichere, verschlüsselte Verbindungen verarbeitet. Zusätzlich stehen Ihnen bekannte Zahlungsarten zur Verfügung.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Kann ich dieser Marke vertrauen?",
+            "answer": "<p>Wir sind stolz darauf, hinter unseren Produkten zu stehen. Sie wurden nach höchsten Standards getestet, und tausende Kundinnen und Kunden verlassen sich täglich darauf, um mehr aus Ihrem Pilates-Training herauszuholen – wie in unserem Review-Bereich deutlich wird.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Wie gehen Sie mit meinen Daten um?",
+            "answer": "<p>Wir nutzen Ihre Daten nur zur Bestellabwicklung und zur Bereitstellung unseres Services. Ihre Daten werden nicht für fremde Werbezwecke verkauft.</p>"
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "Wie kann ich Sie erreichen?",
+            "answer": "<p>Brauchen Sie Unterstützung? Wir sind für Sie da<br/><br/><strong>Kundenservice-Zeiten:</strong><br/>Montag – Freitag: 9:00 – 17:00 Uhr (MEZ)<br/><br/><strong>E-Mail:</strong> <a href='mailto:support@elirapilates.com'>support@elirapilates.com</a><br/><strong>Kontaktformular: </strong><a href='/pages/contact'>Hier klicken</a></p><p><strong>Voraussichtliche Antwortzeit: </strong>Innerhalb von 24 Stunden<br/><br/><strong>Geschäftsanschrift:</strong><br/>Adam-Opel-Straße 16<br/>65439 Flörsheim am Main<br/>Deutschland</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
+      "settings": {
+        "eyebrow": "Gut zu wissen",
+        "heading": "Häufige Fragen",
+        "text": "Fragen zu Bestellung, Versand oder Rückgabe? In unseren FAQs findest du die wichtigsten Infos auf einen Blick.",
+        "button_label": "Kontakt aufnehmen",
+        "button_link": "/pages/contact",
+        "open_first": false,
+        "background": "white"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

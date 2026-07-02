@@ -4,85 +4,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- assign card_value = gift_card.initial_value | money -%}
-  <title>{{ 'gift_cards.issued.title' | t: value: card_value, shop: shop.name }}</title>
+  <title>{{ 'gift_card.title' | t: shop: shop.name }}</title>
   <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{ 'base.css' | asset_url | stylesheet_tag }}
   {{ content_for_header }}
-  {%- assign body_font = settings.type_body_font -%}
-  {%- assign heading_font = settings.type_header_font -%}
-  <style>
-    {{ body_font | font_face: font_display: 'swap' }}
-    {{ heading_font | font_face: font_display: 'swap' }}
-    body {
-      margin: 0;
-      font-family: {{ body_font.family }}, {{ body_font.fallback_families }};
-      background: {{ settings.color_background }};
-      color: {{ settings.color_text }};
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      padding: 24px;
-      text-align: center;
-    }
-    .gift-card {
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-    }
-    .gift-card__brand {
-      font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-      text-transform: uppercase;
-      letter-spacing: 0.32em;
-      font-size: 20px;
-    }
-    h1 {
-      font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 26px;
-      line-height: 1.3;
-      margin: 0;
-    }
-    .gift-card__code {
-      font-size: 19px;
-      letter-spacing: 0.18em;
-      border: 1px dashed {{ settings.color_text }};
-      padding: 14px 22px;
-      user-select: all;
-    }
-    .gift-card__note { opacity: 0.65; font-size: 14px; }
-    .btn {
-      display: inline-block;
-      background: {{ settings.color_button }};
-      color: {{ settings.color_button_text }};
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 13px;
-      padding: 14px 32px;
-    }
-  </style>
 </head>
-<body>
-  <div class="gift-card">
-    <span class="gift-card__brand">{{ shop.name | split: ' ' | first }}</span>
-    <h1>{{ 'gift_cards.issued.subtext' | t: value: card_value }}</h1>
+<body class="template-gift-card">
+  <section class="password-page">
+    <div class="password-page__inner">
+      <p class="password-page__logo">{{ shop.name }}</p>
+      <h1 class="section-title">{{ 'gift_card.heading' | t }}</h1>
 
-    {%- if gift_card.enabled == false or gift_card.expired -%}
-      <p class="gift-card__note">{{ 'gift_cards.issued.expired' | t }}</p>
-    {%- endif -%}
+      <div class="gift-card__amount">
+        {%- if gift_card.balance != gift_card.initial_value -%}
+          {%- assign balance_money = gift_card.balance | money -%}
+          <p class="section-sub">{{ 'gift_card.remaining_html' | t: balance: balance_money }}</p>
+        {%- endif -%}
+        <p class="gift-card__value">{{ gift_card.initial_value | money }}</p>
+      </div>
 
-    <div class="gift-card__code">{{ gift_card.code | format_code }}</div>
+      <div class="gift-card__code-box">
+        <p class="eyebrow">{{ 'gift_card.code_label' | t }}</p>
+        <p class="gift-card__code">{{ gift_card.code | format_code }}</p>
+      </div>
 
-    {%- if gift_card.balance != gift_card.initial_value -%}
-      {%- assign card_balance = gift_card.balance | money -%}
-      <p class="gift-card__note">{{ 'gift_cards.issued.remaining_html' | t: balance: card_balance }}</p>
-    {%- endif -%}
+      {%- if gift_card.expired -%}
+        <p class="form-error">{{ 'gift_card.expired' | t }}</p>
+      {%- elsif gift_card.expires_on -%}
+        {%- assign expiry = gift_card.expires_on | date: '%d.%m.%Y' -%}
+        <p class="section-sub">{{ 'gift_card.expires_on' | t: date: expiry }}</p>
+      {%- endif -%}
 
-    <p class="gift-card__note">{{ 'gift_cards.issued.redeem' | t }}</p>
-    <a class="btn" href="{{ shop.url }}">{{ 'gift_cards.issued.shop_link' | t }}</a>
-  </div>
+      <div class="error-page__actions">
+        <a href="{{ shop.url }}" class="btn btn--primary">{{ 'gift_card.shop_link' | t }}</a>
+        <button type="button" class="btn btn--secondary" onclick="window.print();">{{ 'gift_card.print' | t }}</button>
+      </div>
+    </div>
+  </section>
 </body>
 </html>

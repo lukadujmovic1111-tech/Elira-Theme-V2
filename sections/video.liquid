@@ -1,0 +1,152 @@
+{%- comment -%}
+  Brand-Video — gehostetes Video (empfohlen) oder YouTube/Vimeo.
+  Ohne Autoplay: Cover mit Play-Button, Video/Embed startet erst auf Klick
+  (kein externes Tracking & keine Ladezeit vor der Interaktion).
+{%- endcomment -%}
+{%- liquid
+  assign video_title = section.settings.heading | default: shop.name
+  assign embed_url = blank
+  if section.settings.video == blank and section.settings.video_url != blank
+    if section.settings.video_url.type == 'youtube'
+      assign embed_url = 'https://www.youtube.com/embed/' | append: section.settings.video_url.id | append: '?autoplay=1&rel=0&playsinline=1'
+    elsif section.settings.video_url.type == 'vimeo'
+      assign embed_url = 'https://player.vimeo.com/video/' | append: section.settings.video_url.id | append: '?autoplay=1'
+    endif
+  endif
+-%}
+
+<section class="section video-section{% if section.settings.background == 'bone' %} section--bone{% endif %}">
+  <div class="container container--wide">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+      <div class="section-head section-head--center" data-reveal>
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="section-title">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div
+      class="video-frame{% if section.settings.tall %} video-frame--tall{% endif %}{% if section.settings.mobile_width == 'full' or section.settings.mobile_width == blank %} mobile-bleed{% endif %}"
+      data-video
+      {% if embed_url != blank %}data-video-embed="{{ embed_url }}"{% endif %}
+      data-video-title="{{ video_title | escape }}"
+      data-reveal>
+
+      {%- if section.settings.video != blank -%}
+        {%- if section.settings.autoplay -%}
+          {{ section.settings.video | video_tag: image_size: '1400x', autoplay: true, loop: true, muted: true, controls: false }}
+        {%- else -%}
+          {{ section.settings.video | video_tag: image_size: '1400x', controls: true, muted: false, preload: 'metadata' }}
+        {%- endif -%}
+      {%- elsif section.settings.cover_image != blank -%}
+        {{ section.settings.cover_image
+          | image_url: width: 2200
+          | image_tag:
+            widths: '750, 1100, 1600, 2200',
+            sizes: '(min-width: 990px) 92vw, 100vw',
+            loading: 'lazy',
+            class: 'video-frame__poster' }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'video-frame__poster placeholder-svg' }}
+      {%- endif -%}
+
+      {%- unless section.settings.video != blank and section.settings.autoplay -%}
+        <button type="button" class="video-frame__play" data-video-play>
+          <span class="video-frame__play-circle" aria-hidden="true">
+            {% render 'icon', name: 'play', size: 22 %}
+          </span>
+          <span class="visually-hidden">{{ 'general.video.play' | t }}</span>
+        </button>
+      {%- endunless -%}
+    </div>
+
+    {%- if section.settings.caption != blank -%}
+      <p class="video-section__caption" data-reveal>{{ section.settings.caption }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Studio Stories"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Bewegung, die sich gut anfühlt"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (Shopify-gehostet)",
+      "info": "Empfohlen — lädt schnell und ohne Cookies von Drittanbietern."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Oder: YouTube/Vimeo-URL",
+      "accept": ["youtube", "vimeo"],
+      "info": "Wird nur genutzt, wenn kein gehostetes Video gewählt ist. Startet erst nach Klick."
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Cover-Bild",
+      "info": "Vorschaubild für YouTube/Vimeo."
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay (stumm, als Loop)",
+      "info": "Nur für gehostete Videos. Ideal für kurze Stimmungs-Loops.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "tall",
+      "label": "Höheres Format (4:5 auf Mobile)",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Bildunterschrift (optional)"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Hintergrund",
+      "options": [
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
+      ],
+      "default": "white"
+    },
+    {
+      "type": "select",
+      "id": "mobile_width",
+      "label": "Breite auf Mobilgeräten",
+      "options": [
+        { "value": "full", "label": "Volle Breite (randlos)" },
+        { "value": "inset", "label": "Mit Rand" }
+      ],
+      "default": "full"
+    }
+  ],
+  "presets": [
+    { "name": "Video" }
+  ]
+}
+{% endschema %}

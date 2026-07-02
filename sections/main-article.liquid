@@ -1,38 +1,77 @@
-<article class="article-content">
-  <div class="container container--text">
-    <div class="page-hero" style="padding-top: 0;">
-      <p class="article-card__meta">{{ article.published_at | date: '%d.%m.%Y' }}</p>
-      <h1 class="h1" style="margin-top: 0.6rem;">{{ article.title }}</h1>
-    </div>
+<article class="section article-page">
+  <div class="container container--narrow">
+    <header class="article-page__head">
+      <p class="article-card__meta">
+        <a href="{{ blog.url }}">{{ blog.title }}</a> ·
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d.%m.%Y' }}</time>
+      </p>
+      <h1 class="section-title section-title--lg">{{ article.title }}</h1>
+    </header>
 
     {%- if article.image -%}
-      <div class="article-content__hero">
-        {{ article.image | image_url: width: 1600 | image_tag:
-          widths: '750, 1100, 1600',
-          sizes: '(min-width: 990px) 880px, 100vw',
-          loading: 'eager',
-          alt: article.title
-        }}
+      <div class="article-page__image">
+        {{ article.image
+          | image_url: width: 1600
+          | image_tag: widths: '750, 1100, 1600', sizes: '(min-width: 990px) 800px, 100vw', loading: 'eager' }}
       </div>
     {%- endif -%}
 
-    <div class="rte">
+    <div class="rte article-page__content">
       {{ article.content }}
     </div>
 
-    <div style="margin-top: 3rem;">
-      <a href="{{ blog.url }}" class="link-arrow">
-        {% render 'icon', icon: 'chevron-left' %}
-        {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
-      </a>
-    </div>
+    {%- if article.tags.size > 0 -%}
+      <div class="article-page__tags">
+        {%- for tag in article.tags -%}
+          <span class="tag-pill">{{ tag }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if blog.comments_enabled? -%}
+      <div class="article-comments">
+        <h2 class="section-title">{{ 'blogs.comments.title' | t: count: article.comments_count }}</h2>
+
+        {%- paginate article.comments by 10 -%}
+          {%- for comment in article.comments -%}
+            <div class="article-comment">
+              <p class="article-comment__meta">{{ comment.author }} · {{ comment.created_at | date: '%d.%m.%Y' }}</p>
+              <div class="rte">{{ comment.content }}</div>
+            </div>
+          {%- endfor -%}
+          {% render 'pagination', paginate: paginate %}
+        {%- endpaginate -%}
+
+        {%- form 'new_comment', article, class: 'comment-form' -%}
+          <h3 class="cart-summary__title">{{ 'blogs.comments.form_title' | t }}</h3>
+          {%- if form.posted_successfully? -%}
+            <p class="form-success">{% render 'icon', name: 'check', size: 16 %} {{ 'blogs.comments.success' | t }}</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p class="form-error">{{ 'general.forms.error' | t }}</p>
+          {%- endif -%}
+          <div class="form-field">
+            <label for="CommentAuthor">{{ 'general.forms.name' | t }}</label>
+            <input type="text" id="CommentAuthor" name="comment[author]" required>
+          </div>
+          <div class="form-field">
+            <label for="CommentEmail">{{ 'general.forms.email' | t }}</label>
+            <input type="email" id="CommentEmail" name="comment[email]" required>
+          </div>
+          <div class="form-field">
+            <label for="CommentBody">{{ 'blogs.comments.message' | t }}</label>
+            <textarea id="CommentBody" name="comment[body]" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">{{ 'blogs.comments.submit' | t }}</button>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
   </div>
 </article>
 
 {% schema %}
 {
   "name": "Artikel",
-  "tag": "section",
   "settings": []
 }
 {% endschema %}

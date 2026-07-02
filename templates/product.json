@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -5,81 +14,108 @@
       "blocks": {
         "title": {
           "type": "title",
-          "settings": {
-            "show_vendor": false
-          }
+          "settings": {}
         },
         "price": {
           "type": "price",
           "settings": {}
         },
-        "variants": {
+        "variant-picker": {
           "type": "variant_picker",
           "settings": {
-            "show_swatches": true
+            "size_guide_page": ""
           }
         },
-        "buy": {
+        "buy-buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_quantity": true,
-            "show_dynamic_checkout": true
+            "show_dynamic_checkout": false
           }
         },
-        "usps": {
-          "type": "usp",
+        "trust": {
+          "type": "trust",
+          "settings": {}
+        },
+        "fit-note": {
+          "type": "text",
+          "disabled": true,
           "settings": {
-            "text_1": "Kostenloser Versand ab 75 €",
-            "text_2": "30 Tage Rückgaberecht",
-            "text_3": "Sichere Zahlung & Käuferschutz"
+            "text": "Das Model ist 1,75 m groß und trägt Größe S."
           }
         },
         "description": {
           "type": "description",
           "settings": {
+            "title": "Beschreibung",
             "open": true
           }
         },
         "material": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
-            "heading": "Material & Pflege",
-            "content": "<p>Weiche, formstabile Stoffe in Studio-Qualität. Bei 30 °C im Schonwaschgang waschen, nicht trocknergeeignet.</p>"
+            "title": "Material & Pflege",
+            "content": "<p>73 % recyceltes Polyamid, 27 % Elasthan. Bei 30 °C mit ähnlichen Farben waschen, nicht trocknergeeignet.</p>"
           }
         },
         "shipping": {
           "type": "accordion",
           "settings": {
-            "heading": "Versand & Rückgabe",
-            "content": "<p>Lieferung in 2–4 Werktagen, kostenlos ab 75 €. Du hast 30 Tage Zeit, deine Bestellung zurückzusenden.</p>"
+            "title": "Versand & Rückgabe",
+            "content": "<p>Kostenloser Versand ab 100 €. Lieferung in 2–4 Werktagen. 30 Tage kostenlose Rückgabe — Probetragen ausdrücklich erlaubt.</p>"
           }
         }
       },
       "block_order": [
         "title",
         "price",
-        "variants",
-        "buy",
-        "usps",
+        "variant-picker",
+        "buy-buttons",
+        "trust",
+        "fit-note",
         "description",
         "material",
         "shipping"
       ],
+      "settings": {}
+    },
+    "recommendations": {
+      "type": "product-recommendations",
       "settings": {
-        "padding_top": 48,
-        "padding_bottom": 72
+        "eyebrow": "Style it with",
+        "heading": "Mach den Look komplett",
+        "intent": "related",
+        "products_to_show": 4,
+        "background": "white"
       }
     },
-    "related": {
-      "type": "related-products",
+    "1781185371ff2f68e6": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_VLxT9B": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_VLxT9B"
+      ],
       "settings": {
-        "heading": "Das könnte dir gefallen",
-        "limit": 4,
-        "scheme": "default",
-        "padding_top": 48,
-        "padding_bottom": 88
+        "anchor": "pdp-reviews",
+        "add_padding": true,
+        "full_width": false,
+        "background": "white"
       }
     }
   },
-  "order": ["main", "related"]
+  "order": [
+    "main",
+    "recommendations",
+    "1781185371ff2f68e6"
+  ]
 }

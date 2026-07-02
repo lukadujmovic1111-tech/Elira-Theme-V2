@@ -1,0 +1,178 @@
+{%- comment -%}
+  FAQ — minimalistisches Accordion im Zwei-Spalten-Layout.
+  Links: Intro (sticky auf Desktop), rechts: ausklappbare Fragen.
+{%- endcomment -%}
+
+<section class="section faq{% if section.settings.background == 'bone' %} section--bone{% endif %}" id="faq-{{ section.id }}">
+  <div class="container">
+    <div class="faq__layout">
+
+      <div class="faq__intro" data-reveal>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="section-sub">{{ section.settings.text }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+          <a href="{{ section.settings.button_link }}" class="btn btn--secondary faq__cta">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+
+      <div class="faq__list" data-reveal>
+        {%- assign question_index = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+
+            {%- when 'category' -%}
+              <p class="faq__category" {{ block.shopify_attributes }}>{{ block.settings.title }}</p>
+
+            {%- when 'question' -%}
+              {%- assign question_index = question_index | plus: 1 -%}
+              <details
+                class="accordion faq__item"
+                {{ block.shopify_attributes }}
+                {% if section.settings.open_first and question_index == 1 %}open{% endif %}>
+                <summary class="accordion__head faq__question">
+                  {{ block.settings.question }}
+                  <span class="accordion__icon">{% render 'icon', name: 'plus', size: 16 %}</span>
+                </summary>
+                <div class="accordion__body faq__answer rte">{{ block.settings.answer }}</div>
+              </details>
+
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Gut zu wissen"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Häufige Fragen"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Alles, was du vor deiner Bestellung wissen möchtest — von Passform bis Pflege. Deine Frage ist nicht dabei? Schreib uns gern."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button-Text",
+      "default": "Kontakt aufnehmen"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button-Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Erste Frage standardmäßig geöffnet",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Hintergrund",
+      "options": [
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
+      ],
+      "default": "white"
+    }
+  ],
+  "max_blocks": 30,
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Frage",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Frage",
+          "default": "Wie fällt die Größe aus?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Antwort",
+          "default": "<p>Unsere Teile fallen größentreu aus. Zwischen zwei Größen empfehlen wir die kleinere für mehr Kompression — die größere für einen weicheren, entspannteren Sitz.</p>"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "name": "Kategorie-Überschrift",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Bestellung & Versand"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Wie fällt die Größe aus?",
+            "answer": "<p>Unsere Teile fallen größentreu aus. Zwischen zwei Größen empfehlen wir die kleinere für mehr Kompression — die größere für einen weicheren, entspannteren Sitz.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Wie lange dauert der Versand?",
+            "answer": "<p>Bestellungen verlassen unser Lager innerhalb von 24 Stunden. Die Lieferung dauert in der Regel 2–4 Werktage — ab 100 € versenden wir kostenlos.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Kann ich meine Bestellung zurückgeben?",
+            "answer": "<p>Ja — du hast 30 Tage Zeit, dein Teil in Ruhe zu testen. Probetragen ist ausdrücklich erlaubt. Die Rücksendung ist für dich kostenlos.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Wie pflege ich meine Activewear richtig?",
+            "answer": "<p>Bei 30 °C mit ähnlichen Farben waschen, auf Weichspüler und Trockner verzichten — so behalten die Stoffe ihre Kompression und Form über Jahre.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Sind eure Materialien nachhaltig?",
+            "answer": "<p>Wir setzen auf recycelte Funktionsfasern und produzieren in zertifizierten Partnerbetrieben in Europa — in kleinen Auflagen statt Massenware.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,135 +1,142 @@
-<div class="section scheme-{{ section.settings.scheme }}" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
-  <div class="container">
-    <div class="section-head section-head--center">
+<section class="section testimonials{% if section.settings.background == 'bone' %} section--bone{% endif %}">
+  <div class="container container--wide">
+    <div class="section-head section-head--center" data-reveal>
       <div>
         {%- if section.settings.eyebrow != blank -%}
-          <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+          <p class="eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
-        {%- if section.settings.heading != blank -%}
-          <h2 class="h2">{{ section.settings.heading }}</h2>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.rating_summary != blank -%}
+          <p class="testimonials__summary">
+            <span class="stars" aria-hidden="true">
+              {%- for i in (1..5) -%}{% render 'icon', name: 'star', size: 15 %}{%- endfor -%}
+            </span>
+            {{ section.settings.rating_summary }}
+          </p>
         {%- endif -%}
       </div>
     </div>
 
-    <div class="testimonial-grid">
+    <div class="testimonials__grid" data-reveal data-reveal-stagger>
       {%- for block in section.blocks -%}
         <figure class="testimonial" {{ block.shopify_attributes }}>
-          {%- if block.settings.stars > 0 -%}
-            <div class="testimonial__stars" aria-label="{{ 'general.accessibility.star_rating' | t: rating: block.settings.stars }}">
-              {%- for i in (1..block.settings.stars) -%}
-                {% render 'icon', icon: 'star' %}
-              {%- endfor -%}
-            </div>
-          {%- endif -%}
-          <blockquote class="testimonial__quote">{{ block.settings.quote }}</blockquote>
-          <figcaption class="testimonial__author">{{ block.settings.author }}</figcaption>
+          <span class="stars" role="img" aria-label="{{ block.settings.stars }} / 5">
+            {%- for i in (1..block.settings.stars) -%}{% render 'icon', name: 'star', size: 14 %}{%- endfor -%}
+          </span>
+          <blockquote class="testimonial__quote">&bdquo;{{ block.settings.quote }}&ldquo;</blockquote>
+          <figcaption class="testimonial__author">
+            <span class="testimonial__name">{{ block.settings.author }}</span>
+            {%- if block.settings.detail != blank -%}
+              <span class="testimonial__detail">
+                {% render 'icon', name: 'check', size: 12 %}
+                {{ block.settings.detail }}
+              </span>
+            {%- endif -%}
+          </figcaption>
         </figure>
       {%- endfor -%}
     </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
-  "name": "Testimonials",
-  "tag": "section",
+  "name": "Kundenbewertungen",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Community"
+      "default": "Echte Stimmen"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Überschrift",
-      "default": "Was unsere Kundinnen sagen"
+      "default": "Was unsere Community sagt"
+    },
+    {
+      "type": "text",
+      "id": "rating_summary",
+      "label": "Bewertungs-Zusammenfassung",
+      "default": "4,9 / 5 aus über 2.300 Bewertungen"
     },
     {
       "type": "select",
-      "id": "scheme",
-      "label": "Farbschema",
+      "id": "background",
+      "label": "Hintergrund",
       "options": [
-        { "value": "default", "label": "Hell" },
-        { "value": "sand", "label": "Sand" }
+        { "value": "white", "label": "Weiß" },
+        { "value": "bone", "label": "Bone (Soft)" }
       ],
-      "default": "sand"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Abstand oben",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Abstand unten",
-      "default": 80
+      "default": "white"
     }
   ],
+  "max_blocks": 8,
   "blocks": [
     {
       "type": "testimonial",
-      "name": "Testimonial",
-      "limit": 6,
+      "name": "Bewertung",
       "settings": [
         {
           "type": "range",
           "id": "stars",
-          "min": 0,
+          "label": "Sterne",
+          "min": 1,
           "max": 5,
           "step": 1,
-          "label": "Sterne",
           "default": 5
         },
         {
           "type": "textarea",
           "id": "quote",
           "label": "Zitat",
-          "default": "Das weichste Set, das ich je getragen habe – sitzt perfekt, auch nach zehn Wäschen."
+          "default": "Die mit Abstand beste Leggings, die ich je hatte. Blickdicht, weich und sie sitzt auch nach dem zehnten Waschen wie am ersten Tag."
         },
         {
           "type": "text",
           "id": "author",
           "label": "Name",
-          "default": "Lena M. – Verifizierte Käuferin"
+          "default": "Lena M."
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Detail",
+          "default": "Verifizierter Kauf · Align Flow Leggings"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Testimonials",
+      "name": "Kundenbewertungen",
       "blocks": [
         {
           "type": "testimonial",
           "settings": {
-            "quote": "Das weichste Set, das ich je getragen habe – sitzt perfekt, auch nach zehn Wäschen.",
-            "author": "Lena M. – Verifizierte Käuferin"
+            "stars": 5,
+            "quote": "Die mit Abstand beste Leggings, die ich je hatte. Blickdicht, weich und sie sitzt auch nach dem zehnten Waschen wie am ersten Tag.",
+            "author": "Lena M.",
+            "detail": "Verifizierter Kauf · Flow Leggings"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "quote": "Endlich Pilates-Wear, die im Studio UND beim Brunch funktioniert. Bin verliebt.",
-            "author": "Sophie K. – Verifizierte Käuferin"
+            "stars": 5,
+            "quote": "Ich unterrichte täglich Pilates und lebe praktisch in Elira. Die Qualität ist auf einem Niveau, das ich sonst nur von deutlich teureren Marken kenne.",
+            "author": "Sarah K.",
+            "detail": "Verifizierter Kauf · Studio Set"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "quote": "Der Widerstandsring ist mein tägliches Must-have geworden. Qualität spürt man sofort.",
-            "author": "Anna R. – Verifizierte Käuferin"
+            "stars": 5,
+            "quote": "Endlich ein Sport-BH, der Halt gibt, ohne einzuengen. Das Set ist mein neues Lieblingsoutfit — im Studio und im Café danach.",
+            "author": "Mia T.",
+            "detail": "Verifizierter Kauf · Breeze Sport-BH"
           }
         }
       ]

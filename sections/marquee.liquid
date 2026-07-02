@@ -1,68 +1,57 @@
-<div class="scheme-{{ section.settings.scheme }}">
-  <div class="marquee" style="--marquee-speed: {{ section.settings.speed }}s;">
-    <div class="marquee__track">
-      {%- for i in (1..2) -%}
-        <span class="marquee__item" {% if i == 2 %}aria-hidden="true"{% endif %}>
-          {%- for block in section.blocks -%}
-            <span {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
-            <span class="marquee__sep" aria-hidden="true"></span>
-          {%- endfor -%}
-        </span>
-      {%- endfor -%}
-    </div>
+<div class="marquee" style="--marquee-duration: {{ section.settings.speed }}s">
+  <div class="marquee__track">
+    {%- for i in (1..2) -%}
+      <div class="marquee__group"{% if i == 2 %} aria-hidden="true"{% endif %}>
+        {%- for block in section.blocks -%}
+          <span class="marquee__item" {{ block.shopify_attributes }}>
+            {% render 'icon', name: 'sparkle', size: 14 %}
+            {{ block.settings.text }}
+          </span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Laufband",
-  "tag": "section",
+  "name": "Lauftext",
   "settings": [
-    {
-      "type": "select",
-      "id": "scheme",
-      "label": "Farbschema",
-      "options": [
-        { "value": "default", "label": "Hell" },
-        { "value": "sand", "label": "Sand" },
-        { "value": "ink", "label": "Dunkel" }
-      ],
-      "default": "default"
-    },
     {
       "type": "range",
       "id": "speed",
+      "label": "Durchlaufzeit",
       "min": 10,
       "max": 60,
-      "step": 2,
+      "step": 5,
       "unit": "s",
-      "label": "Geschwindigkeit (Dauer)",
       "default": 30
     }
   ],
+  "max_blocks": 6,
   "blocks": [
     {
       "type": "item",
-      "name": "Eintrag",
-      "limit": 8,
+      "name": "Begriff",
       "settings": [
         {
           "type": "text",
           "id": "text",
           "label": "Text",
-          "default": "Von Frauen. Für Frauen."
+          "default": "Buttery-Soft"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Laufband",
+      "name": "Lauftext",
       "blocks": [
-        { "type": "item", "settings": { "text": "Von Frauen. Für Frauen." } },
-        { "type": "item", "settings": { "text": "Bewegung, die bleibt" } },
-        { "type": "item", "settings": { "text": "Kostenloser Versand ab 75 €" } },
-        { "type": "item", "settings": { "text": "Designed in Germany" } }
+        { "type": "item", "settings": { "text": "Buttery-Soft" } },
+        { "type": "item", "settings": { "text": "Squat-Proof" } },
+        { "type": "item", "settings": { "text": "Atmungsaktiv" } },
+        { "type": "item", "settings": { "text": "Second-Skin Feel" } },
+        { "type": "item", "settings": { "text": "Entworfen für jede Bewegung" } }
       ]
     }
   ]

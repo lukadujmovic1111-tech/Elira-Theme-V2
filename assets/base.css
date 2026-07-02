@@ -1519,6 +1519,7 @@ body.drawer-locked { overflow: hidden; }
 .split-banner__media:hover img { transform: scale(1.035); }
 .split-banner__content { max-width: 520px; }
 .split-banner__text { margin-top: 16px; color: var(--c-body); }
+.split-banner__text + .btn { margin-top: 28px; }
 .split-banner__features {
   display: grid;
   gap: 12px;

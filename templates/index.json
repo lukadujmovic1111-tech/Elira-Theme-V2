@@ -176,14 +176,14 @@
         "f3"
       ],
       "settings": {
-        "image": "shopify://shop_images/hero_banner.png",
+        "image": "shopify://shop_images/editorial_activewear_campaign_photography_athletic_female_model_natural_glowing_skin_minimal_makeup_78tj32dwuevvahu85hc6.png",
         "image_position": "left",
         "background": "white",
-        "eyebrow": "Studio Essentials",
-        "heading": "Vom ersten Sonnengruß bis zum letzten Atemzug",
-        "text": "<p>Unsere Studio Collection begleitet dich durch jede Praxis: Vier-Wege-Stretch, der jede Asana mitmacht, und Schnitte, die deine Silhouette betonen statt einengen.</p>",
-        "button_label": "Studio Collection shoppen",
-        "button_link": ""
+        "eyebrow": "Pilates Essentials",
+        "heading": "Bewegt sich mit dir — auf der Matte und im Alltag",
+        "text": "<p>Unsere Pilates Outfits begleiten dich durch jede Praxis: buttery-soft, blickdicht und mit Schnitten, die deine Silhouette betonen statt einengen.</p>",
+        "button_label": "Pilates Outfits shoppen",
+        "button_link": "shopify://collections/pilates-outfits"
       }
     },
     "usps": {
@@ -209,16 +209,16 @@
           "type": "prop",
           "settings": {
             "icon": "calendar-check",
-            "heading": "30 Tage Probetragen",
-            "text": "Teste dein Outfit beim Training. Nicht überzeugt? Kostenlose Rücksendung — ohne Fragen."
+            "heading": "30 Tage Rückgaberecht",
+            "text": "Nicht das Richtige dabei? Gib Artikel innerhalb von 30 Tagen nach Erhalt einfach und unkompliziert zurück."
           }
         },
         "u4": {
           "type": "prop",
           "settings": {
             "icon": "package",
-            "heading": "Schneller, freier Versand",
-            "text": "Kostenloser Versand ab 100 €. Bestellungen verlassen unser Lager innerhalb von 24 Stunden."
+            "heading": "Kostenloser DHL-Versand",
+            "text": "Versandkostenfrei innerhalb Deutschlands: in 1–2 Werktagen verpackt und mit Sendungsverfolgung zu dir geschickt."
           }
         }
       },
@@ -275,9 +275,9 @@
           "type": "testimonial",
           "settings": {
             "stars": 5,
-            "quote": "Ich unterrichte täglich Pilates und lebe praktisch in Elira. Die Qualität ist auf einem Niveau, das ich sonst nur von deutlich teureren Marken kenne.",
+            "quote": "Ich rolle meine Matte am liebsten im Wohnzimmer aus — und Elira macht jede Session mit. Nichts verrutscht, nichts kneift: anziehen, loslegen, wohlfühlen.",
             "author": "Sarah K.",
-            "detail": "Verifizierter Kauf · Studio Set"
+            "detail": "Verifizierter Kauf · Pilates Outfit"
           }
         },
         "t3": {
